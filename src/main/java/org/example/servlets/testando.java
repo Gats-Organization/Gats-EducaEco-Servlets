@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.*;
 //duda e clara lindas
 @WebServlet(name = "Teste", value = "/login")
     public class testando extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
