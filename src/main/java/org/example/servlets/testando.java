@@ -35,4 +35,12 @@ import jakarta.servlet.annotation.*;
         Matcher emailValidado = expressaoRegex.matcher(email);
         return emailValidado.find();
     }
+
+    public boolean verificandoSenha (String senha){
+        String senhaOfc = "GatsAdm123";
+        if(senha.equals(senhaOfc)){
+            return false;
+        }
+        return true;
+    }
 }
