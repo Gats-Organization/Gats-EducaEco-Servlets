@@ -14,7 +14,7 @@ import jakarta.servlet.annotation.*;
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
-        if(verificandoEmail(email) == true && verificandoSenha(senha) == true) {
+        if(verificandoEmail(email) == true) {
             //if regex == true
             //abre a tela do crud
             request.getRequestDispatcher("crud.jsp").forward(request, response);
