@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.*;
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
-        if(verificandoEmail(email) == true) {
+        if(verificandoEmail(email) == true && verificandoSenha(senha) == true) {
             //if regex == true
             //abre a tela do crud
             request.getRequestDispatcher("crud.jsp").forward(request, response);
@@ -32,5 +32,12 @@ import jakarta.servlet.annotation.*;
         Pattern expressaoRegex = Pattern.compile("^admin\\.crud@gats\\.com\\.br$");
         Matcher emailValidado = expressaoRegex.matcher(email);
         return emailValidado.find();
+    }
+    public boolean verificandoSenha (String senha){
+        String senhaOfc = "GatsAdm123";
+        if(senha.equals(senhaOfc)){
+            return false;
+        }
+        return true;
     }
 }
