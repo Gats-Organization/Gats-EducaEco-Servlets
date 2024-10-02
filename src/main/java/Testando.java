@@ -1,5 +1,3 @@
-package org.example.servlets;
-
 import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,7 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 //duda e clara lindas
 @WebServlet(name = "Teste", value = "/login")
-    public class testando extends HttpServlet {
+    public class Testando extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
