@@ -19,7 +19,7 @@ import jakarta.servlet.annotation.WebServlet;
 
         } else if (email.isEmpty() || senha.isEmpty()) {
             //verifica se o usuário preencheu todos os campos (se estiver vazio, retorna erro)
-            request.getRequestDispatcher("ErrorIsEmpty").forward(request, response);
+            request.getRequestDispatcher("ErrorIsEmpty.jsp").forward(request, response);
 
         } else{
             //else (regex == false)
@@ -36,8 +36,8 @@ import jakarta.servlet.annotation.WebServlet;
     public boolean verificandoSenha (String senha){
         String senhaOfc = "GatsAdm123";
         if(senha.equals(senhaOfc)){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }
