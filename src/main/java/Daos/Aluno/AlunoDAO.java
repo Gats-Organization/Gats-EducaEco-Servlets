@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import Daos.JDBC.Conexao;
 
 public class AlunoDAO {
@@ -104,6 +107,33 @@ public class AlunoDAO {
             conexao.desconectar();
         }
     }
+    public List<Aluno> listarAlunos() {
+        //estabelecendo conexão com o banco
+        conexao.conectar();
+        List<Aluno> alunos = new ArrayList<>();
+        try {
+             pstmt = conn.prepareStatement("SELECT * FROM ALUNO");
+             ResultSet rs = pstmt.executeQuery();
+        }catch (SQLException sqle) {
+            return null;
+        }finally {
+            conexao.desconectar();
+        }
+        return alunos;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     //criando método para buscar aluno, que recebe o id do aluno como parâmetro e retorna o resultado da consulta
     public ResultSet buscarAluno(int id) {
         //estabelecendo conexão com o banco
