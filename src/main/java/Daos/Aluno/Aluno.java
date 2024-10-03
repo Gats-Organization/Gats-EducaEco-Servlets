@@ -8,19 +8,22 @@ public class Aluno {
     private String email;
     private String senha;
     private int xp;
-    private int idTurma;
+    private int id_turma;
 
 
     //definindo método construtor
-    public Aluno(int id, String nome, String sobrenome, String email, String senha, int xp, int idTurma) {
+    public Aluno(int id, String nome, String sobrenome, String email, String senha, int xp, int id_turma) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
         this.senha = senha;
         this.xp = xp;
-        this.idTurma = idTurma;
+        this.id_turma = id_turma;
     }
+
+
+
     //gerando getters e setters
     public int getId() {
         return this.id;
@@ -46,8 +49,8 @@ public class Aluno {
         return this.xp;
     }
 
-    public int getIdTurma() {
-        return this.idTurma;
+    public int getId_turma() {
+        return this.id_turma;
     }
 
     public void setNome(String nome) {
@@ -69,7 +72,7 @@ public class Aluno {
     //gerando toString
 
     public String toString() {
-        return "Aluno: "+ this.nome + " " + this.sobrenome + "\nid: "+ this.id + "\nemail: "+ this.email+ "\nsenha: "+ this.senha + "\nxp: "+this.xp+"\nidTurma: "+this.idTurma;
+        return "Aluno: "+ this.nome + " " + this.sobrenome + "\nid: "+ this.id + "\nemail: "+ this.email+ "\nsenha: "+ this.senha + "\nxp: "+this.xp+"\nidTurma: "+this.id_turma;
 
     }
 }
