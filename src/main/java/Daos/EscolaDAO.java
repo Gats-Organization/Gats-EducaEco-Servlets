@@ -1,4 +1,4 @@
-package Daos.Escola;
+package Daos;
 
 //importando as bibliotecas necessárias
 import Daos.JDBC.Conexao;

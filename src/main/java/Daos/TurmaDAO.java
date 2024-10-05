@@ -1,4 +1,4 @@
-package Daos.Turma;
+package Daos;
 //importando bibliotecas necessárias
 import java.sql.Connection;
 import java.sql.PreparedStatement;

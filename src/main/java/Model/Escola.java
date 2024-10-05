@@ -1,4 +1,4 @@
-package Daos.Escola;
+package Model;
 
 public class Escola {
     //definição dos atributos da classe Escola

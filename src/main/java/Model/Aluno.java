@@ -1,24 +1,24 @@
-package Daos.Aluno;
+package Model;
 
 public class Aluno {
     //Definindo os atributos da Classe Aluno
     private int id;
     private String nome;
     private String sobrenome;
+    private int xp;
     private String email;
     private String senha;
-    private int xp;
     private int id_turma;
 
 
     //definindo método construtor
-    public Aluno(int id, String nome, String sobrenome, String email, String senha, int xp, int id_turma) {
+    public Aluno(int id, String nome, String sobrenome, int xp, String email, String senha, int id_turma) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
+        this.xp = xp;
         this.email = email;
         this.senha = senha;
-        this.xp = xp;
         this.id_turma = id_turma;
     }
 
@@ -66,7 +66,7 @@ public class Aluno {
     }
 
     public void setIdTurma(int idTurma) {
-        this.idTurma = idTurma;
+        this.id_turma = idTurma;
     }
 
     //gerando toString

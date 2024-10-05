@@ -12,26 +12,27 @@
 <head>
 
 <body>
-<%@page import ="Daos.Aluno.Aluno, Daos.Aluno.AlunoDAO, java.util.* "%>
+<%@page import ="Model.Aluno, Daos.AlunoDAO, java.util.*,java.sql.ResultSet" %>
 <h1> Listagem de Alunos </h1>
 <%
     AlunoDAO alunoDAO = new AlunoDAO();
-    List<Aluno> alunos = alunoDAO.listarAlunos();
-    request.setAttribute("alunos", alunos);
+    ResultSet rs = alunoDAO.listarAlunos();
+
 
 %>
 
- <table><tr><th>Id</th><th> Nome</th><th>Email</th><th>Senha</th><th>Xp</th><th>Turma</th></tr>
+ <table><tr><th>Id</th><th> Nome</th><th>Sobrenome</th><th>Xp</th><th>Email</th><th>Senha</th><th>Turma</th></tr>
   <%
-  ResultSet rs = alunoDAO.listarAlunos();
+
    while(rs.next()){
-    Aluno aluno = new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("email"), rs.getString("senha"), rs.getInt("xp"), rs.getString("turma"));
+    Aluno aluno = new Aluno(rs.getInt("id"), rs.getString("nome"), rs.getString("sobrenome"), rs.getInt("xp"), rs.getString("email"), rs.getString("senha"), rs.getInt("id_turma"));
   %>
   <tr><td><%=aluno.getId()%></td>
       <td><%=aluno.getNome()%></td>
+      <td><%=aluno.getSobrenome()%></td>
+      <td><%=aluno.getXp()%></td>
       <td><%=aluno.getEmail()%></td>
       <td><%=aluno.getSenha()%></td>
-      <td><%=aluno.getXp()%></td>
       <td><%=aluno.getId_turma()%></td>
   </tr>
   <%

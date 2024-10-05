@@ -1,4 +1,4 @@
-package Daos.Professor;
+package Daos;
 
 //importando classes para conexão com o banco de dados
 import java.sql.Connection;

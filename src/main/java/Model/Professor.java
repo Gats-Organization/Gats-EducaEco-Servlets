@@ -1,4 +1,4 @@
-package Daos.Professor;
+package Model;
 
 public class Professor {
     //Definindo os atributos da classe Professor

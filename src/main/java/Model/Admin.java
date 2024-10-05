@@ -1,4 +1,4 @@
-package Daos.Admin;
+package Model;
 
 public class Admin {
     //Definir os atributos da classe Admin

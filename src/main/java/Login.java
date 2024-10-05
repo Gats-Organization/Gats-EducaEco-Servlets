@@ -7,7 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 //duda e clara lindas
 @WebServlet(name = "Teste", value = "/login")
-    public class Testando extends HttpServlet {
+    public class Login extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
@@ -15,7 +15,7 @@ import jakarta.servlet.annotation.*;
         if(verificandoRegex(email) == true) {
             //if regex == true
             //abre a tela do crud
-            request.getRequestDispatcher("crud.jsp").forward(request, response);
+            request.getRequestDispatcher("listarAlunos.jsp").forward(request, response);
 
         } else if (email.isEmpty() || senha.isEmpty()) {
             //verifica se o usuário preencheu todos os campos (se estiver vazio, retorna erro)
