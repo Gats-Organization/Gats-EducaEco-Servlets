@@ -3,9 +3,9 @@ package Daos.JDBC;
 import java.sql.*;
 public class Conexao {
     // Variáveis de conexão
-    private Connection conn;
-    private ResultSet rs;
-    private PreparedStatement pstmt;
+    public Connection conn;
+    public ResultSet rs;
+    public PreparedStatement pstmt;
 
     // Método para conectar ao banco de dados
     public boolean conectar() {
@@ -14,7 +14,7 @@ public class Conexao {
             Class.forName("org.postgresql.Driver");
             // Configurando a conexão com o banco de dados
             conn = DriverManager.getConnection(
-                    "jdbc:postgresql://pg-3f95fc8e-educaeco.k.aivencloud.com:12168/dbGats", "postgres", "AVNS_r89pqPsfl1M4wvtLp_2"
+                    "jdbc:postgresql://pg-3f95fc8e-educaeco.k.aivencloud.com:12168/defaultdb","avnadmin","AVNS_r89pqPsfl1M4wvtLp_2"
             );
         } catch (ClassNotFoundException cnfe) {
             //Caso o driver não seja encontrado
