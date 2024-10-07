@@ -35,6 +35,9 @@
       <td><%= rs.getString("email") %></td>
       <td><%= rs.getString("senha") %></td>
       <td><%= rs.getInt("id_turma") %></td>
+      <td><a href="editarAluno.jsp?id=${Aluno.id}<%= rs.getInt("id") %>">Editar</a></td>
+      <td><a href="excluirAluno.jsp?id=<%= rs.getInt("id") %>">Excluir</a></td>
+
   </tr>
   <%
    }

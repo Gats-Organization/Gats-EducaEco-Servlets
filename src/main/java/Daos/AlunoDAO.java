@@ -111,7 +111,7 @@ public class AlunoDAO {
     public ResultSet listarAlunos() {
         //estabelecendo conexão com o banco
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO");) {
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO")) {
             ResultSet rs = conexao.pstmt.executeQuery();
             return rs;
         } catch (SQLException sqle) {
