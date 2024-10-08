@@ -4,26 +4,25 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.*;
 public class Conexao {
+    Dotenv dotenv;
     // Variáveis de conexão
 
     public Connection conn;
-    public ResultSet rs;
     public PreparedStatement pstmt;
 
+    public Conexao() {
+        dotenv = Dotenv.configure().directory("C:\\Users\\claramoreira-ieg\\OneDrive - Instituto Germinare\\Área de Trabalho\\GrupoGats\\Servlets\\.env").load();
+    }
     // Método para conectar ao banco de dados
     public boolean conectar() {
         try {
 
             // Carregando o driver do banco de dados
             Class.forName("org.postgresql.Driver");
-            Dotenv dotenv = Dotenv.load();
-            String url = dotenv.get("DATABASE_URL");
+            String url = dotenv.get("DATABASEURL");
             String user = dotenv.get("USER");
             String password = dotenv.get("PASSWORD");
 
-//            String urlA= "jdbc:postgresql://pg-3f95fc8e-educaeco.k.aivencloud.com:12168/defaultdb";
-//            String userA= "avnadimin";
-//            String passwordA= "AVNS_r89pqPsfl1M4wvtLp_2";
             // Configurando a conexão com o banco de dados
             conn = DriverManager.getConnection(
                     url,user, password

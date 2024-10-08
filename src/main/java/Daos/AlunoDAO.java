@@ -112,7 +112,7 @@ public class AlunoDAO {
         //estabelecendo conexão com o banco
         conexao.conectar();
         try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO")) {
-            ResultSet rs = conexao.pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             return rs;
         } catch (SQLException sqle) {
             return null;

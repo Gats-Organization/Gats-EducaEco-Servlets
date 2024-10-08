@@ -12,17 +12,19 @@
 <head>
 <body>
 <%@page import ="Model.Aluno, Daos.AlunoDAO, java.util.*,java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
 <h1> Listagem de Alunos </h1>
 <%
-    AlunoDAO alunoDAO = new AlunoDAO();
-    ResultSet rs = alunoDAO.listarAlunos();
+//    AlunoDAO alunoDAO = new AlunoDAO();
+//    ResultSet rs = alunoDAO.listarAlunos();
+    ResultSet rs = (ResultSet)request.getAttribute("resultSetAlunos");
 
 
 %>
 
  <table><tr><th>Id</th><th> Nome</th><th>Sobrenome</th><th>Xp</th><th>Email</th><th>Senha</th><th>Turma</th></tr>
   <%
-
+   try{
    while (rs.next()){
 
   %>
@@ -40,6 +42,10 @@
 
   </tr>
   <%
+
+   }
+   }catch(SQLException e){
+       e.printStackTrace();
    }
   %>
 
