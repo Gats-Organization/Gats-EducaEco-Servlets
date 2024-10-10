@@ -14,6 +14,7 @@
 <%@page import="Daos.AlunoDAO,Model.Aluno,"%>
 
 <%
+    
     AlunoDAO alunoDAO = new AlunoDAO();
     String id = request.getParameter("id");
     Aluno aluno = alunoDAO.buscarAluno(Integer.parseInt(id));
