@@ -21,6 +21,9 @@ public class Aluno {
         this.senha = senha;
         this.id_turma = id_turma;
     }
+    public Aluno() {
+
+    }
 
 
 
@@ -63,6 +66,22 @@ public class Aluno {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    public void setId_turma(int id_turma) {
+        this.id_turma = id_turma;
     }
 
     public void setIdTurma(int idTurma) {

@@ -1,9 +1,12 @@
 package Daos;//importando classes para conexão com o banco de dados
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 //import java.util.ArrayList;
 //import java.util.List;
 import Daos.JDBC.Conexao;
@@ -12,6 +15,7 @@ import Model.Aluno;
 public class AlunoDAO {
     //definindo variaveis para conexão com o banco de dados
     Conexao conexao;
+
 
     public AlunoDAO() {
        this.conexao = new Conexao();
@@ -108,18 +112,32 @@ public class AlunoDAO {
         }
     }
 
-    public ResultSet listarAlunos() {
+    public List<Aluno> listarAlunos() {
         //estabelecendo conexão com o banco
+        List<Aluno> alunos = new ArrayList<>();
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO")) {
-            ResultSet rs = pstmt.executeQuery();
-            return rs;
+        try (PreparedStatement pstmt =conexao.conn.prepareStatement("SELECT * FROM ALUNO")) {
+             ResultSet rs = pstmt.executeQuery();
+             while (rs.next()){
+                 Aluno aluno = new Aluno();
+                 aluno.setId(rs.getInt("id"));
+                 aluno.setNome(rs.getString("nome"));
+                 aluno.setSobrenome(rs.getString("sobrenome"));
+                 aluno.setXp(rs.getInt("xp"));
+                 aluno.setEmail(rs.getString("email"));
+                 aluno.setSenha(rs.getString("senha"));
+                 aluno.setIdTurma(rs.getInt("id_turma"));
+                 alunos.add(aluno);
+             }
         } catch (SQLException sqle) {
             return null;
-        } finally {
+        }finally {
+            //fechando conexão com o banco
             conexao.desconectar();
         }
 
+
+        return alunos;
     }
 
 
@@ -142,6 +160,9 @@ public class AlunoDAO {
         return null;
 
 
+    }
+    public Connection getConexao() {
+        return conexao.conn; // Retorna a conexão atual para ser usada no JSP
     }
 
 

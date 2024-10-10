@@ -14,9 +14,45 @@
 <%@page import="Daos.AlunoDAO,Model.Aluno,"%>
 
 <%
+    AlunoDAO alunoDAO = new AlunoDAO();
     String id = request.getParameter("id");
+    Aluno aluno = alunoDAO.buscarAluno(Integer.parseInt(id));
 
 %>
+<form action="editarAluno.jsp" method="post">
+    <input type="hidden" name="id" value="<%=id%>">
+    <table>
+        <tr>
+            <td>Nome:</td>
+            <td><input type="text" name="nome" value="<%=aluno.getNome()%>"></td>
+        </tr>
+        <tr>
+            <td>Sobrenome:</td>
+            <td><input type="text" name="sobrenome" value="<%=aluno.getSobrenome()%>"></td>
+        </tr>
+        <tr>
+            <td>xp:</td>
+            <td><input type="text" name="xp" value="<%=aluno.getXp()%>"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" name="email" value="<%=aluno.getEmail()%>"></td>
+        </tr>
+        <tr>
+            <td>Senha:</td>
+            <td><input type="password" name="senha" value="<%=aluno.getSenha()%>"></td>
+        </tr>
+        <tr>
+            <td>Id-Turma:</td>
+            <td><input type="text" name="id_turma" value="<%=aluno.getId_turma()%>"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Salvar"></td>
+        </tr>
+    </table>
+</form>
+
+
 
 </body>
 </html>

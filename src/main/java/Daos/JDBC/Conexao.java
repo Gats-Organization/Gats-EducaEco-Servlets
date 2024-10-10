@@ -6,6 +6,7 @@ import java.sql.*;
 public class Conexao {
     Dotenv dotenv;
     // Variáveis de conexão
+    //tirar o público 
 
     public Connection conn;
     public PreparedStatement pstmt;

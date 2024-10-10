@@ -13,40 +13,77 @@
 <body>
 <%@page import ="Model.Aluno, Daos.AlunoDAO, java.util.*,java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
 <h1> Listagem de Alunos </h1>
-<%
-//    AlunoDAO alunoDAO = new AlunoDAO();
-//    ResultSet rs = alunoDAO.listarAlunos();
-    ResultSet rs = (ResultSet)request.getAttribute("resultSetAlunos");
+<%--<%--%>
+<%--//    AlunoDAO alunoDAO = new AlunoDAO();--%>
+<%--//    ResultSet rs = alunoDAO.listarAlunos();--%>
+<%--//    ResultSet rs = (ResultSet)request.getAttribute("resultSetAlunos");--%>
+<%--//    Connection conn = (Connection) request.getAttribute("connection");--%>
+<%--//    Statement stmt = null;--%>
 
 
-%>
+<%--%>--%>
 
- <table><tr><th>Id</th><th> Nome</th><th>Sobrenome</th><th>Xp</th><th>Email</th><th>Senha</th><th>Turma</th></tr>
-  <%
-   try{
-   while (rs.next()){
+ <table border="1">
 
-  %>
+     <tr><th>Id</th><th> Nome</th><th>Sobrenome</th><th>Xp</th><th>Email</th><th>Senha</th><th>Turma</th><th>Editar</th><th>Excluir</th></tr>
+     <%
+         List<Aluno> listaAlunos = (List<Aluno>)request.getAttribute("listaAlunos");
 
-  <tr>
-      <td><%= rs.getInt("id") %></td>
-      <td><%= rs.getString("nome") %></td>
-      <td><%= rs.getString("sobrenome") %></td>
-      <td><%= rs.getInt("xp") %></td>
-      <td><%= rs.getString("email") %></td>
-      <td><%= rs.getString("senha") %></td>
-      <td><%= rs.getInt("id_turma") %></td>
-      <td><a href="editarAluno.jsp?id=${Aluno.id}<%= rs.getInt("id") %>">Editar</a></td>
-      <td><a href="excluirAluno.jsp?id=<%= rs.getInt("id") %>">Excluir</a></td>
+         if (listaAlunos != null && !listaAlunos.isEmpty()) {
+             for (Aluno aluno : listaAlunos) {
+     %>
+     <tr>
+         <td><%= aluno.getId() %></td>
+         <td><%= aluno.getNome() %></td>
+         <td><%= aluno.getSobrenome() %></td>
+         <td><%= aluno.getXp() %></td>
+         <td><%= aluno.getEmail() %></td>
+         <td><%= aluno.getSenha() %></td>
+         <td><%= aluno.getId_turma() %></td>
+         <td><a href="editarAluno.jsp?id=<%= aluno.getId() %>">Editar</a></td>
+         <td><a href="excluirAluno.jsp?id=<%= aluno.getId() %>">Excluir</a></td>
+     </tr>
+     <%
+             }
+         } else {
+                 System.out.println("Nenhum aluno encontrado");
+         }
+     %>
 
-  </tr>
-  <%
 
-   }
-   }catch(SQLException e){
-       e.printStackTrace();
-   }
-  %>
 
+<%--     <%--%>
+<%--         List<Aluno> listaAlunos = (List<Aluno>)request.getAttribute("listAlunos");--%>
+
+<%--         if(listaAlunos != null && !listaAlunos.isEmpty()){--%>
+<%--             for(Aluno aluno : listaAlunos){--%>
+<%--     %>--%>
+<%--  <tr>--%>
+<%--      <td><%= aluno.getId() %></td>--%>
+<%--      <td><%= aluno.getNome() %></td>--%>
+<%--      <td><%= aluno.getSobrenome() %></td>--%>
+<%--      <td><%= aluno.getXp() %></td>--%>
+<%--      <td><%= aluno.getEmail() %></td>--%>
+<%--      <td><%= aluno.getSenha() %></td>--%>
+<%--      <td><%= aluno.getId_turma()%></td>--%>
+<%--&lt;%&ndash;      <td><a href="editarAluno.jsp?id=${Aluno.id}<%= rs.getInt("id") %>">Editar</a></td>&ndash;%&gt;--%>
+<%--&lt;%&ndash;      <td><a href="excluirAluno.jsp?id=<%= rs.getInt("id") %>">Excluir</a></td>&ndash;%&gt;--%>
+
+<%--  </tr>--%>
+<%--  <%--%>
+
+<%--<%--%>
+<%--          }--%>
+
+<%--          }else{--%>
+<%--              System.out.println("Nenhum aluno encontrado");--%>
+<%--          }--%>
+
+
+<%--  %>--%>
+</table>
+</body>
 </html>
