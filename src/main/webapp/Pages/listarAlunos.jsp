@@ -35,8 +35,7 @@
          <td><%= aluno.getSenha() %></td>
          <td><%= aluno.getId_turma() %></td>
          <td><a href="editarAluno.jsp?id=<%= aluno.getId() %>">Editar</a></td>
-         <td><a href="ServletExcluirAluno?id=<%= aluno.getId() %>">Excluir</a></td>
-<%--         <td><a href="excluirAluno.jsp?id=<%= aluno.getId() %>">Excluir</a></td>--%>
+         <td><a href="ServletExcluirAluno?id=<%= aluno.getId() %>" >Excluir</a></td>
      </tr>
      <%
              }
@@ -44,6 +43,12 @@
                  System.out.println("Nenhum aluno encontrado");
          }
      %>
+<%--     onclick="return confirmarExclusao()"--%>
+<%--     <script type="text/javascript">--%>
+<%--         function confirmarExclusao() {--%>
+<%--             return confirm("Tem certeza que deseja excluir este aluno?");--%>
+<%--         }--%>
+<%--     </script>--%>
 
 </table>
 </body>

@@ -18,7 +18,6 @@ public class ServletListarAlunos extends HttpServlet {
         List<Aluno> listaAlunos = alunoDao.listarAlunos();
         request.setAttribute("listaAlunos", listaAlunos);
         request.getRequestDispatcher("/Pages/listarAlunos.jsp").forward(request, response);
-//        request.setAttribute("connection", conn);
 
 
     }
