@@ -14,12 +14,22 @@
 <%@page import="Daos.AlunoDAO,Model.Aluno,"%>
 
 <%
-    
-    AlunoDAO alunoDAO = new AlunoDAO();
     String id = request.getParameter("id");
-    Aluno aluno = alunoDAO.buscarAluno(Integer.parseInt(id));
+    AlunoDAO alunoDAO = new AlunoDAO();
 
+    Aluno aluno = null;
+    try {
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    if (aluno != null) {
+    } else {
+
+    }
 %>
+
 <form action="editarAluno.jsp" method="post">
     <input type="hidden" name="id" value="<%=id%>">
     <table>

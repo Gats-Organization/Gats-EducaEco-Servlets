@@ -92,7 +92,7 @@ public class AlunoDAO {
     }
 
     //criando método para remover aluno, que recebe o id do aluno como parâmetro
-    public int remover(int id) {
+    public int removerAluno(int id) {
         //estabelecendo conexão com o banco
         conexao.conectar();
         try {
