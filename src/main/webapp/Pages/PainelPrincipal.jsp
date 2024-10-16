@@ -13,17 +13,12 @@
 <h1>Bem-vindo ao Painel de Administração</h1>
 <p>Escolha uma tabela para visualizar:</p>
 
-<!-- Botão que redireciona para o Servlet de listagem de alunos -->
-<%--<form action="listarAlunos" method="get">--%>
-<%--    <button type="submit">Listar Alunos</button>--%>
-<%--</form>--%>
 
 <a href="listarAlunos">Alunos</a>
+<br><br>
+<a href="listarAdmin">Admin</a>
 
-<!-- Exemplo de outro botão para listar outra tabela -->
-<%--<form action="listarAlunos" method="get">--%>
-<%--    <button type="submit">Alunos</button>--%>
-<%--</form>--%>
+
 </head>
 </body>
 </html>

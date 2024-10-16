@@ -5,7 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import Daos.JDBC.Conexao;
+import Model.Admin;
 
 public class AdminDAO {
     //definindo variáveis para conexão com o banco de dados
@@ -122,23 +126,32 @@ public class AdminDAO {
         }
     }
     //Criando método para consultar todos os administradores
-    public ResultSet consultarAdmin(){
+    public List<Admin> listarAdmins(){
         //conectando ao banco de dados
+        List<Admin> admins = new ArrayList<>();
         conexao.conectar();
         try {
             //consulta sql para ver todos os administradores
             pstmt = conn.prepareStatement("SELECT*FROM ADMIN");
             //executando a consulta
             ResultSet rs = pstmt.executeQuery();
-            return rs;
+            while(rs.next()){
+                Admin admin = new Admin();
+                admin.setId(rs.getInt("id"));
+                admin.setNome(rs.getString("nome"));
+                admin.setEmail(rs.getString("email"));
+                admin.setSenha(rs.getString("senha"));
+                admins.add(admin);
+            }
         }catch(SQLException e){
             //caso ocorra algum erro, retornar null
+            return null;
 
         }finally{
             //desconectando do banco de dados
             conexao.desconectar();
         }
-        return null;
+        return admins;
     }
 
 }

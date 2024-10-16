@@ -142,22 +142,33 @@ public class AlunoDAO {
 
 
     //criando método para buscar aluno, que recebe o id do aluno como parâmetro e retorna o resultado da consulta
-    public ResultSet buscarAluno(int id) {
+    public static Aluno buscarAlunoPorId(int id) {
         //estabelecendo conexão com o banco
-        conexao.conectar();
+        Conexao conexao = new Conexao();
         //consulta SQL para buscar aluno
         try  (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO WHERE ID= ?")){
             //setando o valor do id
             conexao.pstmt.setInt(1, id);
             //executando a consulta
             ResultSet rs = conexao.pstmt.executeQuery();
+            while (rs.next()){
+                Aluno aluno = new Aluno();
+                aluno.setId(rs.getInt("id"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setSobrenome(rs.getString("sobrenome"));
+                aluno.setXp(rs.getInt("xp"));
+                aluno.setEmail(rs.getString("email"));
+                aluno.setSenha(rs.getString("senha"));
+                aluno.setIdTurma(rs.getInt("id_turma"));
+                return aluno;
+            }
         } catch (SQLException sqle) {
             //retornando null em caso de erro
         } finally {
             //fechando conexão com o banco
             conexao.desconectar();
+            return null;
         }
-        return null;
 
 
     }

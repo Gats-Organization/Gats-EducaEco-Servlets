@@ -19,7 +19,17 @@
 
  <table border="1">
 
-     <tr><th>Id</th><th> Nome</th><th>Sobrenome</th><th>Xp</th><th>Email</th><th>Senha</th><th>Turma</th><th>Editar</th><th>Excluir</th></tr>
+     <tr>
+         <th>Id</th>
+         <th> Nome</th>
+         <th>Sobrenome</th>
+         <th>Xp</th>
+         <th>Email</th>
+         <th>Senha</th>
+         <th>Turma</th>
+         <th>Editar</th>
+         <th>Excluir</th>
+     </tr>
      <%
          List<Aluno> listaAlunos = (List<Aluno>)request.getAttribute("listaAlunos");
 
@@ -34,7 +44,15 @@
          <td><%= aluno.getEmail() %></td>
          <td><%= aluno.getSenha() %></td>
          <td><%= aluno.getId_turma() %></td>
-         <td><a href="editarAluno.jsp?id=<%= aluno.getId() %>">Editar</a></td>
+         <td>
+
+             <form action="/Pages/editarAluno.jsp" method="post">
+                 <input type="hidden" name="id" value="<%= aluno.getId() %>">
+                 <button type="submit">Editar</button>
+             </form>
+
+         </td>
+
          <td><a href="ServletExcluirAluno?id=<%= aluno.getId() %>" >Excluir</a></td>
      </tr>
      <%
@@ -43,7 +61,8 @@
                  System.out.println("Nenhum aluno encontrado");
          }
      %>
-<%--     onclick="return confirmarExclusao()"--%>
+
+
 <%--     <script type="text/javascript">--%>
 <%--         function confirmarExclusao() {--%>
 <%--             return confirm("Tem certeza que deseja excluir este aluno?");--%>
@@ -51,5 +70,7 @@
 <%--     </script>--%>
 
 </table>
+<br><br>
+<a href="ServletAdicionarAluno">Cadastrar Aluno</a>
 </body>
 </html>

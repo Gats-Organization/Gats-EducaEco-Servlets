@@ -14,10 +14,8 @@
 <%@page import="Daos.AlunoDAO,Model.Aluno,"%>
 
 <%
-    String id = request.getParameter("id");
-    AlunoDAO alunoDAO = new AlunoDAO();
+    Aluno aluno = (Aluno) request.getAttribute("aluno");
 
-    Aluno aluno = null;
     try {
 
     } catch (Exception e) {
@@ -30,8 +28,8 @@
     }
 %>
 
-<form action="editarAluno.jsp" method="post">
-    <input type="hidden" name="id" value="<%=id%>">
+<form action="ServletEditarAluno" method="post">
+    <input type="hidden" name="id" value="<%=aluno.getId()%>">
     <table>
         <tr>
             <td>Nome:</td>

@@ -14,6 +14,9 @@ public class Admin {
         this.email = email;
         this.senha = senha;
     }
+    public Admin() {
+
+    }
     //gerando getters e setters
     public int getId() {
         return id;
@@ -27,6 +30,9 @@ public class Admin {
     public String getSenha() {
         return senha;
     }
+    public void setId(int id) {
+        this.id = id;
+        }
     public void setNome(String nome) {
         this.nome = nome;
     }
