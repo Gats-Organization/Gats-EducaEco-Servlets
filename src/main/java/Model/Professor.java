@@ -1,25 +1,30 @@
-package Daos.Admin;
+package Model;
 
-public class Admin {
-    //Definir os atributos da classe Admin
+public class Professor {
+    //Definindo os atributos da classe Professor
     private int id;
     private String nome;
+    private String sobrenome;
     private String email;
     private String senha;
 
-    //Criando método construtor
-    public Admin(int id, String nome, String email, String senha) {
+    //Criando construtor
+    public Professor(int id, String nome, String sobrenome, String email, String senha) {
         this.id = id;
         this.nome = nome;
+        this.sobrenome = sobrenome;
         this.email = email;
         this.senha = senha;
     }
-    //gerando getters e setters
+    //Gerando getters e setters
     public int getId() {
         return id;
     }
     public String getNome() {
         return nome;
+    }
+    public String getSobrenome() {
+        return sobrenome;
     }
     public String getEmail() {
         return email;
@@ -30,6 +35,9 @@ public class Admin {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
@@ -39,7 +47,6 @@ public class Admin {
     //Criando toString
     @Override
     public String toString() {
-        return "Admin: "+ this.nome + "\nid: "+ this.id + "\nemail: "+ this.email + "\nsenha: "+ this.senha;
-
+        return "Professor: "+ this.nome + " " + this.sobrenome + "\nId: "+ this.id + "\nEmail: " + this.email + "\nSenha: " + this.senha;
     }
 }

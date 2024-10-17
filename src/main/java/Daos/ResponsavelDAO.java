@@ -1,4 +1,4 @@
-package Daos.Responsavel;
+package Daos;
 
 //importando bibliotecas necessárias
 import java.sql.Connection;

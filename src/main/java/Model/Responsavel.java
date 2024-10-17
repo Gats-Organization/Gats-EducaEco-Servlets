@@ -1,4 +1,4 @@
-package Daos.Responsavel;
+package Model;
 
 public class Responsavel {
         //Definindo os atributos da classe responsavel

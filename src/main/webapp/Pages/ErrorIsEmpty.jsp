@@ -19,7 +19,7 @@
 </head>
 <body>
     <jsp:include page="index.html" flush="true"/>
-    <p style="color: rgb(205, 11, 11); text-align: center; margin-top: 15px">
+    <p style="color: rgb(205, 11, 11); text-align: center">
         <strong>Ops! Parece que você esqueceu de preencher algum campo.
         <br>
         Por favor, preencha todos os campos corretamente.</strong>

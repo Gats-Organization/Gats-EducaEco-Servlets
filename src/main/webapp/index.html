@@ -23,8 +23,8 @@
                 Informe seu login e acesse a Área dos Professores do EducaEco.
             </p>
         </div>
-        <form action="Login" method="post">
-            <h1>Login</h1>
+        <form action="login" method="post">
+            <h1>Controller.Login</h1>
             <br><br>
             <label>E-mail</label>
             <input type="text" name="email" placeholder="e-mail">
@@ -52,10 +52,10 @@
     togglePassword.addEventListener('click', function () {
         if (passwordField.type === 'password') {
             passwordField.type = 'text';
-            togglePassword.innerHTML = '<img src="Imagens Login/Olho fechado.png" alt="esconder senha">'; // Ícone de olho fechado
+            togglePassword.innerHTML = '<img src="Imagens Controller.Login/Olho fechado.png" alt="esconder senha">'; // Ícone de olho fechado
         } else {
             passwordField.type = 'password';
-            togglePassword.innerHTML = '<img src="Imagens Login/Olho aberto.png" alt="mostrar senha">'; 
+            togglePassword.innerHTML = '<img src="Imagens Controller.Login/Olho aberto.png" alt="mostrar senha">';
         }
     });
 </script>

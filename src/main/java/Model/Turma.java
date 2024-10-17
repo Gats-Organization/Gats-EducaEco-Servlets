@@ -1,4 +1,4 @@
-package Daos.Turma;
+package Model;
 
 
     public class Turma {

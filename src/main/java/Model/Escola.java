@@ -1,4 +1,4 @@
-package Daos.Escola;
+package Model;
 
 public class Escola {
     //definição dos atributos da classe Escola
@@ -15,6 +15,9 @@ public class Escola {
         this.email = email;
         this.telefone = telefone;
         this.id_endereco = id_endereco;
+    }
+    public Escola() {
+
     }
     //gerando getters e setters
     public int getId() {
@@ -44,6 +47,10 @@ public class Escola {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
+
     //gerando o toString
     @Override
     public String toString() {
