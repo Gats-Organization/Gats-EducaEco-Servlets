@@ -16,6 +16,9 @@ public class Escola {
         this.telefone = telefone;
         this.id_endereco = id_endereco;
     }
+    public Escola() {
+
+    }
     //gerando getters e setters
     public int getId() {
         return id;
@@ -44,6 +47,10 @@ public class Escola {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
+
     //gerando o toString
     @Override
     public String toString() {

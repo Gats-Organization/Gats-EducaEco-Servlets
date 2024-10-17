@@ -46,13 +46,12 @@
          <td><%= aluno.getId_turma() %></td>
          <td>
 
-             <form action="/Pages/editarAluno.jsp" method="post">
+             <form action="ServletEditarAluno" method="post">
                  <input type="hidden" name="id" value="<%= aluno.getId() %>">
                  <button type="submit">Editar</button>
              </form>
 
          </td>
-
          <td><a href="ServletExcluirAluno?id=<%= aluno.getId() %>" >Excluir</a></td>
      </tr>
      <%

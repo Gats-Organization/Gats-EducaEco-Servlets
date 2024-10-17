@@ -16,9 +16,9 @@ public class ServletListarAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdminDAO adminDAO = new AdminDAO();
-        List<Admin> adminList = adminDAO.listarAdmins();
-        req.setAttribute("adminList", adminList);
-        req.getRequestDispatcher("listarAdmin.jsp").forward(req, resp);
+        List<Admin> listaAdmins = adminDAO.listarAdmins();
+        req.setAttribute("listaAdmins", listaAdmins);
+        req.getRequestDispatcher("/Pages/listarAdmin.jsp").forward(req, resp);
     }
 }
 

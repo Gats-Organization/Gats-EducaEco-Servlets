@@ -11,7 +11,7 @@
     <title>Editar Aluno </title>
 </head>
 <body>
-<%@page import="Daos.AlunoDAO,Model.Aluno,"%>
+<%@page import="Daos.AlunoDAO,Model.Aluno"%>
 
 <%
     Aluno aluno = (Aluno) request.getAttribute("aluno");

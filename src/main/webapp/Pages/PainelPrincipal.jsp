@@ -17,6 +17,8 @@
 <a href="listarAlunos">Alunos</a>
 <br><br>
 <a href="listarAdmin">Admin</a>
+<br><br>
+<a href="listarEscola">Escola</a>
 
 
 </head>

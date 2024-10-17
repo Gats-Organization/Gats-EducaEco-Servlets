@@ -18,7 +18,7 @@ public class AlunoDAO {
 
 
     public AlunoDAO() {
-       this.conexao = new Conexao();
+        this.conexao = new Conexao();
     }
 
 
@@ -27,7 +27,7 @@ public class AlunoDAO {
         //estabelecendo conexão com o banco
         conexao.conectar();
         //consulta SQL para inserir aluno
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO ALUNO (ID,NOME,SOBRENOME,XP,EMAIL,SENHA,ID_TURMA) VALUES (?,?,?,?,?,?,?)")){
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO ALUNO (ID,NOME,SOBRENOME,XP,EMAIL,SENHA,ID_TURMA) VALUES (?,?,?,?,?,?,?)")) {
             //setando os valores
             pstmt.setInt(1, id);
             pstmt.setString(2, nome);
@@ -116,22 +116,22 @@ public class AlunoDAO {
         //estabelecendo conexão com o banco
         List<Aluno> alunos = new ArrayList<>();
         conexao.conectar();
-        try (PreparedStatement pstmt =conexao.conn.prepareStatement("SELECT * FROM ALUNO")) {
-             ResultSet rs = pstmt.executeQuery();
-             while (rs.next()){
-                 Aluno aluno = new Aluno();
-                 aluno.setId(rs.getInt("id"));
-                 aluno.setNome(rs.getString("nome"));
-                 aluno.setSobrenome(rs.getString("sobrenome"));
-                 aluno.setXp(rs.getInt("xp"));
-                 aluno.setEmail(rs.getString("email"));
-                 aluno.setSenha(rs.getString("senha"));
-                 aluno.setIdTurma(rs.getInt("id_turma"));
-                 alunos.add(aluno);
-             }
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO")) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Aluno aluno = new Aluno();
+                aluno.setId(rs.getInt("id"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setSobrenome(rs.getString("sobrenome"));
+                aluno.setXp(rs.getInt("xp"));
+                aluno.setEmail(rs.getString("email"));
+                aluno.setSenha(rs.getString("senha"));
+                aluno.setIdTurma(rs.getInt("id_turma"));
+                alunos.add(aluno);
+            }
         } catch (SQLException sqle) {
             return null;
-        }finally {
+        } finally {
             //fechando conexão com o banco
             conexao.desconectar();
         }
@@ -140,11 +140,10 @@ public class AlunoDAO {
         return alunos;
     }
 
-
     //criando método para buscar aluno, que recebe o id do aluno como parâmetro e retorna o resultado da consulta
     public static Aluno buscarAlunoPorId(int id) {
         //estabelecendo conexão com o banco
-        Conexao conexao = new Conexao();
+         conexao.conectar();
         //consulta SQL para buscar aluno
         try  (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO WHERE ID= ?")){
             //setando o valor do id

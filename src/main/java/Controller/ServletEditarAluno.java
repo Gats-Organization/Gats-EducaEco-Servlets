@@ -11,24 +11,23 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet ( name = "ServletEditarAluno", value="/ServletEditarAluno")
-public class ServletEditarAluno  extends HttpServlet {
+@WebServlet(name = "ServletEditarAluno", value = "/ServletEditarAluno")
+public class ServletEditarAluno extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         AlunoDAO dao = new AlunoDAO();
 
-        try{
+        try {
             Aluno aluno = dao.buscarAlunoPorId(Integer.parseInt(id));
-
-
             req.setAttribute("aluno", aluno);
+
+            // Verifique se o caminho está correto
+            System.out.println("Encaminhando para: /Pages/editarAluno.jsp");
             req.getRequestDispatcher("/Pages/editarAluno.jsp").forward(req, resp);
 
-
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
-
 }
+
