@@ -22,8 +22,9 @@ public class ServletEditarAluno extends HttpServlet {
             req.setAttribute("aluno", aluno);
 
             // Verifique se o caminho está correto
-            System.out.println("Encaminhando para: /Pages/editarAluno.jsp");
             req.getRequestDispatcher("/Pages/editarAluno.jsp").forward(req, resp);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
