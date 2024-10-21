@@ -16,19 +16,9 @@
 <%
     Aluno aluno = (Aluno) request.getAttribute("aluno");
 
-    try {
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-
-    if (aluno != null) {
-    } else {
-
-    }
 %>
 
-<form action="ServletEditarAluno" method="post">
+<form action="atualizarAluno" method="post">
     <input type="hidden" name="id" value="<%=aluno.getId()%>">
     <table>
         <tr>
@@ -54,8 +44,10 @@
         <tr>
             <td>Id-Turma:</td>
             <td><input type="text" name="id_turma" value="<%=aluno.getId_turma()%>"></td>
+
         </tr>
         <tr>
+<%--     <button><a href="/Pages/listarAlunos.jsp"><input type="submit" value="Salvar"></a></button>       <a href="/Pages/listarAlunos.jsp">Voltar</a>--%>
             <td><input type="submit" value="Salvar"></td>
         </tr>
     </table>

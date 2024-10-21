@@ -11,24 +11,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "ServletEditarAluno", value = "/ServletEditarAluno")
+@WebServlet( "/buscarAluno")
 public class ServletEditarAluno extends HttpServlet {
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
+        int alunoId = Integer.parseInt(id);
         AlunoDAO dao = new AlunoDAO();
+        Aluno aluno = dao.buscarAlunoPorId(alunoId);
+        req.setAttribute("aluno", aluno);
 
-        try {
-            Aluno aluno = dao.buscarAlunoPorId(Integer.parseInt(id));
-            req.setAttribute("aluno", aluno);
-
-            // Verifique se o caminho está correto
-            req.getRequestDispatcher("/Pages/editarAluno.jsp").forward(req, resp);
+        // Verifique se o caminho está correto
+        req.getRequestDispatcher("/Pages/editarAluno.jsp").forward(req, resp);
 
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 }
 

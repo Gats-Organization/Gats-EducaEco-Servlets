@@ -21,17 +21,17 @@ public class AdminDAO {
     }
 
     //criando método para inserir administrador
-    public int inserirAdmin(int id, String nome, String email, String senha){
+    public int inserirAdmin(Admin admin) {
         //conectando ao banco de dados
         conexao.conectar();
         try{
             //consulta sql para inserir administrador
             conexao.pstmt = conexao.conn.prepareStatement("INSERT INTO ADMIN VALUES (?,?,?,?)");
             //setando os valores
-            conexao.pstmt.setInt(1,id);
-            conexao.pstmt.setString(2,nome);
-            conexao.pstmt.setString(3,email);
-            conexao.pstmt.setString(4,senha);
+            conexao.pstmt.setInt(1,admin.getId());
+            conexao.pstmt.setString(2,admin.getNome());
+            conexao.pstmt.setString(3,admin.getEmail());
+            conexao.pstmt.setString(4,admin.getSenha());
             //executando a consulta
             return conexao.pstmt.executeUpdate();
         }catch(SQLException e){
@@ -42,57 +42,19 @@ public class AdminDAO {
             conexao.desconectar();
         }
     }
-    //Criando método para alterar email do administrador, por meio do id
-    public int alterarEmail( String email, int id) {
-        //conectando ao banco de dados
-        conexao.conectar();
-        try {
-            //consulta sql para alterar email do administrador
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ADMIN SET EMAIL =? WHERE ID=? ");
-            //setando os valores
-            conexao.pstmt.setString(1, email);
-            conexao.pstmt.setInt(2, id);
-            //executando a consulta
-            return conexao.pstmt.executeUpdate();
-        } catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
-            return -1;
-        } finally {
-            //desconectando do banco de dados
-            conexao.desconectar();
-        }
-    }
 
-    //Criando método para alterar nome do administrador, com base no id
-    public int alterarNome(String nome, int id) {
-        //conectando ao banco de dados
-        conexao.conectar();
-        try {
-            //consulta sql para alterar nome do administrador
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ADMIN SET NOME =? WHERE ID=? ");
-            //setando os valores
-            conexao.pstmt.setString(1, nome);
-            conexao.pstmt.setInt(2, id);
-            //executando a consulta
-            return conexao.pstmt.executeUpdate();
-        } catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
-            return -1;
-        } finally {
-            //desconectando do banco de dados
-            conexao.desconectar();
-        }
-    }
-    //Criando método alterarSenhar
-    public int alterarSenha(String senha, int id) {
+    //Criando método alterar Admin com base no id
+    public int atualizarAdmin(Admin admin) {
         //conectando ao banco de dados
         conexao.conectar();
         try {
             //consulta sql para alterar senha do administrador
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ADMIN SET SENHA =? WHERE ID=? ");
+            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ADMIN SET NOME = ?, EMAIL = ?, SENHA =? WHERE ID=? ");
             //setando os valores
-            conexao.pstmt.setString(1, senha);
-            conexao.pstmt.setInt(2, id);
+            conexao.pstmt.setString(1, admin.getNome());
+            conexao.pstmt.setString(2, admin.getEmail());
+            conexao.pstmt.setString(3, admin.getSenha());
+            conexao.pstmt.setInt(4, admin.getId());
             //executando a consulta
             return conexao.pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -150,6 +112,31 @@ public class AdminDAO {
             conexao.desconectar();
         }
         return admins;
+    }
+
+    public Admin buscarAdminPorId(int id) {
+        //conectando ao banco de dados
+        conexao.conectar();
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ADMIN WHERE ID = ?");) {
+            //consulta sql para buscar administrador por id
+            //setando os valores
+            pstmt.setInt(1, id);
+            //executando a consulta
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Admin admin = new Admin();
+                admin.setId(rs.getInt("id"));
+                admin.setNome(rs.getString("nome"));
+                admin.setEmail(rs.getString("email"));
+                admin.setSenha(rs.getString("senha"));
+                return admin;
+            }
+        } catch (SQLException e) {
+            return null;
+        }finally {
+            conexao.desconectar();
+        }
+        return null;
     }
 
 }

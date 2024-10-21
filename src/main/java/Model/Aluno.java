@@ -27,6 +27,8 @@ public class Aluno {
 
 
 
+
+
     //gerando getters e setters
     public int getId() {
         return this.id;

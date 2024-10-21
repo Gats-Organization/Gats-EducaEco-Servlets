@@ -45,12 +45,10 @@
          <td><%= aluno.getSenha() %></td>
          <td><%= aluno.getId_turma() %></td>
          <td>
-
-             <form action="ServletEditarAluno" method="post">
-                 <input type="hidden" name="id" value="<%= aluno.getId() %>">
-                 <button type="submit">Editar</button>
-             </form>
-
+            <form action="buscarAluno" method="get">
+                <input type="hidden" name="id" value="<%= aluno.getId() %>">
+                <input type="submit" value="Editar">
+            </form>
          </td>
          <td><a href="ServletExcluirAluno?id=<%= aluno.getId() %>" >Excluir</a></td>
      </tr>
@@ -70,6 +68,11 @@
 
 </table>
 <br><br>
-<a href="ServletAdicionarAluno">Cadastrar Aluno</a>
+
+<%--<form action="/Pages/adicionarAluno" method="post">--%>
+<%--    <input type="submit" value="Adicionar Aluno">--%>
+<%--</form>--%>
+<a href="adicionarAlunos">Adicionar Aluno</a>
+
 </body>
 </html>
