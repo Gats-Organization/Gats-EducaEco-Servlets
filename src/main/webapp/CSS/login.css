@@ -1,11 +1,10 @@
 /* --------------------------------FUNDO DO BODY---------------------------------- */
-body {
-    background-image: url("/Imagens Login/Fundo Login.jpeg");
+* {
+    background-image: url('/Imagens Login/FundoLogin.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-
 /* --------------------------------COMEÇO DA MAIN---------------------------------- */
 main{
     display: flex;

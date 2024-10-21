@@ -28,7 +28,7 @@
             <td><input type="text" name="sobrenome" required></td>
         </tr>
         <tr>
-            <td>Xp</td>:</td>
+            <td>Xp:</td>
             <td><input type="number" name="xp" required></td>
         </tr>
         <tr>

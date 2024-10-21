@@ -9,7 +9,13 @@
 <html>
 <head>
 <title> Listagem de Alunos </title>
-<head>
+    <link rel="stylesheet" href="CSS/listarAlunos.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="Imagens Login/logo app.png" type="image/x-icon">
+</head>
 <body>
 <%@page import ="Model.Aluno, Daos.AlunoDAO, java.util.*,java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>
@@ -19,7 +25,7 @@
 
  <table border="1">
 
-     <tr>
+     <tr id="colunas">
          <th>Id</th>
          <th> Nome</th>
          <th>Sobrenome</th>
@@ -44,13 +50,21 @@
          <td><%= aluno.getEmail() %></td>
          <td><%= aluno.getSenha() %></td>
          <td><%= aluno.getId_turma() %></td>
-         <td>
+         <td id="editar">
             <form action="buscarAluno" method="get">
                 <input type="hidden" name="id" value="<%= aluno.getId() %>">
-                <input type="submit" value="Editar">
+                <button id="botao" type="submit">
+                    <img src="Imagens Login/Lápis.png" alt="Lápis">
+                    Editar
+                </button>
             </form>
          </td>
-         <td><a href="ServletExcluirAluno?id=<%= aluno.getId() %>" >Excluir</a></td>
+         <td id="excluir">
+         <a href="ServletExcluirAluno?id=<%= aluno.getId() %>">
+             <img src="Imagens Login/Lixeira.png" alt="Lixeira">
+             Excluir
+         </a>
+         </td>
      </tr>
      <%
              }
@@ -67,12 +81,15 @@
 <%--     </script>--%>
 
 </table>
-<br><br>
 
 <%--<form action="/Pages/adicionarAluno" method="post">--%>
 <%--    <input type="submit" value="Adicionar Aluno">--%>
 <%--</form>--%>
-<a href="adicionarAlunos">Adicionar Aluno</a>
+<div class="botaoAddAluno">
+    <a id="addAluno" href="adicionarAlunos"><strong>+ Adicionar Aluno</strong></a>
+</div>
+
+<br><br>
 
 </body>
 </html>
