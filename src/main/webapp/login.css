@@ -1,7 +1,10 @@
 /* --------------------------------FUNDO DO BODY---------------------------------- */
-/* body{
-    background:url('Imagens Controller.Login/Fundo do login.jpg');
-} */
+body {
+    background-image: url("../Imagens Login/Fundo Login.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 /* --------------------------------COMEÇO DA MAIN---------------------------------- */
 main{
