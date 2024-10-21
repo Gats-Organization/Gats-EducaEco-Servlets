@@ -16,6 +16,9 @@ public class Professor {
         this.email = email;
         this.senha = senha;
     }
+    public Professor() {
+
+    }
     //Gerando getters e setters
     public int getId() {
         return id;
@@ -31,6 +34,9 @@ public class Professor {
     }
     public String getSenha() {
         return senha;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
     public void setNome(String nome) {
         this.nome = nome;

@@ -1,26 +1,23 @@
 package Controller;
 
 import Daos.AdminDAO;
+import Model.Admin;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 import java.io.IOException;
-import java.sql.SQLException;
 
-@WebServlet("/ServletExcluirAdmin")
-public class ServletExcluirAdmin extends HttpServlet {
+@WebServlet("/editarAdmins")
+public class ServletEditarAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
-        AdminDAO adminDAO = new AdminDAO();
-        try{
-            adminDAO.removerAdmin(Integer.parseInt(id));
-            response.sendRedirect("listarAdmin");
-        }catch(Exception e){
-            e.printStackTrace();}
+    String id = request.getParameter("id");
+    int idAdmin = Integer.parseInt(id);
+    AdminDAO admindao = new AdminDAO();
+    Admin admin = admindao.buscarAdminPorId(idAdmin);
+    request.setAttribute("admin", admin);
+    request.getRequestDispatcher("/Pages/editarAdmin.jsp").forward(request, response);
     }
-
 }

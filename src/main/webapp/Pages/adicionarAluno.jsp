@@ -13,9 +13,13 @@
 <body>
 <h2>Adicionar Novo Aluno</h2>
 
-<form action="" method="post">
+<form action="salvarAluno" method="post">
     <table>
         <tr>
+            <td>Id:</td>
+            <td><input type="number" name="id" required></td>
+        </tr>
+        </tr>
             <td>Nome:</td>
             <td><input type="text" name="nome" required></td>
         </tr>
@@ -24,7 +28,7 @@
             <td><input type="text" name="sobrenome" required></td>
         </tr>
         <tr>
-            <td>XP:</td>
+            <td>Xp</td>:</td>
             <td><input type="number" name="xp" required></td>
         </tr>
         <tr>
@@ -46,17 +50,17 @@
 </form>
 
 <!-- Aqui você poderia incluir lógica JSP para exibir mensagens de erro ou sucesso -->
-<%
-    if (request.getAttribute("erro") != null) {
-%>
-<p style="color:red;"><%= request.getAttribute("erro") %></p>
-<%
-} else if (request.getAttribute("sucesso") != null) {
-%>
-<p style="color:green;"><%= request.getAttribute("sucesso") %></p>
-<%
-    }
-%>
+<%--<%--%>
+<%--    if (request.getAttribute("erro") != null) {--%>
+<%--%>--%>
+<%--<p style="color:red;"><%= request.getAttribute("erro") %></p>--%>
+<%--<%--%>
+<%--} else if (request.getAttribute("sucesso") != null) {--%>
+<%--%>--%>
+<%--<p style="color:green;"><%= request.getAttribute("sucesso") %></p>--%>
+<%--<%--%>
+<%--    }--%>
+<%--%>--%>
 </body>
 </html>
 

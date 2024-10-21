@@ -40,13 +40,13 @@
         <td><%=admin.getEmail()%></td>
         <td><%=admin.getSenha()%></td>
         <td>
-        <form action="ServletEditarAluno" method="post">
+        <form action="editarAdmins" method="get">
             <input type="hidden" name="id" value="<%= admin.getId() %>">
             <button type="submit">Editar</button>
         </form>
 
         </td>
-        <td><a href="ServletExcluirAluno?id=<%= admin.getId() %>" >Excluir</a></td>
+        <td><a href="ServletExcluirAdmin?id=<%= admin.getId() %>" >Excluir</a></td>
     </tr>
     <%
     }
@@ -54,5 +54,9 @@
             System.out.println("Nenhum administrador encontrado");
         }
 %>
+</table>
+<br>
+<a href="adicionarAdmins">Adicionar Admin</a>
+
 </body>
 </html>

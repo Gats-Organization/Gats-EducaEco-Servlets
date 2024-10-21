@@ -18,6 +18,9 @@ public class Responsavel {
             this.senha = senha;
             this.id_aluno = id_aluno;
         }
+        public Responsavel() {
+
+        }
         //Gerando getters e setters
         public int getId() {
             return id;
@@ -34,6 +37,8 @@ public class Responsavel {
         public String getSenha() {
             return senha;
         }
+        public void setId(int id) {this.id = id;}
+        public void setId_aluno(int id_aluno) {this.id_aluno = id_aluno;}
         public void setNome(String nome) {
             this.nome = nome;
         }

@@ -5,23 +5,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import Daos.JDBC.Conexao;
+import Model.Responsavel;
 
 public class ResponsavelDAO {
     //definindo váriaveis para conexão com o banco
-    private Connection conn;
-    private PreparedStatement pstmt;
-    private ResultSet rs;
+    Conexao conexao;
     //Instanciando a classe Conexao
-    Conexao conexao = new Conexao();
+    public ResponsavelDAO() {
+        this.conexao = new Conexao();
+    }
 
     //Criando método para inserir um responsável
     public int inserirResponsavel(int id,String nome, String sobrenome,String email, String senha, int id_aluno ) {
         //conectando com banco de dados
         conexao.conectar();
-        try {
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO RESPONSAVEL VALUES(?,?,?,?,?,?,?)")){
             //consulta sql para inserir um responsável
-            pstmt = conn.prepareStatement("INSERT INTO RESPONSAVEL VALUES(?,?,?,?,?,?,?)");
             //setando os valores
             pstmt.setInt(1,id);
             pstmt.setString(2,nome);
@@ -40,21 +43,18 @@ public class ResponsavelDAO {
         }
     }
     //Criando método para alterar um responsável
-    public int alterarResponsavel(int id, String nome,String sobrenome, String email, String senha, int id_aluno ) {
+    public int alterarResponsavel(Responsavel responsavel ) {
         //conectando com banco de dados
         conexao.conectar();
-        try{
-            //consulta sql para alterar um responsável
-            pstmt = conn.prepareStatement("UPDATE RESPONSAVEL SET ID =? , SET NOME =? , " +
-                    "SET SOBRENOME=? , SET EMAIL=?,SET SENHA=? SET ID_ALUNO=? WHERE ID=?");
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE RESPONSAVEL SET NOME =? , SET SOBRENOME=? , SET EMAIL =? , SET SENHA =? ,SET ID_ALUNO=? WHERE ID =? " ) ){
+
             //setando os valores
-            pstmt.setInt(1,id);
-            pstmt.setString(2,nome);
-            pstmt.setString(3,sobrenome);
-            pstmt.setString(4,email);
-            pstmt.setString(5,senha);
-            pstmt.setInt(6,id_aluno);
-            pstmt.setInt(7,id);
+            pstmt.setString(1,responsavel.getNome());
+            pstmt.setString(2,responsavel.getSobrenome());
+            pstmt.setString(3,responsavel.getEmail());
+            pstmt.setString(4,responsavel.getSenha());
+            pstmt.setInt(5,responsavel.getId_aluno());
+            pstmt.setInt(6,responsavel.getId());
             //executando a consulta
             return pstmt.executeUpdate();
         }catch(SQLException e) {
@@ -70,10 +70,7 @@ public class ResponsavelDAO {
     public int removerResponsavel(int id){
         //conectando com banco de dados
         conexao.conectar();
-        try{
-            //consulta sql para remover um responsável
-            String sql = "DELETE FROM RESPONSAVEL WHERE ID=?";
-            pstmt = conn.prepareStatement(sql);
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("DELETE FROM RESPONSAVEL WHERE ID = ? " ) ){
             //setando o valor do id
             pstmt.setInt(1,id);
             //executando a consulta
@@ -87,22 +84,33 @@ public class ResponsavelDAO {
         }
     }
     //Criando método para consultar responsáveis
-    public ResultSet consultarResponsavel(){
+    public List<Responsavel> listarResponsavel(){
+        List<Responsavel> responsaveis= new ArrayList<>();
         //conectando com banco de dados
         conexao.conectar();
-        try{
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT*FROM RESPONSAVEL")){
             //consulta sql para consultar responsáveis
-            pstmt = conn.prepareStatement("SELECT*FROM RESPONSAVEL");
             //executando a consulta
             ResultSet rs = pstmt.executeQuery();
-            return rs;
+            //enquanto existir registros, adiciona na lista de responsáveis
+            while(rs.next()){
+                Responsavel responsavel = new Responsavel();
+                responsavel.setId(rs.getInt("id"));
+                responsavel.setNome(rs.getString("nome"));
+                responsavel.setSobrenome(rs.getString("sobrenome"));
+                responsavel.setEmail(rs.getString("email"));
+                responsavel.setSenha(rs.getString("senha"));
+                responsavel.setId_aluno(rs.getInt("id_aluno"));
+                responsaveis.add(responsavel);
+            }
         }catch(SQLException e) {
             //caso ocorra algum erro, retorna null
+            return null;
         }finally{
             //desconectando do banco de dados
             conexao.desconectar();
         }
-        return null;
+        return responsaveis;
     }
 
 }

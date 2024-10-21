@@ -1,7 +1,5 @@
 package Controller;
 
-import Daos.AlunoDAO;
-import Model.Aluno;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,10 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/adicionarAlunos")
-public class ServletAdicionarAluno extends HttpServlet {
+@WebServlet("/adicionarAdmins")
+public class ServletAdicionarAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/Pages/adicionarAluno.jsp").forward(request, response);
+        request.getRequestDispatcher("/Pages/adicionarAdmin.jsp").forward(request, response);
 
     }
 }

@@ -47,44 +47,28 @@ public class AlunoDAO {
         }
     }
 
-    //criando método para alterar o nome do aluno
-    public int alterarNome(String nome, int id) {
-        //estabelecendo conexão com o banco
-        conexao.conectar();
-        try {
-            //consulta SQL para alterar o nome do aluno
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ALUNO SET NOME=? WHERE ID=? ");
-            //setando os valores
-            conexao.pstmt.setString(1, nome);
-            conexao.pstmt.setInt(2, id);
-            //executando a consulta
-            return conexao.pstmt.executeUpdate();
-        } catch (SQLException sqle) {
-            //retornando -1 em caso de erro
-            return -1;
-        } finally {
-            //fechando conexão com o banco
-            conexao.desconectar();
-        }
-    }
+
 
     //criando método para alterar o id da turma do aluno, recebe o id_turma e o id
-    public int alterarId_turma(int id_turma, int id) {
+    public int atualizarAluno( Aluno aluno) {
 
         // estabelecendo conexão
         conexao.conectar();
-        try {
-            // preparando a consulta para ser executada
-            conexao.pstmt = conexao.conn.prepareStatement("CALL TRANSFERIR_ALUNO(?,?)");
-
-            // setanddo os valores
-            conexao.pstmt.setInt(1, id_turma);
-            conexao.pstmt.setInt(2, id);
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE ALUNO SET NOME=?, SOBRENOME=?, XP=?, EMAIL=?, SENHA=?, ID_TURMA=? WHERE ID=?")){
+            pstmt.setString(1, aluno.getNome());
+            pstmt.setString(2, aluno.getSobrenome());
+            pstmt.setInt(3, aluno.getXp());
+            pstmt.setString(4, aluno.getEmail());
+            pstmt.setString(5, aluno.getSenha());
+            pstmt.setInt(6, aluno.getId_turma());
+            pstmt.setInt(7, aluno.getId());
             // executando a consulta
-            return conexao.pstmt.executeUpdate();
+             return pstmt.executeUpdate();
         } catch (SQLException sqle) {
             // retornando -1 em caso de erro
+            sqle.printStackTrace();
             return -1;
+
         } finally {
             // fechando conexão com o banco
             conexao.desconectar();

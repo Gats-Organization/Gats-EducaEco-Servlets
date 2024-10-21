@@ -9,18 +9,26 @@
 <html>
     <title>Painel Principal</title>
 </head>
+    <link rel="stylesheet" type="text/css" href="PainelPrincipal.css">
+
+</head>
 <body>
 <h1>Bem-vindo ao Painel de Administração</h1>
 <p>Escolha uma tabela para visualizar:</p>
 
-
-<a href="listarAlunos">Alunos</a>
+<div class="botoes">
+<a href="listarAlunos">Aluno</a>
 <br><br>
 <a href="listarAdmin">Admin</a>
 <br><br>
 <a href="listarEscola">Escola</a>
+<br><br>
+<a href="listarProfessor">Professor</a>
+<br><br>
+<a href="listarResponsavel">Responsavel</a>
 
 
-</head>
+</div>
+
 </body>
 </html>
