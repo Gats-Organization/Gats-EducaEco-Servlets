@@ -21,12 +21,12 @@ import jakarta.servlet.annotation.*;
 
         } else if (email.isEmpty() || senha.isEmpty()) {
             //verifica se o usuário preencheu todos os campos (se estiver vazio, retorna erro)
-            request.getRequestDispatcher("ErrorIsEmpty").forward(request, response);
+            request.getRequestDispatcher("/Pages/ErrorIsEmpty.jsp").forward(request, response);
 
         } else{
             //else (regex == false)
             //mostra um erro pro usuário
-            request.getRequestDispatcher("ErrorSintaxe.jsp").forward(request, response);
+            request.getRequestDispatcher("/Pages/ErrorSintaxe.jsp").forward(request, response);
         }
 
     }

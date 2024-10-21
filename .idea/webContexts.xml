@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/ErrorPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Pages/ErrorIsEmpty.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Pages/adicionarAdmin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Pages/editarAluno.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/Pages/listarAlunos.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Pages" />

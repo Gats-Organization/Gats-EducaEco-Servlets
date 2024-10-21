@@ -19,8 +19,8 @@
 </head>
 <body>
     <jsp:include page="../index.html" flush="true"/>
-    <p style="color: rgb(205, 11, 11); text-align: center">
-        <strong>Controller.Login e/ou senha inválido(s). Tente novamente.</strong>
+    <p style="color: rgb(205, 11, 11); text-align: center; margin-top: 10px">
+        <strong>Login e/ou senha inválido(s). Tente novamente.</strong>
     </p>
 </body>
 </html>
