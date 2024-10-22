@@ -28,8 +28,9 @@
     <th>Nome</th>
     <th>Sobrenome</th>
     <th>Email</th>
-    <th>Senha</th>
     <th>Id_Aluno</th>
+    <th>Editar</th>
+    <th>Excluir</th>
   </tr>
     <%
         if(listaResponsavel != null && !listaResponsavel.isEmpty()){
@@ -40,8 +41,17 @@
         <td><%= responsavel.getNome()%></td>
         <td><%= responsavel.getSobrenome()%></td>
         <td><%= responsavel.getEmail()%></td>
-        <td><%= responsavel.getSenha()%></td>
         <td><%= responsavel.getId_aluno()%></td>
+        <td>
+
+          <form action="editarResponsavel" method="get">
+            <input type="hidden" name="id" value="<%= responsavel.getId()%>">
+            <input type="submit" value="Editar">
+          </form>
+        </td>
+        <td>
+        <a href="excluirResponsavel?id=<%= responsavel.getId()%>">Excluir</a>
+        </td>
        </tr>
 
           <%
@@ -50,6 +60,8 @@
           System.out.println("Nenhum responsável foi encontrado");
         }
 %>
-
+  </table>
+<br><
+<a href="adicionarResponsavel">Adicionar Responsável</a>
 </body>
 </html>

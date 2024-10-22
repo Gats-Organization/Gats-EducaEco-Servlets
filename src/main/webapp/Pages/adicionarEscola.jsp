@@ -1,17 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: claramoreira-ieg
-  Date: 20/10/2024
-  Time: 12:51
+  Date: 22/10/2024
+  Time: 00:12
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Adicionar Administrador</title>
+    <title>Adicionar Escola</title>
 </head>
 <body>
-<form action="salvarAdmin" method="post">
+<form action="salvarEscola" method="post">
     <table>
         <tr>
             <td>Id:</td>
@@ -23,17 +23,22 @@
         </tr>
         <tr>
             <td>Email:</td>
-            <td><input type="email" name="email"></td>
+            <td><input type="text" name="email"></td>
         </tr>
         <tr>
-            <td>Senha:</td>
-            <td><input type="password" name="senha"></td>
+            <td>Telefone:</td>
+            <td><input type="text" name="telefone"></td>
+        </tr>
+        <tr>
+            <td>Id_endereço:</td>
+            <td><input type="number" name="id_endereco"></td>
         </tr>
         <tr>
             <td><input type="submit" value="Salvar"></td>
         </tr>
+    </table>
+</form>
 
-        </table>
-   </form>
+
 </body>
 </html>

@@ -45,7 +45,7 @@ public class ProfessorDAO {
     public int atualizarProfessor( Professor professor ){
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE PROFESSOR SET NOME = ?, SET SOBRENOME = ?, SET EMAIL = ?, SET SENHA = ? WHERE ID = ?")){
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE PROFESSOR SET NOME = ?,SOBRENOME = ?, EMAIL = ?, SENHA = ? WHERE ID = ?")){
             //consulta SQL para alterar o nome do professor
             //setando os valores
             pstmt.setString(1,professor.getNome());
@@ -96,10 +96,11 @@ public class ProfessorDAO {
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
                 Professor professor = new Professor();
-                professor.setId(rs.getInt("ID"));
-                professor.setNome(rs.getString("NOME"));
-                professor.setEmail(rs.getString("EMAIL"));
-                professor.setSenha(rs.getString("SENHA"));
+                professor.setId(rs.getInt("id"));
+                professor.setNome(rs.getString("nome"));
+                professor.setSobrenome(rs.getString("sobrenome"));
+                professor.setEmail(rs.getString("email"));
+                professor.setSenha(rs.getString("senha"));
                 return professor;
 
             }

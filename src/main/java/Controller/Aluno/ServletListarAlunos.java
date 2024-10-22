@@ -1,6 +1,6 @@
-package Controller;
+package Controller.Aluno;
 import Daos.AlunoDAO;
-import Model.Aluno;
+import Model.AlunoDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ServletListarAlunos extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AlunoDAO alunoDao = new AlunoDAO();
-        List<Aluno> listaAlunos = alunoDao.listarAlunos();
+        List<AlunoDTO> listaAlunos = alunoDao.listarAlunosTurma();
         req.setAttribute("listaAlunos", listaAlunos);
         req.getRequestDispatcher("/Pages/listarAlunos.jsp").forward(req, resp);
 

@@ -11,7 +11,7 @@
     <title>Adicionar Aluno</title>
 </head>
 <body>
-<h2>Adicionar Novo Aluno</h2>
+<h2>Adicionar Novo Controller.Aluno</h2>
 
 <form action="salvarAluno" method="post">
     <table>
@@ -44,7 +44,7 @@
             <td><input type="number" name="id_turma" required></td>
         </tr>
         <tr>
-            <td><input type="submit" value="Adicionar Aluno"></td>
+            <td><input type="submit" value="Adicionar Controller.Aluno"></td>
         </tr>
     </table>
 </form>

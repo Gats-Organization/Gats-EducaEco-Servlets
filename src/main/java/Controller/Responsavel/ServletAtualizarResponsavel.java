@@ -1,7 +1,7 @@
-package Controller;
+package Controller.Responsavel;
 
-import Daos.ProfessorDAO;
-import Model.Professor;
+import Daos.ResponsavelDAO;
+import Model.Responsavel;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,18 +10,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/atualizarProfessor")
-public class ServletAtualizarProfessor extends HttpServlet {
+@WebServlet("/atualizarResponsavel")
+public class ServletAtualizarResponsavel extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
+        int id_aluno = Integer.parseInt(request.getParameter("id_aluno"));
 
-        Professor professor = new Professor(id, nome, sobrenome, email, senha);
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        professorDAO.atualizarProfessor(professor);
-        response.sendRedirect("listProfessor");
+        // Atualizar os dados do responsável pelo id
+        Responsavel responsavel = new Responsavel(id, nome, sobrenome, email, id_aluno);
+        ResponsavelDAO responsavelDao = new ResponsavelDAO();
+        responsavelDao.atualizarResponsavel(responsavel);
+        response.sendRedirect("listarResponsavel");
+
     }
 }

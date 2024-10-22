@@ -6,16 +6,14 @@ public class Responsavel {
         private String nome;
         private String sobrenome;
         private String email;
-        private String senha;
         private int id_aluno;
 
         //Criando método construtor
-        public Responsavel(int id, String nome, String sobrenome, String email,String senha, int id_aluno) {
+        public Responsavel(int id, String nome, String sobrenome, String email, int id_aluno) {
             this.id = id;
             this.nome = nome;
             this.sobrenome = sobrenome;
             this.email = email;
-            this.senha = senha;
             this.id_aluno = id_aluno;
         }
         public Responsavel() {
@@ -34,9 +32,6 @@ public class Responsavel {
         public String getEmail() {
             return email;
         }
-        public String getSenha() {
-            return senha;
-        }
         public void setId(int id) {this.id = id;}
         public void setId_aluno(int id_aluno) {this.id_aluno = id_aluno;}
         public void setNome(String nome) {
@@ -48,9 +43,7 @@ public class Responsavel {
         public void setEmail(String email) {
             this.email = email;
         }
-        public void setSenha(String senha) {
-            this.senha = senha;
-        }
+
         public int getId_aluno() {
             return id_aluno;
         }
@@ -58,7 +51,7 @@ public class Responsavel {
         //Criando método toString
         @Override
         public String toString() {
-            return "Responsavel: " +this.nome + " " +this.sobrenome + "\nid: "+this.id + "\nemail: " +this.email + "\nsenha: " +this.senha + "\nid_aluno: " +this.id_aluno;
+            return "Responsavel: " +this.nome + " " +this.sobrenome + "\nid: "+this.id + "\nemail: " + "\nid_aluno: " +this.id_aluno;
         }
     }
 

@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Aluno;
 
 import Daos.AlunoDAO;
 import Model.Aluno;

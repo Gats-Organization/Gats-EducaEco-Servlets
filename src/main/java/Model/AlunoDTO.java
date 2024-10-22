@@ -1,6 +1,6 @@
 package Model;
 
-public class Aluno {
+public class AlunoDTO {
     //Definindo os atributos da Classe Controller.Aluno
     private int id;
     private String nome;
@@ -9,10 +9,12 @@ public class Aluno {
     private String email;
     private String senha;
     private int id_turma;
+    private int serie;
+    private String nomeclantura;
 
 
     //definindo método construtor
-    public Aluno(int id, String nome, String sobrenome, int xp, String email, String senha, int id_turma) {
+    public AlunoDTO(int id, String nome, String sobrenome, int xp, String email, String senha, int id_turma, int serie, String nomeclantura) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -20,14 +22,29 @@ public class Aluno {
         this.email = email;
         this.senha = senha;
         this.id_turma = id_turma;
+        this.serie = serie;
+        this.nomeclantura = nomeclantura;
     }
-    public Aluno() {
+    public AlunoDTO() {
 
     }
 
 
+    public int getSerie() {
+        return serie;
+    }
 
+    public void setSerie(int serie) {
+        this.serie = serie;
+    }
 
+    public String getNomeclantura() {
+        return nomeclantura;
+    }
+
+    public void setNomeclantura(String nomeclantura) {
+        this.nomeclantura = nomeclantura;
+    }
 
     //gerando getters e setters
     public int getId() {

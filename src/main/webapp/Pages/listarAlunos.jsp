@@ -21,6 +21,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
+<%@ page import="Model.AlunoDTO" %>
 <h1> Listagem de Alunos </h1>
 
  <table border="1">
@@ -37,10 +38,10 @@
          <th>Excluir</th>
      </tr>
      <%
-         List<Aluno> listaAlunos = (List<Aluno>)request.getAttribute("listaAlunos");
+         List<AlunoDTO> listaAlunos = (List<AlunoDTO>)request.getAttribute("listaAlunos");
 
          if (listaAlunos != null && !listaAlunos.isEmpty()) {
-             for (Aluno aluno : listaAlunos) {
+             for (AlunoDTO aluno : listaAlunos) {
      %>
      <tr>
          <td><%= aluno.getId() %></td>
@@ -49,7 +50,7 @@
          <td><%= aluno.getXp() %></td>
          <td><%= aluno.getEmail() %></td>
          <td><%= aluno.getSenha() %></td>
-         <td><%= aluno.getId_turma() %></td>
+         <td><%= aluno.getSerie() %> - <%= aluno.getNomeclantura() %></td>
          <td id="editar">
             <form action="buscarAluno" method="get">
                 <input type="hidden" name="id" value="<%= aluno.getId() %>">
@@ -81,15 +82,9 @@
 <%--     </script>--%>
 
 </table>
-
-<%--<form action="/Pages/adicionarAluno" method="post">--%>
-<%--    <input type="submit" value="Adicionar Aluno">--%>
-<%--</form>--%>
+<br>
 <div class="botaoAddAluno">
     <a id="addAluno" href="adicionarAlunos"><strong>+ Adicionar Aluno</strong></a>
 </div>
-
-<br><br>
-
 </body>
 </html>

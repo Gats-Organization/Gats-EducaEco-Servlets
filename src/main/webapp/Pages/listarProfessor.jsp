@@ -39,7 +39,7 @@
             <td><%=professor.getEmail()%></td>
             <td><%=professor.getSenha()%></td>
             <td>
-                <form action="buscarProfessor" method="get">
+                <form action="ServletEditarProfessor" method="get">
                 <input type="hidden" name="id" value="<%=professor.getId()%>">
                 <input type="submit" value="Editar">
                 </form>

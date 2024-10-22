@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Escola;
 
 import Daos.EscolaDAO;
 import Model.Escola;
