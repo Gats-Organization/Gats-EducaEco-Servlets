@@ -17,7 +17,7 @@ import jakarta.servlet.annotation.*;
         if(verificandoRegex(email)) {
             //if regex == true
             //abre a tela do crud
-            request.getRequestDispatcher("/Pages/PainelPrincipal.jsp").forward(request, response);
+            request.getRequestDispatcher("/Pages/painelPrincipal.jsp").forward(request, response);
 
         } else if (email.isEmpty() || senha.isEmpty()) {
             //verifica se o usuário preencheu todos os campos (se estiver vazio, retorna erro)
