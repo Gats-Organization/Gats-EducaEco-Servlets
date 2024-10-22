@@ -27,6 +27,8 @@
         <th>Email</th>
         <th>Telefone</th>
         <th>Id_endereco</th>
+        <th>Editar</th>
+        <th>Excluir</th>
     </tr>
     <%
         if( listarEscolas!= null && !listarEscolas.isEmpty()){
@@ -38,6 +40,14 @@
         <td><%=escola.getEmail()%></td>
         <td><%=escola.getTelefone()%></td>
         <td><%=escola.getId_endereco()%></td>
+        <td>
+            <form action="editarEscola" method="get">
+                <input type="hidden" name="id" value="<%=escola.getId()%>">
+                <input type="submit" value="Editar">
+            </form>
+        </td>
+
+        <td> <a href="excluirEscola?id=<%=escola.getId()%>">Excluir</a></td>
     </tr>
     <%}
 }else{
@@ -45,6 +55,9 @@
 }
 
 %>
+
+</table>
+<a href="adicionarEscola">Adicionar Escola</a>
 
 </body>
 </html>

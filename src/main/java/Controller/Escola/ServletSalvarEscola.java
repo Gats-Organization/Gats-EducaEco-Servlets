@@ -1,7 +1,7 @@
-package Controller;
+package Controller.Escola;
 
-import Daos.ProfessorDAO;
-import Model.Professor;
+import Daos.EscolaDAO;
+import Model.Escola;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,19 +10,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/salvarProfessor")
-public class ServletSalvarProfessor extends HttpServlet {
-    @Override
+@WebServlet("/salvarEscola")
+public class ServletSalvarEscola extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         String nome = req.getParameter("nome");
-        String sobrenome = req.getParameter("sobrenome");
         String email = req.getParameter("email");
-        String senha = req.getParameter("senha");
+        int telefone = Integer.parseInt(req.getParameter("telefone"));
+        int id_endereco = Integer.parseInt(req.getParameter("id_endereco"));
 
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        professorDAO.inserirProfessor(id, nome, sobrenome, email, senha);
-        resp.sendRedirect("listarProfessor");
+        EscolaDAO dao = new EscolaDAO();
+        dao.inserirEscola(id, nome, email, telefone, id_endereco);
+        resp.sendRedirect("listarEscola");
 
-    }
+
+
+        }
 }

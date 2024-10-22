@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Aluno;
 
 import Daos.AlunoDAO;
 import Model.Aluno;
@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet( "/buscarAluno")
 public class ServletEditarAluno extends HttpServlet {

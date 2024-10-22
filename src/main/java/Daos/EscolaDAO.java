@@ -44,35 +44,21 @@ public class EscolaDAO {
         }
     }
     //Criando método para alterar o nome da escola
-    public int alterarNome(String nome){
+    public int atualizarEscola(Escola escola){
         //Estabelecendo conexão com o banco de dados
         conexao.conectar();
         try{
             //Consulta SQL para alterar o nome da escola
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ESCOLA SET NOME=?");
-            //setando o valor do parâmetro
-            conexao.pstmt.setString(1,nome);
-            //executando a consulta
+            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ESCOLA SET NOME=?, EMAIL=?, TELEFONE=?, ID_ENDERECO=? WHERE ID=?  ");
+            conexao.pstmt.setString(1,escola.getNome());
+            conexao.pstmt.setString(2,escola.getEmail());
+            conexao.pstmt.setInt(3,escola.getTelefone());
+            conexao.pstmt.setInt(4,escola.getId_endereco());
+            conexao.pstmt.setInt(5,escola.getId());
+
             return conexao.pstmt.executeUpdate();
-        }catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
-            return -1;
-        }finally {
-            //desconectando do banco de dados
-            conexao.desconectar();
-        }
-    }
-    //criando método para alterar o email da escola
-    public int alterarEmail(String email){
-        //Estabelecendo conexão com o banco de dados
-        conexao.conectar();
-        try{
-            //Consulta SQL para alterar o email da escola
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ESCOLA SET EMAIL=?");
-            //setando o valor do parâmetro
-            conexao.pstmt.setString(1,email);
+
             //executando a consulta
-            return conexao.pstmt.executeUpdate();
         }catch (SQLException e) {
             //caso ocorra algum erro, retornar -1
             return -1;
@@ -82,25 +68,6 @@ public class EscolaDAO {
         }
     }
 
-    //criando método para alterar o telefone da escola
-    public int alterarTelefone(int telefone){
-        //Estabelecendo conexão com o banco de dados
-        conexao.conectar();
-        try{
-            //Consulta SQL para alterar o telefone da escola
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ESCOLA SET TELEFONE=?");
-            //setando o valor do parâmetro
-            conexao.pstmt.setInt(1,telefone);
-            //executando a consulta
-            return conexao.pstmt.executeUpdate();
-        }catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
-            return -1;
-        }finally {
-            //desconectando do banco de dados
-            conexao.desconectar();
-        }
-    }
     //criando método para remover uma escola
     public int removerEscola(int id){
         //Estabelecendo conexão com o banco de dados
@@ -148,7 +115,7 @@ public class EscolaDAO {
         return escolas;
     }
     //criando método para buscar uma escola pelo id
-    public ResultSet buscarEscola(int id){
+    public Escola buscarEscolaPorId(int id){
         //Estabelecendo conexão com o banco de dados
         conexao.conectar();
         try{
@@ -158,7 +125,16 @@ public class EscolaDAO {
             conexao.pstmt.setInt(1,id);
             //executando a consulta
             ResultSet rs = conexao.pstmt.executeQuery();
-            return rs;
+            while (rs.next()) {
+                Escola escola = new Escola();
+                escola.setId(rs.getInt("ID"));
+                escola.setNome(rs.getString("NOME"));
+                escola.setEmail(rs.getString("EMAIL"));
+                escola.setTelefone(rs.getInt("TELEFONE"));
+                escola.setId_endereco(rs.getInt("ID_ENDERECO"));
+                return escola;
+
+            }
         }catch (SQLException e) {
             //caso ocorra algum erro, retornar null
         }finally {

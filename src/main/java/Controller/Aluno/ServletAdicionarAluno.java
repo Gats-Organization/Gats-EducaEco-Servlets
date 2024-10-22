@@ -1,7 +1,5 @@
-package Controller;
+package Controller.Aluno;
 
-import Daos.AlunoDAO;
-import Model.Aluno;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

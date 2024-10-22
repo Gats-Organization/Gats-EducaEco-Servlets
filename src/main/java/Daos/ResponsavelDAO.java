@@ -20,18 +20,18 @@ public class ResponsavelDAO {
     }
 
     //Criando método para inserir um responsável
-    public int inserirResponsavel(int id,String nome, String sobrenome,String email, String senha, int id_aluno ) {
+    public int inserirResponsavel(int id,String nome, String sobrenome,String email, int id_aluno ) {
         //conectando com banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO RESPONSAVEL VALUES(?,?,?,?,?,?,?)")){
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO RESPONSAVEL VALUES(?,?,?,?,?)")){
             //consulta sql para inserir um responsável
             //setando os valores
             pstmt.setInt(1,id);
             pstmt.setString(2,nome);
             pstmt.setString(3,sobrenome);
             pstmt.setString(4,email);
-            pstmt.setString(5,senha);
-            pstmt.setInt(6,id_aluno);
+            pstmt.setInt(5,id_aluno);
+
             //executando a consulta
             return pstmt.executeUpdate();
         }catch(SQLException e) {
@@ -43,18 +43,17 @@ public class ResponsavelDAO {
         }
     }
     //Criando método para alterar um responsável
-    public int alterarResponsavel(Responsavel responsavel ) {
+    public int atualizarResponsavel(Responsavel responsavel ) {
         //conectando com banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE RESPONSAVEL SET NOME =? , SET SOBRENOME=? , SET EMAIL =? , SET SENHA =? ,SET ID_ALUNO=? WHERE ID =? " ) ){
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE RESPONSAVEL SET NOME =? ,SOBRENOME=? ,EMAIL =? ,ID_ALUNO=? WHERE ID =? " ) ){
 
             //setando os valores
             pstmt.setString(1,responsavel.getNome());
             pstmt.setString(2,responsavel.getSobrenome());
             pstmt.setString(3,responsavel.getEmail());
-            pstmt.setString(4,responsavel.getSenha());
-            pstmt.setInt(5,responsavel.getId_aluno());
-            pstmt.setInt(6,responsavel.getId());
+            pstmt.setInt(4,responsavel.getId_aluno());
+            pstmt.setInt(5,responsavel.getId());
             //executando a consulta
             return pstmt.executeUpdate();
         }catch(SQLException e) {
@@ -99,7 +98,6 @@ public class ResponsavelDAO {
                 responsavel.setNome(rs.getString("nome"));
                 responsavel.setSobrenome(rs.getString("sobrenome"));
                 responsavel.setEmail(rs.getString("email"));
-                responsavel.setSenha(rs.getString("senha"));
                 responsavel.setId_aluno(rs.getInt("id_aluno"));
                 responsaveis.add(responsavel);
             }
@@ -112,5 +110,27 @@ public class ResponsavelDAO {
         }
         return responsaveis;
     }
+
+    public Responsavel buscarResponsavelPorId(int id) {
+        conexao.conectar();
+        try(PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT*FROM RESPONSAVEL WHERE ID = ? ")) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Responsavel responsavel = new Responsavel();
+                responsavel.setId(rs.getInt("id"));
+                responsavel.setNome(rs.getString("nome"));
+                responsavel.setSobrenome(rs.getString("sobrenome"));
+                responsavel.setEmail(rs.getString("email"));
+                responsavel.setId_aluno(rs.getInt("id_aluno"));
+                return responsavel;
+            }
+        }catch(SQLException e) {
+            return null;
+        }finally{
+            conexao.desconectar();
+        }
+            return null;
+        }
 
 }

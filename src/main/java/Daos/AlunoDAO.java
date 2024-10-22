@@ -11,6 +11,7 @@ import java.util.List;
 //import java.util.List;
 import Daos.JDBC.Conexao;
 import Model.Aluno;
+import Model.AlunoDTO;
 
 public class AlunoDAO {
     //definindo variaveis para conexão com o banco de dados
@@ -111,6 +112,35 @@ public class AlunoDAO {
                 aluno.setEmail(rs.getString("email"));
                 aluno.setSenha(rs.getString("senha"));
                 aluno.setIdTurma(rs.getInt("id_turma"));
+                alunos.add(aluno);
+            }
+        } catch (SQLException sqle) {
+            return null;
+        } finally {
+            //fechando conexão com o banco
+            conexao.desconectar();
+        }
+        return alunos;
+    }
+
+
+    public List<AlunoDTO> listarAlunosTurma() {
+        //estabelecendo conexão com o banco
+        List<AlunoDTO> alunos = new ArrayList<>();
+        conexao.conectar();
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM aluno JOIN turma ON aluno.id_turma = turma.id")) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                AlunoDTO aluno = new AlunoDTO();
+                aluno.setId(rs.getInt("id"));
+                aluno.setNome(rs.getString("nome"));
+                aluno.setSobrenome(rs.getString("sobrenome"));
+                aluno.setXp(rs.getInt("xp"));
+                aluno.setEmail(rs.getString("email"));
+                aluno.setSenha(rs.getString("senha"));
+                aluno.setIdTurma(rs.getInt("id_turma"));
+                aluno.setSerie(rs.getInt("serie"));
+                aluno.setNomeclantura(rs.getString("nomenclatura"));
                 alunos.add(aluno);
             }
         } catch (SQLException sqle) {

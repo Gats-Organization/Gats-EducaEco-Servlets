@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Responsavel;
 
 import Daos.ResponsavelDAO;
 import Model.Responsavel;

@@ -1,8 +1,7 @@
-package Controller;
+package Controller.Professor;
 
 import Daos.ProfessorDAO;
 import Model.Professor;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

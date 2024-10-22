@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Admin;
 
 import Daos.AdminDAO;
 import Model.Admin;
@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/atualizarAdmin")
-public class ServletAtualizarAdmin extends HttpServlet {
+@WebServlet("/salvarAdmin")
+public class ServletSalvarAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
@@ -19,8 +19,12 @@ public class ServletAtualizarAdmin extends HttpServlet {
         String senha = request.getParameter("senha");
 
         Admin admin = new Admin(id, nome, email, senha);
-        AdminDAO adminDAO = new AdminDAO();
-        adminDAO.atualizarAdmin(admin);
+        AdminDAO adminDao = new AdminDAO();
+        adminDao.inserirAdmin(admin);
+
         response.sendRedirect("listarAdmin");
+
+
     }
+
 }

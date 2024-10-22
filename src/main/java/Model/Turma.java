@@ -19,6 +19,10 @@ package Model;
             this.id_professor = id_professor;
             this.id_escola = id_escola;
         }
+
+        public Turma() {
+
+        }
         //gerando getters e setters
         public int getId() {
             return id;
