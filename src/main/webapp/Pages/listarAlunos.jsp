@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<title> Listagem de Alunos </title>
+<title> Listagem dos Alunos </title>
     <link rel="stylesheet" href="CSS/listarAlunos.css">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,6 @@
 <h1> Listagem de Alunos </h1>
 
  <table border="1">
-
      <tr id="colunas">
          <th>Id</th>
          <th> Nome</th>
@@ -86,5 +85,6 @@
 <div class="botaoAddAluno">
     <a id="addAluno" href="adicionarAlunos"><strong>+ Adicionar Aluno</strong></a>
 </div>
+<br><br>
 </body>
 </html>

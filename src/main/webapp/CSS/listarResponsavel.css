@@ -70,12 +70,12 @@ a{
     vertical-align: middle;
 }
 
-.botaoAddAluno{
+.botaoAddResponsavel{
     margin-top: 15px;
-    margin-left: -835px;
+    margin-left: -620px;
 }
 
-#addAluno{
+#addResponsavel{
     padding: 10px;
     background-color: #92cb5c;
     border-radius: 10px;

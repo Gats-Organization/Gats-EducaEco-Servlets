@@ -70,12 +70,12 @@ a{
     vertical-align: middle;
 }
 
-.botaoAddAluno{
+.botaoAddEscola{
     margin-top: 15px;
-    margin-left: -835px;
+    margin-left: -770px;
 }
 
-#addAluno{
+#addEscola{
     padding: 10px;
     background-color: #92cb5c;
     border-radius: 10px;

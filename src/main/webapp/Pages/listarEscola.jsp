@@ -8,11 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="CSS/listarEscola.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="Imagens Login/logo app.png" type="image/x-icon">
     <title>Listar Escolas</title>
     <%@page import="Daos.EscolaDAO,Model.Escola, java.util.List" %>
 </head>
 <body>
-<h1>Listar Escolas</h1>
+<h1>Listagem de Escolas</h1>
 <table border="1">
     <%
       EscolaDAO escolaDAO = new EscolaDAO();
@@ -21,7 +27,7 @@
 
 
     %>
-    <tr>
+    <tr id="colunas">
         <th>Id</th>
         <th>Nome</th>
         <th>Email</th>
@@ -43,11 +49,18 @@
         <td>
             <form action="editarEscola" method="get">
                 <input type="hidden" name="id" value="<%=escola.getId()%>">
-                <input type="submit" value="Editar">
+                <button id="botao" type="submit">
+                    <img src="Imagens Login/Lápis.png" alt="Lápis">
+                    Editar
+                </button>
             </form>
         </td>
-
-        <td> <a href="excluirEscola?id=<%=escola.getId()%>">Excluir</a></td>
+        <td id="excluir">
+            <a href="excluirEscola?id=<%= escola.getId() %>">
+                <img src="Imagens Login/Lixeira.png" alt="Lixeira">
+                Excluir
+            </a>
+        </td>
     </tr>
     <%}
 }else{
@@ -57,7 +70,10 @@
 %>
 
 </table>
-<a href="adicionarEscola">Adicionar Escola</a>
-
+<br>
+<div class="botaoAddEscola">
+    <a id="addEscola" href="adicionarEscola"><strong>+ Adicionar Escola</strong></a>
+</div>
+<br><br>
 </body>
 </html>
