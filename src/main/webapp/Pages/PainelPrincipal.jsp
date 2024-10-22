@@ -32,6 +32,8 @@
 <a href="listarProfessor">Professor</a>
 <br><br>
 <a href="listarResponsavel">Responsavel</a>
+<br><br>
+<a href="listarTurma">Turma</a>
 
 
 </div>
