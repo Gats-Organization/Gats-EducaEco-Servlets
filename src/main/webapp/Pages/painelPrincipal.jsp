@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Painel Principal</title>
-    <link rel="stylesheet" href="CSS/PainelPrincipal.css">
+    <link rel="stylesheet" href="CSS/painelPrincipal.css">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
