@@ -4,17 +4,17 @@ package Model;
     public class Turma {
         //definindo atributos da classe Turma
         private int id;
-        private String nomenclatura;
         private int serie;
+        private String nomenclatura;
         private int ano;
         private int id_professor;
         private int id_escola;
 
         //Criando método construtor
-        public Turma(int id, String nomenclatura, int serie, int ano, int id_professor, int id_escola) {
+        public Turma(int id,  int serie,String nomenclatura, int ano, int id_professor, int id_escola) {
             this.id = id;
-            this.nomenclatura = nomenclatura;
             this.serie = serie;
+            this.nomenclatura = nomenclatura;
             this.ano = ano;
             this.id_professor = id_professor;
             this.id_escola = id_escola;
@@ -45,6 +45,27 @@ package Model;
         public void setId_professor(int id_professor) {
             this.id_professor = id_professor;
         }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setNomenclatura(String nomenclatura) {
+            this.nomenclatura = nomenclatura;
+        }
+
+        public void setSerie(int serie) {
+            this.serie = serie;
+        }
+
+        public void setAno(int ano) {
+            this.ano = ano;
+        }
+
+        public void setId_escola(int id_escola) {
+            this.id_escola = id_escola;
+        }
+
         //Criando toString
         @Override
         public String toString() {

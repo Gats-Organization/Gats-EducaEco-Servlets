@@ -20,17 +20,18 @@ public class TurmaDAO {
     }
 
     //Criando método para inserir turma
-    public int inserirTurma(int id, int serie, int ano, int id_professor, int id_escola) {
+    public int inserirTurma(int id, int serie, String nomenclatura, int ano, int id_professor, int id_escola) {
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO TURMA VALUES (?,?,?,?,?)")) {
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO TURMA VALUES (?,?,?,?,?,?)")) {
             //Consulta sql para inserir turma
             //setando os valores
             pstmt.setInt(1, id);
-            pstmt.setInt(2, serie);
-            pstmt.setInt(3, ano);
-            pstmt.setInt(4, id_professor);
-            pstmt.setInt(5, id_escola);
+            pstmt.setString(2, nomenclatura);
+            pstmt.setInt(3, serie);
+            pstmt.setInt(4, ano);
+            pstmt.setInt(5, id_professor);
+            pstmt.setInt(6, id_escola);
             //Executando a consulta
             return pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -84,12 +85,21 @@ public class TurmaDAO {
         }
     }
 
-    public ResultSet buscarTurmaPorId(int id) {
+    public Turma buscarTurmaPorId(int id) {
         conexao.conectar();
         try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT*FROM TURMA WHERE ID=?")) {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
-            return rs;
+            while (rs.next()) {
+                Turma turma = new Turma();
+                turma.setId(rs.getInt("ID"));
+                turma.setSerie(rs.getInt("SERIE"));
+                turma.setNomenclatura(rs.getString("NOMENCLATURA"));
+                turma.setAno(rs.getInt("ANO"));
+                turma.setId_professor(rs.getInt("ID_PROFESSOR"));
+                turma.setId_escola(rs.getInt("ID_ESCOLA"));
+                return turma;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -113,6 +123,7 @@ public class TurmaDAO {
                 Turma turma = new Turma();
                 turma.setId(rs.getInt("ID"));
                 turma.setSerie(rs.getInt("SERIE"));
+                turma.setNomenclatura(rs.getString("NOMENCLATURA"));
                 turma.setAno(rs.getInt("ANO"));
                 turma.setId_professor(rs.getInt("ID_PROFESSOR"));
                 turma.setId_escola(rs.getInt("ID_ESCOLA"));
@@ -127,5 +138,5 @@ public class TurmaDAO {
     }
 }
 
-}
+
 
