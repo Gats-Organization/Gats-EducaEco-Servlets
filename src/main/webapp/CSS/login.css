@@ -1,9 +1,8 @@
 /* --------------------------------FUNDO DO BODY---------------------------------- */
-body {
+html {
     background-image: url('../Imagens Login/FundoLogin.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
 /* --------------------------------COMEÇO DA MAIN---------------------------------- */
 main{
