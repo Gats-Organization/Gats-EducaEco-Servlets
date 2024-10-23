@@ -46,7 +46,7 @@ public class TurmaDAO {
     //Criando método para alterar id_professor
     //Para caso mude o professor da turma
     public int atualizarTurma(Turma turma) {
-        //Conectando ao banco de dados
+        //Conectando ao banco de dadoss
         conexao.conectar();
         try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE TURMA SET SERIE=?,NOMENCLATURA=?, ANO=?,ID_PROFESSOR=?,ID_ESCOLA=? WHERE ID=?")) {
             //Consulta sql para alterar id_professor
