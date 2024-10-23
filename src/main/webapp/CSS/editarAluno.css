@@ -16,7 +16,7 @@ h1{
 form{
     width: 500px;
     height: 400px;
-    background-color: #ccffa6;
+    background-color: #DEFBC7;
     border-radius: 15px;
     box-shadow: 3px 3px 3px #948282;
     padding: 20px;
@@ -52,7 +52,8 @@ strong{
 }
 
 #salvar {
-    background-color: #1A990F;
+    background-color: #A3D977
+;
     color: white;
     margin-top: 20px;
     border: none;
