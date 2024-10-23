@@ -23,6 +23,7 @@
 </div>
 
 <div class="botoes">
+
 <a href="listarAlunos">Aluno</a>
 <br><br>
 <a href="listarAdmin">Admin</a>
