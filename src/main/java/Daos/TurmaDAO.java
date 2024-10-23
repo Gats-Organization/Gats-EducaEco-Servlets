@@ -27,8 +27,8 @@ public class TurmaDAO {
             //Consulta sql para inserir turma
             //setando os valores
             pstmt.setInt(1, id);
-            pstmt.setString(2, nomenclatura);
-            pstmt.setInt(3, serie);
+            pstmt.setInt(2, serie);
+            pstmt.setString(3, nomenclatura);
             pstmt.setInt(4, ano);
             pstmt.setInt(5, id_professor);
             pstmt.setInt(6, id_escola);
@@ -45,14 +45,19 @@ public class TurmaDAO {
 
     //Criando método para alterar id_professor
     //Para caso mude o professor da turma
-    public int atualizarProfessor(int id_professor, int id) {
+    public int atualizarTurma(Turma turma) {
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE TURMA SET ID_PROFESSOR=? WHERE ID=?")) {
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE TURMA SET SERIE=?,NOMENCLATURA=?, ANO=?,ID_PROFESSOR=?,ID_ESCOLA=? WHERE ID=?")) {
             //Consulta sql para alterar id_professor
             //setando os valores
-            pstmt.setInt(1, id_professor);
-            pstmt.setInt(2, id);
+            pstmt.setInt(1, turma.getSerie());
+            pstmt.setString(2, turma.getNomenclatura());
+            pstmt.setInt(3, turma.getAno());
+            pstmt.setInt(4, turma.getId_professor());
+            pstmt.setInt(5, turma.getId_escola());
+            pstmt.setInt(6, turma.getId());
+
             //Executando a consulta
             return pstmt.executeUpdate();
         } catch (SQLException e) {

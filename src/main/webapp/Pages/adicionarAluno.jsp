@@ -11,7 +11,7 @@
     <title>Adicionar Aluno</title>
 </head>
 <body>
-<h2>Adicionar Novo Controller.Aluno</h2>
+<h2>Adicionar Novo Aluno</h2>
 
 <form action="salvarAluno" method="post">
     <table>

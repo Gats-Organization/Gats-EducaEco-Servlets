@@ -21,6 +21,8 @@
         <th>Ano</th>
         <th>Id_professor</th>
         <th>Id_escola</th>
+        <th>Editar</th>
+        <th>Excluir</th>
     </tr>
     <%
         List<Turma> listaTurma = (List<Turma>) request.getAttribute("listaTurma");
@@ -35,10 +37,13 @@
         <td><%=turma.getId_professor()%></td>
         <td><%=turma.getId_escola()%></td>
         <td>
-            <form action="editarTurma" method="post">
+            <form action="editarTurma" method="get">
                 <input type="hidden" name="id" value="<%=turma.getId()%>">
                 <input type="submit" value="Editar">
             </form>
+        </td>
+        <td>
+        <a href="excluirTurma?id=<%=turma.getId()%>">Excluir</a>
         </td>
     </tr>
     <%
@@ -48,6 +53,6 @@
              }
     %>
 </table>
-
+<a href="adicionarTurma">Adicionar Turma</a>
 </body>
 </html>
