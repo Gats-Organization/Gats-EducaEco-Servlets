@@ -46,8 +46,8 @@
             <td><input type="password" name="senha" required id="inputSenha"></td>
         </tr>
         <tr>
-            <td>Id-Turma:</td>
-            <td><input type="number" name="id_turma" required id="inputTurma"></td>
+            <td>Turma:</td>
+            <td><input type="text" name="turma" required id="inputTurma"></td>
         </tr>
         <tr>
             <td><input type="submit" value="Salvar" id="salvar"></td>

@@ -1,6 +1,6 @@
 package Controller.Aluno;
 
-//Importando as classes necessárias para o funcionamento do Servlet
+// Importando as classes necessárias para o funcionamento do Servlet
 import Daos.AlunoDAO;
 import Model.Aluno;
 import jakarta.servlet.ServletException;
@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//Criando a classe ServletAtualizarAdmin
-//A anotação @WebServlet é usada para mapear o Servlet para uma URL
+// Criando a classe ServletAtualizarAdmin
+// A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/atualizarAluno")
 public class ServletAtualizarAluno extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
