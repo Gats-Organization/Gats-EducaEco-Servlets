@@ -1,5 +1,6 @@
 <%@ page import="Model.Turma" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="Model.TurmaDTO" %><%--
   Created by IntelliJ IDEA.
   User: claramoreira-ieg
   Date: 22/10/2024
@@ -19,23 +20,23 @@
         <th>Serie</th>
         <th>Nomenclatura</th>
         <th>Ano</th>
-        <th>Id_professor</th>
-        <th>Id_escola</th>
+        <th>Escola</th>
+        <th>Professor</th>
         <th>Editar</th>
         <th>Excluir</th>
     </tr>
     <%
-        List<Turma> listaTurma = (List<Turma>) request.getAttribute("listaTurma");
+        List<TurmaDTO> listaTurma = (List<TurmaDTO>) request.getAttribute("listaTurma");
                  if (listaTurma != null && !listaTurma.isEmpty()) {
-             for (Turma turma : listaTurma) {
+             for (TurmaDTO turma : listaTurma) {
     %>
     <tr>
         <td><%=turma.getId()%></td>
         <td><%=turma.getSerie()%></td>
         <td><%=turma.getNomenclatura()%></td>
         <td><%=turma.getAno()%></td>
-        <td><%=turma.getId_professor()%></td>
-        <td><%=turma.getId_escola()%></td>
+        <td><%=turma.getNomeEscola()%></td>
+        <td><%=turma.getNomeProfessor()%></td>
         <td>
             <form action="editarTurma" method="get">
                 <input type="hidden" name="id" value="<%=turma.getId()%>">

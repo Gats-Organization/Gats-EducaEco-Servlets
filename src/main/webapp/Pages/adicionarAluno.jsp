@@ -40,11 +40,11 @@
             <td><input type="password" name="senha" required></td>
         </tr>
         <tr>
-            <td>Id-Turma:</td>
-            <td><input type="number" name="id_turma" required></td>
+            <td>Turma:</td>
+            <td><input type="text" name="id_turma" required></td>
         </tr>
         <tr>
-            <td><input type="submit" value="Adicionar Controller.Aluno"></td>
+            <td><input type="submit" value="Adicionar Aluno"></td>
         </tr>
     </table>
 </form>

@@ -2,6 +2,7 @@ package Controller.Turma;
 
 import Daos.TurmaDAO;
 import Model.Turma;
+import Model.TurmaDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ServletListarTurma extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         TurmaDAO turmaDAO = new TurmaDAO();
-        List<Turma> listaTurma = turmaDAO.listarTurmas();
+        List<TurmaDTO> listaTurma = turmaDAO.listarTurmasPorEscola();
         req.setAttribute("listaTurma", listaTurma);
         req.getRequestDispatcher("/Pages/listarTurma.jsp").forward(req, resp);
     }

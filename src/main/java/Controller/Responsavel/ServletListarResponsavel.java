@@ -2,6 +2,7 @@ package Controller.Responsavel;
 
 import Daos.ResponsavelDAO;
 import Model.Responsavel;
+import Model.ResponsavelDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ServletListarResponsavel extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ResponsavelDAO responsavelDAO = new ResponsavelDAO();
-        List<Responsavel> listaResponsavel = responsavelDAO.listarResponsavel();
+        List<ResponsavelDTO> listaResponsavel = responsavelDAO.listarResponsavelPorAluno();
         request.setAttribute("listaResponsavel", listaResponsavel);
         request.getRequestDispatcher("/Pages/listarResponsavel.jsp").forward(request, response);
     }

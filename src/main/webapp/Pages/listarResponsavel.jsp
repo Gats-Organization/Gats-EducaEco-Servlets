@@ -18,10 +18,11 @@
   <%@ page import="Model.Responsavel" %>
   <%@ page import="java.util.List" %>
   <%@ page import="Daos.ResponsavelDAO" %>
+  <%@ page import="Model.ResponsavelDTO" %>
 
   <%
     ResponsavelDAO responsavelDao = new ResponsavelDAO();
-    List<Responsavel> listaResponsavel = responsavelDao.listarResponsavel();
+    List<ResponsavelDTO> listaResponsavel = responsavelDao.listarResponsavelPorAluno();
   request.setAttribute("listaResponsavel", listaResponsavel);
   %>
 </head>
@@ -33,20 +34,20 @@
     <th>Nome</th>
     <th>Sobrenome</th>
     <th>Email</th>
-    <th>Id_Aluno</th>
+    <th>Aluno</th>
     <th>Editar</th>
     <th>Excluir</th>
   </tr>
     <%
         if(listaResponsavel != null && !listaResponsavel.isEmpty()){
-          for(Responsavel responsavel : listaResponsavel){
+          for(ResponsavelDTO responsavel : listaResponsavel){
   %>
       <tr>
         <td><%= responsavel.getId()%></td>
         <td><%= responsavel.getNome()%></td>
         <td><%= responsavel.getSobrenome()%></td>
         <td><%= responsavel.getEmail()%></td>
-        <td><%= responsavel.getId_aluno()%></td>
+        <td><%= responsavel.getNomeAluno()%> <%= responsavel.getSobrenomeAluno()%></td>
         <td>
           <form action="editarResponsavel" method="get">
             <input type="hidden" name="id" value="<%= responsavel.getId()%>">

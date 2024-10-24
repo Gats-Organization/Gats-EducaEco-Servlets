@@ -99,10 +99,6 @@ public class AlunoDTO {
         this.xp = xp;
     }
 
-    public void setId_turma(int id_turma) {
-        this.id_turma = id_turma;
-    }
-
     public void setIdTurma(int idTurma) {
         this.id_turma = idTurma;
     }
@@ -110,7 +106,7 @@ public class AlunoDTO {
     //gerando toString
 
     public String toString() {
-        return "Controller.Aluno: "+ this.nome + " " + this.sobrenome + "\nid: "+ this.id + "\nemail: "+ this.email+ "\nsenha: "+ this.senha + "\nxp: "+this.xp+"\nidTurma: "+this.id_turma;
+        return "Aluno: "+ this.nome + " " + this.sobrenome + "\nid: "+ this.id + "\nemail: "+ this.email+ "\nsenha: "+ this.senha + "\nxp: "+this.xp+"\nidTurma: "+this.id_turma;
 
     }
 }

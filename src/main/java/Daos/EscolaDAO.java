@@ -3,6 +3,7 @@ package Daos;
 //importando as bibliotecas necessárias
 import Daos.JDBC.Conexao;
 import Model.Escola;
+import Model.EscolaDTO;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -103,6 +104,37 @@ public class EscolaDAO {
                 escola.setEmail(rs.getString("EMAIL"));
                 escola.setTelefone(rs.getInt("TELEFONE"));
                 escola.setId_endereco(rs.getInt("ID_ENDERECO"));
+                escolas.add(escola);
+            }
+        }catch (SQLException e) {
+            //caso ocorra algum erro, retornar null
+            return null;
+        }finally {
+            //desconectando do banco de dados
+            conexao.desconectar();
+        }
+        return escolas;
+    }
+    public List<EscolaDTO> listarEscolasPorEndereco(){
+        //Estabelecendo conexão com o banco de dados
+        List<EscolaDTO> escolas = new ArrayList<>();
+        conexao.conectar();
+        try(PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT*FROM ESCOLA JOIN ENDERECO ON ESCOLA.ID_ENDERECO = ENDERECO.ID")){
+            //Consulta SQL para listar todas as escolas
+            //executando a consulta
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                EscolaDTO escola = new EscolaDTO();
+                escola.setId(rs.getInt("ID"));
+                escola.setNome(rs.getString("NOME"));
+                escola.setEmail(rs.getString("EMAIL"));
+                escola.setTelefone(rs.getInt("TELEFONE"));
+                escola.setId_endereco(rs.getInt("ID_ENDERECO"));
+                escola.setNumero(rs.getInt("NUMERO"));
+                escola.setRua(rs.getString("RUA"));
+                escola.setBairro(rs.getString("BAIRRO"));
+                escola.setCidade(rs.getString("CIDADE"));
+                escola.setEstado(rs.getString("ESTADO"));
                 escolas.add(escola);
             }
         }catch (SQLException e) {

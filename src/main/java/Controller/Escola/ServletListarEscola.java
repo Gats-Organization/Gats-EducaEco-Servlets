@@ -2,6 +2,7 @@ package Controller.Escola;
 
 import Daos.EscolaDAO;
 import Model.Escola;
+import Model.EscolaDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ServletListarEscola extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EscolaDAO dao = new EscolaDAO();
-        List<Escola> listaEscola = dao.listarEscolas();
+        List<EscolaDTO> listaEscola = dao.listarEscolasPorEndereco();
         request.setAttribute("listaEscola", listaEscola);
         request.getRequestDispatcher("/Pages/listarEscola.jsp").forward(request, response);
     }
