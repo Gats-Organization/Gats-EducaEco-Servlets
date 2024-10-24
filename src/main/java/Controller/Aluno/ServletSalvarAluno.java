@@ -18,11 +18,12 @@ public class ServletSalvarAluno extends HttpServlet {
         int xp = Integer.parseInt(req.getParameter("xp"));
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
-        int id_turma = Integer.parseInt(req.getParameter("id_turma"));
+        String turma = req.getParameter("turma");
 
-        Aluno novoAluno = new Aluno();
+
+
         AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.inserirAluno(id, nome, sobrenome, xp, email, senha, id_turma);
+        alunoDAO.inserirAluno(id, nome, sobrenome, xp, email, senha, turma);
         resp.sendRedirect("listarAlunos");
 
     }

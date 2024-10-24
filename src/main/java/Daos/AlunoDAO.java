@@ -21,10 +21,10 @@ public class AlunoDAO {
     public AlunoDAO() {
         this.conexao = new Conexao();
     }
-
-
+    AlunoDTO alunoDTO = new AlunoDTO();
+    String turma = alunoDTO.getSerie() + '-' + alunoDTO.getNomeclantura();
     //criando método inserir aluno
-    public int inserirAluno(int id, String nome, String sobrenome, int xp, String email, String senha, int id_turma) {
+    public int inserirAluno(int id, String nome, String sobrenome, int xp, String email, String senha,String turma ) {
         //estabelecendo conexão com o banco
         conexao.conectar();
         //consulta SQL para inserir aluno
@@ -36,7 +36,7 @@ public class AlunoDAO {
             pstmt.setInt(4, xp);
             pstmt.setString(5, email);
             pstmt.setString(6, senha);
-            pstmt.setInt(7, id_turma);
+            pstmt.setString(7, turma);
             //executando a consulta
             return pstmt.executeUpdate();
         } catch (SQLException sqle) {
