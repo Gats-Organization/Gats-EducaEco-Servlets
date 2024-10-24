@@ -16,36 +16,33 @@
     <link rel="shortcut icon" href="Imagens Login/logo app.png" type="image/x-icon">
     <title>Listar Escolas</title>
     <%@page import="Daos.EscolaDAO,Model.Escola, java.util.List" %>
+    <%@ page import="Model.EscolaDTO" %>
 </head>
 <body>
 <h1>Listagem de Escolas</h1>
 <table border="1">
-    <%
-      EscolaDAO escolaDAO = new EscolaDAO();
-      List<Escola> listarEscolas = escolaDAO.listarEscolas();
-
-
-
-    %>
     <tr id="colunas">
         <th>Id</th>
         <th>Nome</th>
         <th>Email</th>
         <th>Telefone</th>
-        <th>Id_endereco</th>
+        <th>Endereço</th>
         <th>Editar</th>
         <th>Excluir</th>
     </tr>
     <%
+        EscolaDAO escolaDAO = new EscolaDAO();
+        List<EscolaDTO> listarEscolas = escolaDAO.listarEscolasPorEndereco();
+
         if( listarEscolas!= null && !listarEscolas.isEmpty()){
-        for(Escola escola : listarEscolas){
+        for(EscolaDTO escola : listarEscolas){
     %>
     <tr>
         <td><%=escola.getId()%></td>
         <td><%=escola.getNome()%></td>
         <td><%=escola.getEmail()%></td>
         <td><%=escola.getTelefone()%></td>
-        <td><%=escola.getId_endereco()%></td>
+        <td><%=escola.getNumero()%>, <%=escola.getRua()%>, <%=escola.getBairro()%>, <%=escola.getCidade()%>, <%=escola.getEstado()%></td>
         <td>
             <form action="editarEscola" method="get">
                 <input type="hidden" name="id" value="<%=escola.getId()%>">

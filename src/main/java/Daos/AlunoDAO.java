@@ -28,7 +28,7 @@ public class AlunoDAO {
         //estabelecendo conexão com o banco
         conexao.conectar();
         //consulta SQL para inserir aluno
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO ALUNO (ID,NOME,SOBRENOME,XP,EMAIL,SENHA,ID_TURMA) VALUES (?,?,?,?,?,?,?)")) {
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("CALL INSERIR_ALUNO(?,?,?,?,?,?,?)")) {
             //setando os valores
             pstmt.setInt(1, id);
             pstmt.setString(2, nome);

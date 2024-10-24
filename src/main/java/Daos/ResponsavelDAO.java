@@ -10,6 +10,7 @@ import java.util.List;
 
 import Daos.JDBC.Conexao;
 import Model.Responsavel;
+import Model.ResponsavelDTO;
 
 public class ResponsavelDAO {
     //definindo váriaveis para conexão com o banco
@@ -110,6 +111,38 @@ public class ResponsavelDAO {
         }
         return responsaveis;
     }
+
+
+    public List<ResponsavelDTO> listarResponsavelPorAluno(){
+        List<ResponsavelDTO> responsaveis= new ArrayList<>();
+        //conectando com banco de dados
+        conexao.conectar();
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT r.id, r.nome, r.sobrenome, r.email, r.id_aluno, a.nome as nomeAluno, a.sobrenome as sobrenomeAluno FROM responsavel r JOIN aluno a ON r.id_aluno = a.id;")){
+            //consulta sql para consultar responsáveis
+            //executando a consulta
+            ResultSet rs = pstmt.executeQuery();
+            //enquanto existir registros, adiciona na lista de responsáveis
+            while(rs.next()){
+                ResponsavelDTO responsavel = new ResponsavelDTO();
+                responsavel.setId(rs.getInt("id"));
+                responsavel.setNome(rs.getString("nome"));
+                responsavel.setSobrenome(rs.getString("sobrenome"));
+                responsavel.setEmail(rs.getString("email"));
+                responsavel.setId_aluno(rs.getInt("id_aluno"));
+                responsavel.setNomeAluno(rs.getString("nomeAluno"));
+                responsavel.setSobrenomeAluno(rs.getString("sobrenomeAluno"));
+                responsaveis.add(responsavel);
+            }
+        }catch(SQLException e) {
+            //caso ocorra algum erro, retorna null
+            return null;
+        }finally{
+            //desconectando do banco de dados
+            conexao.desconectar();
+        }
+        return responsaveis;
+    }
+
 
     public Responsavel buscarResponsavelPorId(int id) {
         conexao.conectar();

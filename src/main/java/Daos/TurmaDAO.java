@@ -9,6 +9,7 @@ import java.util.List;
 
 import Daos.JDBC.Conexao;
 import Model.Turma;
+import Model.TurmaDTO;
 
 public class TurmaDAO {
     //definindo variáveis para conexão com o banco
@@ -132,6 +133,35 @@ public class TurmaDAO {
                 turma.setAno(rs.getInt("ANO"));
                 turma.setId_professor(rs.getInt("ID_PROFESSOR"));
                 turma.setId_escola(rs.getInt("ID_ESCOLA"));
+                turmas.add(turma);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conexao.desconectar();
+        }
+        return turmas;
+    }
+
+
+    public List<TurmaDTO> listarTurmasPorEscola() {
+        List<TurmaDTO> turmas = new ArrayList<>();
+        //Conectando ao banco de dados
+        conexao.conectar();
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT TURMA.ID, TURMA.SERIE, TURMA.NOMENCLATURA, TURMA.ANO, TURMA.ID_PROFESSOR, TURMA.ID_ESCOLA, ESCOLA.NOME AS NOME_ESCOLA, PROFESSOR.NOME AS NOME_PROFESSOR FROM TURMA JOIN ESCOLA ON TURMA.ID_ESCOLA= ESCOLA.ID JOIN PROFESSOR ON TURMA.ID_PROFESSOR= PROFESSOR.ID ORDER BY SERIE ASC")) {
+            //Executando a consulta
+            ResultSet rs = pstmt.executeQuery();
+            //Enquanto existir registros, adicionar na lista de turmas
+            while (rs.next()) {
+                TurmaDTO turma = new TurmaDTO();
+                turma.setId(rs.getInt("ID"));
+                turma.setSerie(rs.getInt("SERIE"));
+                turma.setNomenclatura(rs.getString("NOMENCLATURA"));
+                turma.setAno(rs.getInt("ANO"));
+                turma.setId_professor(rs.getInt("ID_PROFESSOR"));
+                turma.setId_escola(rs.getInt("ID_ESCOLA"));
+                turma.setNomeEscola(rs.getString("NOME_ESCOLA"));
+                turma.setNomeProfessor(rs.getString("NOME_PROFESSOR"));
                 turmas.add(turma);
             }
         } catch (SQLException e) {
