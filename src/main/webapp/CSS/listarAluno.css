@@ -4,16 +4,8 @@ body {
     align-items: center;
 }
 
-h1{
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 40px;
-    font-size: 36px;
-    font-weight: bold;
-    color: #1A990F;
-}
-
 table{
+    margin-top: 150px;
     border-collapse: collapse;
     border-spacing: 1px;
     box-shadow: 3px 3px 3px #c2baba;

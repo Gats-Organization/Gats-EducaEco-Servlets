@@ -17,6 +17,7 @@
     <title>Adicionar Escola</title>
 </head>
 <body>
+<h1>Adicionar Escola</h1>
 <form action="salvarEscola" method="post">
     <table>
         <strong>Para adicionar uma nova escola, preencha os seguintes campos:</strong>
@@ -45,7 +46,5 @@
         </tr>
     </table>
 </form>
-
-
 </body>
 </html>
