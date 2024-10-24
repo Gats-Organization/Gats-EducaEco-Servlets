@@ -23,34 +23,34 @@
         <strong>Para adicionar um novo aluno, preencha os seguintes campos:</strong>
         <tr>
             <td>Id:</td>
-            <td><input type="number" name="id" required></td>
+            <td><input type="number" name="id" required id="inputId"></td>
         </tr>
         </tr>
             <td>Nome:</td>
-            <td><input type="text" name="nome" required></td>
+            <td><input type="text" name="nome" required id="inputNome"></td>
         </tr>
         <tr>
             <td>Sobrenome:</td>
-            <td><input type="text" name="sobrenome" required></td>
+            <td><input type="text" name="sobrenome" required id="inputSobrenome"></td>
         </tr>
         <tr>
             <td>Xp:</td>
-            <td><input type="number" name="xp" required></td>
+            <td><input type="number" name="xp" required id="inputXp"></td>
         </tr>
         <tr>
             <td>E-mail:</td>
-            <td><input type="email" name="email" required></td>
+            <td><input type="email" name="email" required id="inputEmail"></td>
         </tr>
         <tr>
             <td>Senha:</td>
-            <td><input type="password" name="senha" required></td>
+            <td><input type="password" name="senha" required id="inputSenha"></td>
         </tr>
         <tr>
             <td>Id-Turma:</td>
-            <td><input type="number" name="id_turma" required></td>
+            <td><input type="number" name="id_turma" required id="inputTurma"></td>
         </tr>
         <tr>
-            <td><input type="submit" value="Adicionar Controller.Aluno"></td>
+            <td><input type="submit" value="Salvar" id="salvar"></td>
         </tr>
     </table>
 </form>
