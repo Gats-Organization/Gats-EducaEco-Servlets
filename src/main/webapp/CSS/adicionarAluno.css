@@ -45,7 +45,7 @@ strong{
     font-size: 25px;
 }
 
-#inputNome, #inputSobrenome, #inputXp, #inputEmail, #inputSenha, #inputTurma{
+#inputId, #inputNome, #inputSobrenome, #inputXp, #inputEmail, #inputSenha, #inputTurma{
     border-radius: 8px;
     height: 35px;
     width: 220px;

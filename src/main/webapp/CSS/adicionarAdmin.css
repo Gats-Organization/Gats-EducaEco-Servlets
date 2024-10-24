@@ -41,11 +41,12 @@ table {
 }
 
 strong{
+    margin-top: 20px;
     text-align: center;
     font-size: 25px;
 }
 
-#inputNome, #inputSobrenome, #inputXp, #inputEmail, #inputSenha, #inputTurma{
+#inputId, #inputNome, #inputEmail, #inputSenha{
     border-radius: 8px;
     height: 35px;
     width: 220px;
@@ -56,10 +57,10 @@ strong{
     box-shadow: 2px 3px #948282;
 }
 
-#salvar {
+#salvar{
     background-color: #A3D977;
     color: white;
-    margin-top: 20px;
+    margin-top: 25px;
     border: none;
     border-radius: 8px;
     cursor: pointer;

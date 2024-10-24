@@ -3,7 +3,7 @@ html {
     background-size: cover;
     background-position: center;
 }
-body {
+body{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,11 +41,11 @@ table {
 }
 
 strong{
+    margin-top: 20px;
     text-align: center;
     font-size: 25px;
 }
-
-#inputNome, #inputSobrenome, #inputXp, #inputEmail, #inputSenha, #inputTurma{
+#inputNome, #inputSobrenome, #inputEmail, #inputSenha{
     border-radius: 8px;
     height: 35px;
     width: 220px;
@@ -59,7 +59,7 @@ strong{
 #salvar {
     background-color: #A3D977;
     color: white;
-    margin-top: 20px;
+    margin-top: 25px;
     border: none;
     border-radius: 8px;
     cursor: pointer;

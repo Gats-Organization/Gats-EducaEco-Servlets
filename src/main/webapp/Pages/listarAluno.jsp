@@ -8,13 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<title> Listagem dos Alunos </title>
-    <link rel="stylesheet" href="CSS/listarAlunos.css">
+    <link rel="stylesheet" href="CSS/listarAluno.css">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="Imagens Login/logo app.png" type="image/x-icon">
+    <title> Listagem dos Alunos </title>
 </head>
 <body>
 <%@page import ="Model.Aluno, Daos.AlunoDAO, java.util.*,java.sql.ResultSet" %>
@@ -27,10 +27,10 @@
  <table border="1">
      <tr id="colunas">
          <th>Id</th>
-         <th> Nome</th>
+         <th>Nome</th>
          <th>Sobrenome</th>
          <th>Xp</th>
-         <th>Email</th>
+         <th>E-mail</th>
          <th>Senha</th>
          <th>Turma</th>
          <th>Editar</th>

@@ -28,7 +28,7 @@
 <form action="atualizarAluno" method="post">
     <input type="hidden" name="id" value="<%=aluno.getId()%>">
     <table>
-        <strong>Edite uma informação do aluno:</strong>
+        <strong>Edite uma informação do aluno <%=aluno.getNome()%>:</strong>
         <tr>
             <td>Nome:</td>
             <td><input type="text" name="nome" value="<%=aluno.getNome()%>" id="inputNome"></td>
@@ -55,7 +55,7 @@
 
         </tr>
         <tr id="botaoSalvar">
-<%--     <button><a href="/Pages/listarAlunos.jsp"><input type="submit" value="Salvar"></a></button>       <a href="/Pages/listarAlunos.jsp">Voltar</a>--%>
+<%--     <button><a href="/Pages/listarAluno.jsp"><input type="submit" value="Salvar"></a></button>       <a href="/Pages/listarAluno.jsp">Voltar</a>--%>
             <td><input type="submit" value="Salvar" id="salvar"></td>
         </tr>
     </table>

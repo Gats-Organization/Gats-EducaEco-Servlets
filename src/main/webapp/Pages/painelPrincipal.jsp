@@ -21,23 +21,14 @@
     <h1>Bem-vindo ao Painel de Administração</h1>
     <p>Escolha uma tabela para visualizar:</p>
 </div>
-
 <div class="botoes">
-
-<a href="listarAlunos">Aluno</a>
-<br><br>
-<a href="listarAdmin">Admin</a>
-<br><br>
-<a href="listarEscola">Escola</a>
-<br><br>
-<a href="listarProfessor">Professor</a>
-<br><br>
-<a href="listarResponsavel">Responsavel</a>
-<br><br>
-<a href="listarTurma">Turma</a>
-
-
+    <a href="listarAlunos" id="botaoAluno">Aluno</a>
+    <a href="listarAdmin" id="botaoAdmin">Admin</a>
+    <a href="listarEscola" id="botaoEscola">Escola</a>
+    <a href="listarProfessor" id="botaoProfessor">Professor</a>
+    <a href="listarResponsavel" id="botaoResponsavel">Responsável</a>
+    <a href="listarTurma" id="botaoTurma">Turma</a>
 </div>
-
+<br><br>
 </body>
 </html>

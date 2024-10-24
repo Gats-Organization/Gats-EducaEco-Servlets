@@ -24,7 +24,7 @@
     <tr id="colunas">
         <th>Id</th>
         <th>Nome</th>
-        <th>Email</th>
+        <th>E-mail</th>
         <th>Telefone</th>
         <th>Endereço</th>
         <th>Editar</th>

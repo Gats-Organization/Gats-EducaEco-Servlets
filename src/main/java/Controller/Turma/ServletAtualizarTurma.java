@@ -24,6 +24,6 @@ public class ServletAtualizarTurma extends HttpServlet {
     TurmaDAO turmaDAO = new TurmaDAO();
     turmaDAO.atualizarTurma(turma);
     resp.sendRedirect("listarTurma");
-    //arrumad
+    //arrumado
        }
 }

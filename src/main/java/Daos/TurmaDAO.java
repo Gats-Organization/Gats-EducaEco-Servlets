@@ -28,8 +28,8 @@ public class TurmaDAO {
             //Consulta sql para inserir turma
             //setando os valores
             pstmt.setInt(1, id);
-            pstmt.setInt(2, serie);
-            pstmt.setString(3, nomenclatura);
+            pstmt.setString(2, nomenclatura);
+            pstmt.setInt(3, serie);
             pstmt.setInt(4, ano);
             pstmt.setInt(5, id_professor);
             pstmt.setInt(6, id_escola);

@@ -30,7 +30,7 @@
     <tr id="colunas">
         <th>Id</th>
         <th>Nome</th>
-        <th>Email</th>
+        <th>E-mail</th>
         <th>Senha</th>
         <th>Editar</th>
         <th>Excluir</th>

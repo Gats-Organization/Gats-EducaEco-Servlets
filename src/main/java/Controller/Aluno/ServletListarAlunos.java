@@ -15,7 +15,7 @@ public class ServletListarAlunos extends HttpServlet {
         AlunoDAO alunoDao = new AlunoDAO();
         List<AlunoDTO> listaAlunos = alunoDao.listarAlunosTurma();
         req.setAttribute("listaAlunos", listaAlunos);
-        req.getRequestDispatcher("/Pages/listarAlunos.jsp").forward(req, resp);
+        req.getRequestDispatcher("/Pages/listarAluno.jsp").forward(req, resp);
 
 
     }
