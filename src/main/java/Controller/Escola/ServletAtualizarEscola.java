@@ -1,5 +1,6 @@
 package Controller.Escola;
 
+//Importando as classes necessárias para o funcionamento do Servlet
 import Daos.EscolaDAO;
 import Model.Escola;
 import jakarta.servlet.ServletException;
@@ -7,8 +8,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
+
 
 @WebServlet("/atualizarEscola")
 public class ServletAtualizarEscola extends HttpServlet {
