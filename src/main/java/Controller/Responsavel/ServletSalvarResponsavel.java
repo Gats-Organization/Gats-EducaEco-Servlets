@@ -17,10 +17,10 @@ public class ServletSalvarResponsavel extends HttpServlet {
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         String email = request.getParameter("email");
-        int id_aluno = Integer.parseInt(request.getParameter("id_aluno"));
+        String aluno = request.getParameter("aluno");
         // Salvar no banco de dados
         ResponsavelDAO dao = new ResponsavelDAO();
-        dao.inserirResponsavel(id, nome, sobrenome, email, id_aluno);
+        dao.inserirResponsavel(id, nome, sobrenome, email, aluno);
         response.sendRedirect("listarResponsavel");
 
     }

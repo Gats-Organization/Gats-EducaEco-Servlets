@@ -83,7 +83,7 @@
 </table>
 <br>
 <div class="botaoAddAluno">
-    <a id="addAluno" href="adicionarAlunos"><strong>+ Adicionar Aluno</strong></a>
+    <a id="addAluno" href="adicionarAluno"><strong>+ Adicionar Aluno</strong></a>
 </div>
 <br><br>
 </body>

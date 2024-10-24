@@ -39,8 +39,8 @@
       <td><input type="text" name="email" id="inputEmail"></td>
     </tr>
     <tr>
-      <td>Id_aluno:</td>
-      <td><input type="number" name="id_aluno" id="inputIdAluno"></td>
+      <td>Aluno:</td>7
+      <td><input type="text" name="aluno" id="inputIdAluno"></td>
     </tr>
     <tr>
       <td><input type="submit" value="Salvar" id="salvar"></td>

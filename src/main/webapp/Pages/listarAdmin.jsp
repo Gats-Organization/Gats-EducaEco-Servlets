@@ -69,7 +69,7 @@
 </table>
 <br>
 <div class="botaoAddAdmin">
-    <a id="addAdmin" href="adicionarAdmins"><strong>+ Adicionar Admin</strong></a>
+    <a id="addAdmin" href="adicionarAdmin"><strong>+ Adicionar Admin</strong></a>
 </div>
 <br><br>
 </body>
