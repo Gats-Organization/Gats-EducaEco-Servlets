@@ -28,7 +28,7 @@
 <input type="checkbox" id="check">
 <header>
     <label for="check">
-        <img src="Imagens Login/Menu.png" alt="menu" class="icons" id="sidebar_btn">
+        <img src="Imagens Login/Menu2.png" alt="menu" class="icons" id="sidebar_btn">
     </label>
     <div class="left">
         <h3>Lista de Alunos</h3>
@@ -41,9 +41,8 @@
 <!--sidebar começo-->
 <div class="sidebar">
     <img src="Imagens Login/logo app.png" class="image" alt="">
-    <h2>Entrar</h2>
-    <a href="painelPrincipal.html"><img src="Imagens Login/Inicio.png" alt="Início" class="icons"><span>  Início</span></a>
-    <a href="adicionarAlunos"><img src="Imagens Login/Adicionar.webp" alt="AddAluno" class="icons"><span>  Adicionar</span></a>
+    <hr>
+    <a href="painelPrincipal.html"><img src="Imagens Login/Inicio2.png" alt="Início" class="icons"><span>  Início</span></a>
 </div>
 <!--sidebar final-->
 <div class="content"></div>
