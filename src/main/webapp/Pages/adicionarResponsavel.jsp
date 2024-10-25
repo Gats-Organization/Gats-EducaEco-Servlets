@@ -21,7 +21,6 @@
 <form action="salvarResponsavel" method="post">
   <table>
     <strong>Para adicionar um novo responsável, preencha os seguintes campos:</strong>
-
     <tr>
       <td>Id:</td>
       <td><input type="number" name="id" id="inputId"></td>
@@ -39,7 +38,7 @@
       <td><input type="text" name="email" id="inputEmail"></td>
     </tr>
     <tr>
-      <td>Aluno:</td>7
+      <td>Aluno:</td>
       <td><input type="text" name="aluno" id="inputIdAluno"></td>
     </tr>
     <tr>

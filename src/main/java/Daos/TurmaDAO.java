@@ -20,19 +20,23 @@ public class TurmaDAO {
         this.conexao = new Conexao();
     }
 
+    TurmaDTO turmaDTO = new TurmaDTO();
+    String professor= turmaDTO.getNomeProfessor();
+    String escola= turmaDTO.getNomeEscola();
+
     //Criando método para inserir turma
-    public int inserirTurma(int id, int serie, String nomenclatura, int ano, int id_professor, int id_escola) {
+    public int inserirTurma(int id, int serie, String nomenclatura, int ano, String escola, String professor) {
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO TURMA VALUES (?,?,?,?,?,?)")) {
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("CALL INSERIR_TURMA(?,?,?,?,?,?)")) {
             //Consulta sql para inserir turma
             //setando os valores
             pstmt.setInt(1, id);
             pstmt.setString(2, nomenclatura);
             pstmt.setInt(3, serie);
             pstmt.setInt(4, ano);
-            pstmt.setInt(5, id_professor);
-            pstmt.setInt(6, id_escola);
+            pstmt.setString(5, escola);
+            pstmt.setString(6, professor);
             //Executando a consulta
             return pstmt.executeUpdate();
         } catch (SQLException e) {

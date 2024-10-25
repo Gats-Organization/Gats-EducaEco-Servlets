@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="Imagens Login/logo app.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/modalExcluirAluno.css">
     <title> Listagem dos Alunos </title>
 </head>
 <body>
@@ -60,7 +61,7 @@
             </form>
          </td>
          <td id="excluir">
-         <a href="ServletExcluirAluno?id=<%= aluno.getId() %>">
+         <a href="#" onclick="confirmarExclusao(<%= aluno.getId() %>)">
              <img src="Imagens Login/Lixeira.png" alt="Lixeira">
              Excluir
          </a>
@@ -72,15 +73,34 @@
                  System.out.println("Nenhum aluno encontrado");
          }
      %>
+ </table>
+<%--     ServletExcluirAluno?id=<%= aluno.getId() %>--%>
+
+<%--     Modal de confirmação de exclusão--%>
+     <div id="modalExclusao" class="modal">
+         <div class="modal-content">
+             <p>Tem certeza que deseja excluir este aluno?</p>
+             <button class="cancelar" onclick="fecharModal()"><strong>Cancelar</strong></button>
+             <button class="confirmar" id="confirmado"><strong>Confirmar</strong></button>
+         </div>
+     </div>
+
+     <script type="text/javascript">
+         function confirmarExclusao(id) {
+             document.getElementById("modalExclusao").style.display = "block";
+             document.getElementById("confirmado").onclick = function() {
+                 location.href = "ServletExcluirAluno?id=" + id;
+             }
+         }
+
+         function fecharModal() {
+             document.getElementById("modalExclusao").style.display = "none";
+
+         }
+
+     </script>
 
 
-<%--     <script type="text/javascript">--%>
-<%--         function confirmarExclusao() {--%>
-<%--             return confirm("Tem certeza que deseja excluir este aluno?");--%>
-<%--         }--%>
-<%--     </script>--%>
-
-</table>
 <br>
 <div class="botaoAddAluno">
     <a id="addAluno" href="adicionarAluno"><strong>+ Adicionar Aluno</strong></a>

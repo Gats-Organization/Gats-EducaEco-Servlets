@@ -12,9 +12,10 @@ public class EscolaDTO {
     private String bairro;
     private String cidade;
     private String estado;
+    private String cep;
 
     //construtor da classe Escola
-    public EscolaDTO(int id, String nome, String email, int telefone, int id_endereco, int numero, String rua, String bairro, String cidade, String estado) {
+    public EscolaDTO(int id, String nome, String email, int telefone, int id_endereco, int numero, String rua, String bairro, String cidade, String estado, String cep) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -25,6 +26,7 @@ public class EscolaDTO {
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
+        this.cep = cep;
     }
 
     public EscolaDTO() {
@@ -59,6 +61,9 @@ public class EscolaDTO {
 
     public String getEstado() {
         return estado;
+    }
+    public String getCep() {
+        return cep;
     }
     public int getTelefone() {
         return telefone;
@@ -96,6 +101,9 @@ public class EscolaDTO {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public void setEstado(String estado) {

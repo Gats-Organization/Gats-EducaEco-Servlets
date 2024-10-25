@@ -38,12 +38,12 @@
         <td><input type="number" name="ano" id="inputAno"></td>
     </tr>
     <tr>
-        <td>Id_professor:</td>
-        <td><input type="text" name="id_professor" id="inputIdProfessor"></td>
+        <td>Escola:</td>
+        <td><input type="text" name="escola" id="inputEscola"></td>
     </tr>
     <tr>
-        <td>Id_escola:</td>
-        <td><input type="text" name="id_escola" id="inputIdEscola"></td>
+        <td>Professor:</td>
+        <td><input type="text" name="professor" id="inputProfessor"></td>
     </tr>
     <tr>
         <td><input type="submit" value="Salvar" id="salvar"></td>

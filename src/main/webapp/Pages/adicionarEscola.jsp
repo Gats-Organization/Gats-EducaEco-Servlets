@@ -37,8 +37,8 @@
             <td><input type="text" name="telefone" id="inputTelefone"></td>
         </tr>
         <tr>
-            <td>Id_endereço:</td>
-            <td><input type="number" name="id_endereco" id="inputEndereco"></td>
+            <td>Endereço:</td>
+            <td><input type="text" name="endereco" id="inputEndereco"></td>
         </tr>
         <tr>
             <td><input type="submit" value="Salvar" id="salvar"></td>

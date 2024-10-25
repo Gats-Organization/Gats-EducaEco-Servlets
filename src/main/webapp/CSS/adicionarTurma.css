@@ -41,7 +41,7 @@ strong{
     font-size: 25px;
 }
 
-#inputId, #inputSerie, #inputNomeclarura, #inputAno, #inputIdProfessor, #inputIdEscola{
+#inputId, #inputSerie, #inputNomeclarura, #inputAno, #inputProfessor, #inputEscola{
     border-radius: 8px;
     height: 35px;
     width: 220px;
