@@ -6,6 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 //Criando a classe ServletAdicionarAdmin
 //A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/adicionarAdmin")
@@ -13,6 +18,5 @@ public class ServletAdicionarAdmin extends HttpServlet {
     //Criando o método para processar as solicitações do tipo GET e encaminhar para o jsp
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/Pages/adicionarAdmin.jsp").forward(request, response);
-
     }
 }
