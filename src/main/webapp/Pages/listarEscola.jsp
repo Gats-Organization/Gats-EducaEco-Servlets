@@ -42,7 +42,7 @@
         <td><%=escola.getNome()%></td>
         <td><%=escola.getEmail()%></td>
         <td><%=escola.getTelefone()%></td>
-        <td><%=escola.getNumero()%>, <%=escola.getRua()%>, <%=escola.getBairro()%>, <%=escola.getCidade()%>, <%=escola.getEstado()%></td>
+        <td><%=escola.getNumero()%>, <%=escola.getRua()%>, <%=escola.getBairro()%>, <%=escola.getCidade()%>, <%=escola.getEstado()%>, <%=escola.getCep()%></td>
         <td>
             <form action="editarEscola" method="get">
                 <input type="hidden" name="id" value="<%=escola.getId()%>">

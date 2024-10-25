@@ -17,6 +17,7 @@
     <title>Adicionar Escola</title>
 </head>
 <body>
+<h1>Adicionar Escola</h1>
 <form action="salvarEscola" method="post">
     <table>
         <strong>Para adicionar uma nova escola, preencha os seguintes campos:</strong>
@@ -37,15 +38,13 @@
             <td><input type="text" name="telefone" id="inputTelefone"></td>
         </tr>
         <tr>
-            <td>Id_endereço:</td>
-            <td><input type="number" name="id_endereco" id="inputEndereco"></td>
+            <td>Endereço:</td>
+            <td><input type="text" name="endereco" id="inputEndereco"></td>
         </tr>
         <tr>
             <td><input type="submit" value="Salvar" id="salvar"></td>
         </tr>
     </table>
 </form>
-
-
 </body>
 </html>

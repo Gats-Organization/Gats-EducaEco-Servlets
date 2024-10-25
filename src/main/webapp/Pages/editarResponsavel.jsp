@@ -24,7 +24,7 @@
 <form action="atualizarResponsavel" method="post">
     <input type="hidden" name="id" value="<%= responsavel.getId() %>">
     <table>
-        <strong>Edite uma informação do responsável <%= responsavel.getNome() %>:</strong>
+        <strong>Edite uma informação do(a) responsável <%= responsavel.getNome() %>:</strong>
         <tr>
             <td>Nome:</td>
             <td><input type="text" name="nome" value="<%= responsavel.getNome() %>" id="inputNome"></td>

@@ -17,10 +17,10 @@ public class ServletSalvarEscola extends HttpServlet {
         String nome = req.getParameter("nome");
         String email = req.getParameter("email");
         int telefone = Integer.parseInt(req.getParameter("telefone"));
-        int id_endereco = Integer.parseInt(req.getParameter("id_endereco"));
+        String endereco = req.getParameter("endereco");
 
         EscolaDAO dao = new EscolaDAO();
-        dao.inserirEscola(id, nome, email, telefone, id_endereco);
+        dao.inserirEscola(id, nome, email, telefone, endereco);
         resp.sendRedirect("listarEscola");
 
 

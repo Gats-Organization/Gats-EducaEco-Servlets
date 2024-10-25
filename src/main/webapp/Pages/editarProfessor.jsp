@@ -24,7 +24,7 @@
 <form action="atualizarProfessor" method="post">
 <input type="hidden" name="id" value="<%=professor.getId() %>">
         <table>
-            <strong>Edite uma informação do professor <%=professor.getNome() %>":</strong>
+            <strong>Edite uma informação do(a) professor(a) <%=professor.getNome() %>":</strong>
             <tr>
                 <td>Nome:</td>
                 <td><input type="text" name="nome" value="<%=professor.getNome() %>" id="inputNome"></td>

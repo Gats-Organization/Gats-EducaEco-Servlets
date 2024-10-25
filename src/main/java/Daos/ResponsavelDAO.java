@@ -20,12 +20,12 @@ public class ResponsavelDAO {
         this.conexao = new Conexao();
     }
     ResponsavelDTO responsavelDTO = new ResponsavelDTO();
-    String nomeCompleto = responsavelDTO.getNomeAluno() + " " + responsavelDTO.getSobrenomeAluno();
+    String nomeCompleto = responsavelDTO.getNomeAluno() + ' ' + responsavelDTO.getSobrenomeAluno();
     //Criando método para inserir um responsável
     public int inserirResponsavel(int id,String nome, String sobrenome,String email, String nomeCompleto) {
         //conectando com banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("CALL INSERIR_RESPONSAVEL VALUES(?,?,?,?,?)")){
+        try (PreparedStatement pstmt = conexao.conn.prepareStatement("CALL INSERIR_RESPONSAVEL (?,?,?,?,?)")){
             //consulta sql para inserir um responsável
             //setando os valores
             pstmt.setInt(1,id);

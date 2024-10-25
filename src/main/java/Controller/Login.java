@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Controller.Admin.ServletAdicionarAdmin;
+import Controller.Admin.ServletSalvarAdmin;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,10 +16,10 @@ import jakarta.servlet.annotation.*;
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
-        if(verificandoRegex(email)) {
+        if(emailExiste(email) && senhaExiste(senha)) {
             //if regex == true
             //abre a tela do crud
-            request.getRequestDispatcher("/Pages/painelPrincipal.jsp").forward(request, response);
+            request.getRequestDispatcher("painelPrincipal.html").forward(request, response);
 
         } else if (email.isEmpty() || senha.isEmpty()) {
             //verifica se o usuário preencheu todos os campos (se estiver vazio, retorna erro)
@@ -31,11 +33,21 @@ import jakarta.servlet.annotation.*;
 
     }
 
-    public boolean verificandoRegex(String email){
-        Pattern expressaoRegex = Pattern.compile("^admin\\.crud@gats\\.com\\.br$");
-        Matcher emailValidado = expressaoRegex.matcher(email);
-        return emailValidado.find();
+    public static boolean emailExiste (String email) {
+        for (String emailArmazenado : ServletSalvarAdmin.getEmails()) {
+            if (!email.equals(emailArmazenado)) {
+                return false;
+            }
+        }
+        return true;
     }
 
-
+    public static boolean senhaExiste(String senha) {
+        for (String senhaArmazenada : ServletSalvarAdmin.getSenhas()) {
+            if (!senha.equals(senhaArmazenada)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -21,19 +21,21 @@ public class EscolaDAO {
     public EscolaDAO() {
         this.conexao = new Conexao();
     }
+    EscolaDTO escolaDTO = new EscolaDTO();
+    String enderecoCompleto = escolaDTO.getRua() + ',' + escolaDTO.getNumero() + ',' + escolaDTO.getBairro() + ',' + escolaDTO.getCidade() + ',' + escolaDTO.getEstado() + ',' + escolaDTO.getCep();
     //Criando método para inserir dados na tabela escola
-    public int inserirEscola(int id,String nome, String email,int telefone,int id_endereco) {
+    public int inserirEscola(int id,String nome, String email,int telefone,String enderecoCompleto) {
         //conectando ao banco de dados
         conexao.conectar();
         try {
             //consulta SQL para inserir dados na tabela escola
-            conexao.pstmt = conexao.conn.prepareStatement("INSERT INTO ESCOLA (ID,NOME,EMAIL,TELEFONE,ID_ENDERECO) VALUES (?,?,?,?,?)");
+            conexao.pstmt = conexao.conn.prepareStatement(" CALL INSERIR_ESCOLA(?,?,?,?,?)");
             //setando os valores dos parâmetros
             conexao.pstmt.setInt(1,id);
             conexao.pstmt.setString(2,nome);
             conexao.pstmt.setString(3,email);
             conexao.pstmt.setInt(4,telefone);
-            conexao.pstmt.setInt(5,id_endereco);
+            conexao.pstmt.setString(5,enderecoCompleto);
             //executando a consulta
             return conexao.pstmt.executeUpdate();
         }catch (SQLException e) {
@@ -135,6 +137,7 @@ public class EscolaDAO {
                 escola.setBairro(rs.getString("BAIRRO"));
                 escola.setCidade(rs.getString("CIDADE"));
                 escola.setEstado(rs.getString("ESTADO"));
+                escola.setCep(rs.getString("CEP"));
                 escolas.add(escola);
             }
         }catch (SQLException e) {
