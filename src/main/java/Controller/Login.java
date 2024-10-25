@@ -35,19 +35,19 @@ import jakarta.servlet.annotation.*;
 
     public static boolean emailExiste (String email) {
         for (String emailArmazenado : ServletSalvarAdmin.getEmails()) {
-            if (email.equals(emailArmazenado)) {
-                return true;
+            if (!email.equals(emailArmazenado)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public static boolean senhaExiste(String senha) {
         for (String senhaArmazenada : ServletSalvarAdmin.getSenhas()) {
-            if (senha.equals(senhaArmazenada)) {
-                return true;
+            if (!senha.equals(senhaArmazenada)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
