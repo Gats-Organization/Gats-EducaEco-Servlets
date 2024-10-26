@@ -1,23 +1,27 @@
 package Controller.Escola;
 
+// Importando as classes necessárias para o funcionamento do Servlet
 import Daos.EscolaDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
+// Criando a classe ServletExcluirEscola
+// A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/excluirEscola")
 public class ServletExcluirEscola extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
+    // Criando o método para processar as solicitações do tipo GET
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Pegando os valores dos campos do formulário
+        String id = request.getParameter("id");
+
+        // Criando um objeto do tipo Escola e chamando o método removerEscola, usando o valor do campo do formulário como parâmetro
+        // Ao finalizar, redireciona para a página de listagem de escolas
         EscolaDAO dao = new EscolaDAO();
         dao.removerEscola(Integer.parseInt(id));
-        resp.sendRedirect("listarEscola");
+        response.sendRedirect("listarEscola");
     }
-
-
 }

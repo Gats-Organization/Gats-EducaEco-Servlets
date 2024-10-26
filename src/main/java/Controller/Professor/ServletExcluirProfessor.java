@@ -1,20 +1,27 @@
 package Controller.Professor;
 
+// Importando as classes necessárias para o funcionamento do Servlet
 import Daos.ProfessorDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
+
+// Criando a classe ServletExcluirProfessor
+// A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/ServletExcluirProfessor")
 public class ServletExcluirProfessor extends HttpServlet {
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
+    // Criando o método para processar as solicitações do tipo GET
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Pegando os valores dos campos do formulário
+        String id = request.getParameter("id");
+
+        // Criando um objeto do tipo Professor e chamando o método removerProfessor, usando o valor do campo do formulário como parâmetro
+        // Ao finalizar, redireciona para a página de listagem de professores
         ProfessorDAO dao = new ProfessorDAO();
         dao.removerProfessor(Integer.parseInt(id));
-        resp.sendRedirect("listarProfessor");
-
+        response.sendRedirect("listarProfessor");
     }
 }
