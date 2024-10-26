@@ -14,6 +14,7 @@ h1{
 }
 
 table{
+    margin-top: 150px;
     border-collapse: collapse;
     border-spacing: 1px;
     box-shadow: 3px 3px 3px #c2baba;
@@ -76,7 +77,6 @@ a{
 
 .botaoAddProfessor{
     margin-top: 15px;
-    margin-left: -710px;
 }
 
 #addProfessor{

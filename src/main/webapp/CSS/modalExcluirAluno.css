@@ -12,9 +12,59 @@
 }
 
 .modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 30px;
     background-color: #fefefe;
     margin: 15% auto; /* 15% da parte superior e centralizado */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Largura do modal */
+    width: 300px; /* Largura do modal */
+    height: 200px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px #a9a9a9;
 }
+
+.botoes{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.cancelar, .confirmar{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+.cancelar{
+    background-color: #f06e6e;
+}
+
+.confirmar{
+    margin-left: 10px;
+    background-color: #b5fb7d;
+}
+
+.cancelar:hover{
+    width: 130px;
+    height: 50px;
+    background-color: #ff5959;
+}
+
+.confirmar:hover{
+    width: 130px;
+    height: 50px;
+    background-color: #aaff66;
+}
+
+
+
+
+
+

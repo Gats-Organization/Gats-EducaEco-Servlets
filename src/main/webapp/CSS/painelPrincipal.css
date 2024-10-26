@@ -4,10 +4,21 @@ body {
     align-items: center;
 
 }
-a{
+
+.botoes{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 100px;
+    justify-items: center;
+}
+
+.botoes a{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background-color: #B5FB7D;
     font-size: 23px;
     height: 70px;
@@ -19,15 +30,13 @@ a{
     padding: 5px;
     text-decoration: none;
     margin-right: 10px;
+    transition: 0.5s;
 }
 
-.botoes{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 50px;
-    margin-top: 100px;
-    justify-items: center;
+.botoes a:hover {
+    background: #cdfbb2;
+    width: 180px;
+    height: 90px;
 }
 
 .titulo{

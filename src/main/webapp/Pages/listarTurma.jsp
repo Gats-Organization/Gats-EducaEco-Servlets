@@ -11,6 +11,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="CSS/listarTurma.css">
+    <link rel="stylesheet" href="CSS/headerEsidebar.css">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +19,33 @@
     <link rel="shortcut icon" href="Imagens Login/logo app.png" type="image/x-icon">
     <title>Listar Turmas</title>
 </head>
+<input type="checkbox" id="check">
+<header>
+    <label for="check">
+        <img src="Imagens Login/Menu2.png" alt="menu" class="icons" id="sidebar_btn">
+    </label>
+    <div class="left">
+        <h3>Lista de Turmas</h3>
+    </div>
+    <div class="right">
+        <a href="index.html" class="sair_btn">Sair</a>
+    </div>
+</header>
+<!--header final-->
+<!--sidebar começo-->
+<div class="sidebar">
+    <img src="Imagens Login/logo app.png" class="image" alt="">
+    <hr>
+    <a href="painelPrincipal.html"><img src="Imagens Login/Inicio2.png" alt="Início" class="icons"><span>  Início</span></a>
+    <a href="listarAluno"><img src="Imagens Login/Tabela.png" alt="Aluno" class="icons"><span>  Aluno</span></a>
+    <a href="listarAdmin"><img src="Imagens Login/Tabela.png" alt="Admin" class="icons"><span>  Admin</span></a>
+    <a href="listarEscola"><img src="Imagens Login/Tabela.png" alt="Escola" class="icons"><span>  Escola</span></a>
+    <a href="listarResponsavel"><img src="Imagens Login/Tabela.png" alt="Responsavel" class="icons"><span>  Responsável</span></a>
+    <a href="listarProfessor"><img src="Imagens Login/Tabela.png" alt="Professor" class="icons"><span>  Professor</span></a>
+</div>
+<!--sidebar final-->
+<div class="content"></div>
 <body>
-<h1>Listar Turmas</h1>
 <table border="1"  >
     <tr id="colunas">
         <th>Id</th>
