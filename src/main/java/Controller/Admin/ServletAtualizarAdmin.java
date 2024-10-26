@@ -14,9 +14,11 @@ import java.io.IOException;
 // A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/atualizarAdmin")
 public class ServletAtualizarAdmin extends HttpServlet {
+
     // Criando o método para processar as solicitações do tipo POST
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Pegando os valores dos campos do formulário
+
+        // Recebendo os valores dos campos do formulário
         int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");

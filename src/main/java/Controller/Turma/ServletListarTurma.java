@@ -18,7 +18,7 @@ import java.util.List;
 public class ServletListarTurma extends HttpServlet {
 
     // Criando o método para processar as solicitações do tipo GET
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Criando um objeto do tipo Turma e criando uma lista que irá armazenar cada registro da tabela
         // A inserção de valores na lista será feita a partir do método listarTurmasPorEscola() da classe TurmaDAO
@@ -26,7 +26,7 @@ public class ServletListarTurma extends HttpServlet {
         List<TurmaDTO> listaTurma = turmaDAO.listarTurmasPorEscola();
 
         // Direcionando a lista pronta para a página JSP de listagem de turmas
-        req.setAttribute("listaTurma", listaTurma);
-        req.getRequestDispatcher("/Pages/listarTurma.jsp").forward(req, resp);
+        request.setAttribute("listaTurma", listaTurma);
+        request.getRequestDispatcher("/Pages/listarTurma.jsp").forward(request, response);
     }
 }

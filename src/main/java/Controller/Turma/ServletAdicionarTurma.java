@@ -12,8 +12,10 @@ import java.io.IOException;
 // A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/adicionarTurma")
 public class ServletAdicionarTurma extends HttpServlet {
+
     // Criando o método para processar as solicitações do tipo GET e encaminhar para o JSP
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         // Encaminhando a solicitação para o JSP
         request.getRequestDispatcher("/Pages/adicionarTurma.jsp").forward(request, response);
     }

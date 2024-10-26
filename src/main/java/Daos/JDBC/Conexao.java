@@ -12,7 +12,7 @@ public class Conexao {
     public PreparedStatement pstmt;
 
     public Conexao() {
-        dotenv = Dotenv.configure().directory("C:\\Users\\claramoreira-ieg\\OneDrive - Instituto Germinare\\Área de Trabalho\\GrupoGats\\Servlets\\.env").load();
+        dotenv = Dotenv.configure().directory("C:\\Users\\raissacasale-ieg\\OneDrive - Instituto Germinare\\Área de Trabalho\\Trabalho Interdisciplinar\\Servlets\\.env").load();
     }
     // Método para conectar ao banco de dados
     public boolean conectar() {

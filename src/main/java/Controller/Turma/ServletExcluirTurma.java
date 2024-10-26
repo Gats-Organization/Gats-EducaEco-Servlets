@@ -13,8 +13,10 @@ import java.io.IOException;
 // A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/excluirTurma")
 public class ServletExcluirTurma extends HttpServlet {
+
     // Criando o método para processar as solicitações do tipo GET
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         // Pegando os valores dos campos do formulário
         String id = req.getParameter("id");
 

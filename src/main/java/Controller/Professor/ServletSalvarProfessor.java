@@ -1,26 +1,35 @@
 package Controller.Professor;
 
+// Importando as classes necessárias para o funcionamento do Servlet
 import Daos.ProfessorDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
+// Criando a classe ServletSalvarProfessor
+// A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/salvarProfessor")
 public class ServletSalvarProfessor extends HttpServlet {
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        String nome = req.getParameter("nome");
-        String sobrenome = req.getParameter("sobrenome");
-        String email = req.getParameter("email");
-        String senha = req.getParameter("senha");
 
+    // Criando o método para processar as solicitações do tipo POST
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // Recebendo os parâmetros do formulário
+        int id = Integer.parseInt(request.getParameter("id"));
+        String nome = request.getParameter("nome");
+        String sobrenome = request.getParameter("sobrenome");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+
+        // Criando um objeto do tipo ProfessorDAO
+        // O objeto chama o método inserirProfessor e usa os valores recebidos do formulário como parâmetro
+        // Por fim, redireciona para a página de listagem de professores
         ProfessorDAO professorDAO = new ProfessorDAO();
         professorDAO.inserirProfessor(id, nome, sobrenome, email, senha);
-        resp.sendRedirect("listarProfessor");
+        response.sendRedirect("listarProfessor");
 
     }
 }
