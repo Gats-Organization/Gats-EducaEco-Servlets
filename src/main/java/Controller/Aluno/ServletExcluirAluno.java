@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// Criando a classe ServletEditarProfessor
+// Criando a classe ServletExcluirAluno
 // A anotação @WebServlet é usada para mapear o Servlet para uma URL
 @WebServlet("/ServletExcluirAluno")
 public class ServletExcluirAluno extends HttpServlet {
@@ -23,9 +23,5 @@ public class ServletExcluirAluno extends HttpServlet {
         AlunoDAO alunoDAO = new AlunoDAO();
         alunoDAO.removerAluno(Integer.parseInt(id));
         response.sendRedirect("listarAlunos");
-
-
-
     }
-
 }
