@@ -3,6 +3,7 @@ package Controller.Escola;
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.EscolaDAO;
 import Model.Escola;
+import Model.EscolaDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +20,6 @@ public class ServletSalvarEscola extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os parâmetros do formulário
-        int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
         int telefone = Integer.parseInt(request.getParameter("telefone"));
@@ -28,8 +28,9 @@ public class ServletSalvarEscola extends HttpServlet {
         // Criando um objeto do tipo EscolaDAO
         // O objeto chama o método inserirEscola e usa os valores recebidos do formulário como parâmetro
         // Por fim, redireciona para a página de listagem de escolas
+        EscolaDTO escola = new EscolaDTO( nome, email, telefone, endereco);
         EscolaDAO escolaDAO = new EscolaDAO();
-        escolaDAO.inserirEscola(id, nome, email, telefone, endereco);
+        escolaDAO.inserirEscola(escola);
         response.sendRedirect("listarEscola");
     }
 }

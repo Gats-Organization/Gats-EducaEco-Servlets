@@ -24,16 +24,14 @@ public class AdminDAO {
     public int inserirAdmin(Admin admin) {
         //conectando ao banco de dados
         conexao.conectar();
-        try{
+        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("INSERT INTO ADMIN (NOME, EMAIL, SENHA) VALUES (?,?,?)");)                {
             //consulta sql para inserir administrador
-            conexao.pstmt = conexao.conn.prepareStatement("INSERT INTO ADMIN VALUES (?,?,?,?)");
             //setando os valores
-            conexao.pstmt.setInt(1,admin.getId());
-            conexao.pstmt.setString(2,admin.getNome());
-            conexao.pstmt.setString(3,admin.getEmail());
-            conexao.pstmt.setString(4,admin.getSenha());
+            pstmt.setString(1,admin.getNome());
+            pstmt.setString(2,admin.getEmail());
+            pstmt.setString(3,admin.getSenha());
             //executando a consulta
-            return conexao.pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         }catch(SQLException e){
             //caso ocorra algum erro, retornar -1
             return -1;
@@ -47,16 +45,15 @@ public class AdminDAO {
     public int atualizarAdmin(Admin admin) {
         //conectando ao banco de dados
         conexao.conectar();
-        try {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ADMIN SET NOME = ?, EMAIL = ?, SENHA = ? WHERE ID=? ");){
             //consulta sql para alterar senha do administrador
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ADMIN SET NOME = ?, EMAIL = ?, SENHA =? WHERE ID=? ");
             //setando os valores
-            conexao.pstmt.setString(1, admin.getNome());
-            conexao.pstmt.setString(2, admin.getEmail());
-            conexao.pstmt.setString(3, admin.getSenha());
-            conexao.pstmt.setInt(4, admin.getId());
+            pstmt.setString(1, admin.getNome());
+            pstmt.setString(2, admin.getEmail());
+            pstmt.setString(3, admin.getSenha());
+            pstmt.setInt(4, admin.getId());
             //executando a consulta
-            return conexao.pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         } catch (SQLException e) {
             //caso ocorra algum erro, retornar -1
             return -1;
@@ -70,14 +67,12 @@ public class AdminDAO {
     public int removerAdmin(int id){
         //conectando ao banco de dados
         conexao.conectar();
-        try{
+        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("DELETE FROM ADMIN WHERE ID = ?")){
             //consulta sql para remover administrador
-            String sql = "DELETE FROM ADMIN WHERE ID = ?";
-            conexao.pstmt = conexao.conn.prepareStatement(sql);
             //setando os valores
-            conexao.pstmt.setInt(1,id);
+            pstmt.setInt(1,id);
             //executando a consulta
-            return conexao.pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         }catch(SQLException e){
             //caso ocorra algum erro, retornar -1
             return -1;
@@ -91,7 +86,7 @@ public class AdminDAO {
         //conectando ao banco de dados
         List<Admin> admins = new ArrayList<>();
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ADMIN");){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ADMIN");){
             //consulta sql para ver todos os administradores
             //executando a consulta
             ResultSet rs = pstmt.executeQuery();
@@ -117,7 +112,7 @@ public class AdminDAO {
     public Admin buscarAdminPorId(int id) {
         //conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ADMIN WHERE ID = ?");) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ADMIN WHERE ID = ?");) {
             //consulta sql para buscar administrador por id
             //setando os valores
             pstmt.setInt(1, id);

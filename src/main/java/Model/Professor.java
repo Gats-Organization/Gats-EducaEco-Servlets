@@ -19,6 +19,14 @@ public class Professor {
     public Professor() {
 
     }
+
+    public Professor(String nome, String sobrenome, String email, String senha) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.senha = senha;
+    }
+
     //Gerando getters e setters
     public int getId() {
         return id;
@@ -50,6 +58,7 @@ public class Professor {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
     //Criando toString
     @Override
     public String toString() {

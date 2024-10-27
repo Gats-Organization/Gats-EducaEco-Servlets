@@ -19,6 +19,7 @@ public class Escola {
     public Escola() {
 
     }
+
     //gerando getters e setters
     public int getId() {
         return id;

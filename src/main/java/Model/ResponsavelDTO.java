@@ -20,12 +20,19 @@ public class ResponsavelDTO {
             this.nomeAluno = nomeAluno;
             this.sobrenomeAluno = sobrenomeAluno;
         }
+    String nomeCompleto = getNomeAluno() + getSobrenomeAluno();
         public ResponsavelDTO() {
 
         }
 
-        //Gerando getters e setters
+    public ResponsavelDTO(String nome, String sobrenome, String email, String nomeCompleto) {
+            this.nome = nome;
+            this.sobrenome = sobrenome;
+            this.email = email;
+            this.nomeCompleto = nomeCompleto;
+    }
 
+    //Gerando getters e setters
         public int getId() {
             return id;
         }
@@ -38,33 +45,22 @@ public class ResponsavelDTO {
         public String getEmail() {
             return email;
         }
-        public String getNomeAluno() {
-            return nomeAluno;
-        }
-        public String getSobrenomeAluno() {
-            return sobrenomeAluno;
-        }
+        public String getNomeAluno() { return nomeAluno; }
+        public String getSobrenomeAluno() { return sobrenomeAluno; }
+        public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+        public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
         public void setId(int id) {this.id = id;}
         public void setId_aluno(int id_aluno) {this.id_aluno = id_aluno;}
-        public void setNome(String nome) {
-            this.nome = nome;
-        }
-        public void setSobrenome(String sobrenome) {
-            this.sobrenome = sobrenome;
-        }
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public int getId_aluno() {
-            return id_aluno;
-        }
-        public void setNomeAluno(String nomeAluno) {
-            this.nomeAluno = nomeAluno;
-        }
-        public void setSobrenomeAluno(String sobrenomeAluno) {
-            this.sobrenomeAluno = sobrenomeAluno;
-        }
+        public void setNome(String nome) { this.nome = nome; }
+        public void setSobrenome(String sobrenome) { this.sobrenome = sobrenome; }
+        public void setEmail(String email) { this.email = email; }
+        public int getId_aluno() { return id_aluno; }
+        public void setNomeAluno(String nomeAluno) { this.nomeAluno = nomeAluno; }
+        public void setSobrenomeAluno(String sobrenomeAluno) { this.sobrenomeAluno = sobrenomeAluno; }
 
 
         //Criando método toString

@@ -21,23 +21,19 @@ public class EscolaDAO {
     public EscolaDAO() {
         this.conexao = new Conexao();
     }
-    EscolaDTO escolaDTO = new EscolaDTO();
-    String enderecoCompleto = escolaDTO.getRua() + ',' + escolaDTO.getNumero() + ',' + escolaDTO.getBairro() + ',' + escolaDTO.getCidade() + ',' + escolaDTO.getEstado() + ',' + escolaDTO.getCep();
     //Criando método para inserir dados na tabela escola
-    public int inserirEscola(int id,String nome, String email,int telefone,String enderecoCompleto) {
+    public int inserirEscola(EscolaDTO escolaDTO) {
         //conectando ao banco de dados
         conexao.conectar();
-        try {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ESCOLA(?,?,?,?)")){
             //consulta SQL para inserir dados na tabela escola
-            conexao.pstmt = conexao.conn.prepareStatement(" CALL INSERIR_ESCOLA(?,?,?,?,?)");
             //setando os valores dos parâmetros
-            conexao.pstmt.setInt(1,id);
-            conexao.pstmt.setString(2,nome);
-            conexao.pstmt.setString(3,email);
-            conexao.pstmt.setInt(4,telefone);
-            conexao.pstmt.setString(5,enderecoCompleto);
+            pstmt.setString(1,escolaDTO.getNome());
+            pstmt.setString(2, escolaDTO.getEmail());
+            pstmt.setInt(3,escolaDTO.getTelefone());
+            pstmt.setString(4,escolaDTO.getEnderecoCompleto());
             //executando a consulta
-            return conexao.pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         }catch (SQLException e) {
             //caso ocorra algum erro, retornar -1
             return -1;
@@ -50,16 +46,15 @@ public class EscolaDAO {
     public int atualizarEscola(Escola escola){
         //Estabelecendo conexão com o banco de dados
         conexao.conectar();
-        try{
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ESCOLA SET NOME=? , EMAIL=?, TELEFONE=?, ID_ENDERECO=? WHERE ID=?  ")){
             //Consulta SQL para alterar o nome da escola
-            conexao.pstmt = conexao.conn.prepareStatement("UPDATE ESCOLA SET NOME=?, EMAIL=?, TELEFONE=?, ID_ENDERECO=? WHERE ID=?  ");
-            conexao.pstmt.setString(1,escola.getNome());
-            conexao.pstmt.setString(2,escola.getEmail());
-            conexao.pstmt.setInt(3,escola.getTelefone());
-            conexao.pstmt.setInt(4,escola.getId_endereco());
-            conexao.pstmt.setInt(5,escola.getId());
+            pstmt.setString(1,escola.getNome());
+            pstmt.setString(2,escola.getEmail());
+            pstmt.setInt(3,escola.getTelefone());
+            pstmt.setInt(4,escola.getId_endereco());
+            pstmt.setInt(5,escola.getId());
 
-            return conexao.pstmt.executeUpdate();
+            return pstmt.executeUpdate();
 
             //executando a consulta
         }catch (SQLException e) {
@@ -75,13 +70,12 @@ public class EscolaDAO {
     public int removerEscola(int id){
         //Estabelecendo conexão com o banco de dados
         conexao.conectar();
-        try{
+        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL EXCLUIR_ESCOLA(?)")){
             //Consulta SQL para remover uma escola
-            conexao.pstmt = conexao.conn.prepareStatement("CALL EXCLUIR_ESCOLA(?)");
 //            //setando o valor do parâmetro
-            conexao.pstmt.setInt(1,id); //arrumar
+            pstmt.setInt(1,id); //arrumar
             //executando a consulta
-            return conexao.pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         }catch (SQLException e) {
             //caso ocorra algum erro, retornar -1
             return -1;
@@ -95,7 +89,7 @@ public class EscolaDAO {
         //Estabelecendo conexão com o banco de dados
         List<Escola> escolas = new ArrayList<>();
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT*FROM ESCOLA")){
+        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM ESCOLA")){
             //Consulta SQL para listar todas as escolas
             //executando a consulta
             ResultSet rs = pstmt.executeQuery();
@@ -121,7 +115,7 @@ public class EscolaDAO {
         //Estabelecendo conexão com o banco de dados
         List<EscolaDTO> escolas = new ArrayList<>();
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT*FROM ESCOLA JOIN ENDERECO ON ESCOLA.ID_ENDERECO = ENDERECO.ID")){
+        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM ESCOLA JOIN ENDERECO ON ESCOLA.ID_ENDERECO = ENDERECO.ID")){
             //Consulta SQL para listar todas as escolas
             //executando a consulta
             ResultSet rs = pstmt.executeQuery();
@@ -153,13 +147,12 @@ public class EscolaDAO {
     public Escola buscarEscolaPorId(int id){
         //Estabelecendo conexão com o banco de dados
         conexao.conectar();
-        try{
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM ESCOLA WHERE ID=?")){
             //Consulta SQL para buscar uma escola pelo id
-            conexao.pstmt = conexao.conn.prepareStatement("SELECT*FROM ESCOLA WHERE ID=?");
             //setando o valor do parâmetro
-            conexao.pstmt.setInt(1,id);
+            pstmt.setInt(1,id);
             //executando a consulta
-            ResultSet rs = conexao.pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Escola escola = new Escola();
                 escola.setId(rs.getInt("ID"));

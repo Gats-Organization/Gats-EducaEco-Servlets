@@ -8,8 +8,11 @@ public class Conexao {
     // Variáveis de conexão
     //tirar o público 
 
-    public Connection conn;
-    public PreparedStatement pstmt;
+    private Connection conn;
+
+    public Connection getConn() {
+        return conn;
+    }
 
     public Conexao() {
         dotenv = Dotenv.configure().directory("C:\\Users\\raissacasale-ieg\\OneDrive - Instituto Germinare\\Área de Trabalho\\Trabalho Interdisciplinar\\Servlets\\.env").load();

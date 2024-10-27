@@ -16,7 +16,7 @@ import jakarta.servlet.annotation.*;
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
-        if(emailExiste(email) && senhaExiste(senha)) {
+        if(emailExiste(email) && senhaExiste(senha)){
             //if regex == true
             //abre a tela do crud
             request.getRequestDispatcher("painelPrincipal.html").forward(request, response);

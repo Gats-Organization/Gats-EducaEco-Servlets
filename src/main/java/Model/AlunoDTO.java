@@ -29,76 +29,58 @@ public class AlunoDTO {
 
     }
 
-
+    //gerando getters e setters
     public int getSerie() {
         return serie;
     }
-
     public void setSerie(int serie) {
         this.serie = serie;
     }
-
     public String getNomeclantura() {
         return nomeclantura;
     }
-
-    public void setNomeclantura(String nomeclantura) {
-        this.nomeclantura = nomeclantura;
-    }
-
-    //gerando getters e setters
-    public int getId() {
-        return this.id;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public String getSobrenome() {
-        return this.sobrenome;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getSenha() {
-        return this.senha;
-    }
-
-    public int getXp() {
-        return this.xp;
-    }
-
     public int getId_turma() {
         return this.id_turma;
     }
-
+    public int getId() {
+        return this.id;
+    }
+    public String getNome() {
+        return this.nome;
+    }
+    public String getSobrenome() {
+        return this.sobrenome;
+    }
+    public String getEmail() {
+        return this.email;
+    }
+    public String getSenha() {
+        return this.senha;
+    }
+    public int getXp() {
+        return this.xp;
+    }
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
-
     public void setXp(int xp) {
         this.xp = xp;
     }
-
+    public void setNomeclantura(String nomeclantura) {
+        this.nomeclantura = nomeclantura;
+    }
     public void setIdTurma(int idTurma) {
         this.id_turma = idTurma;
     }

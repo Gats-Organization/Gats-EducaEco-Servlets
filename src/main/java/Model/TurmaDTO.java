@@ -11,9 +11,10 @@ package Model;
         private int id_escola;
         private String nomeEscola;
         private String nomeProfessor;
+        private String sobrenomeProfessor;
 
         //Criando método construtor
-        public TurmaDTO(int id, int serie, String nomenclatura, int ano, int id_professor, int id_escola, String nomeEscola, String nomeProfessor) {
+        public TurmaDTO(int id, int serie, String nomenclatura, int ano, int id_professor, int id_escola, String nomeEscola, String nomeProfessor, String sobrenomeProfessor) {
             this.id = id;
             this.serie = serie;
             this.nomenclatura = nomenclatura;
@@ -22,11 +23,21 @@ package Model;
             this.id_escola = id_escola;
             this.nomeEscola = nomeEscola;
             this.nomeProfessor = nomeProfessor;
+            this.sobrenomeProfessor = sobrenomeProfessor;
         }
 
         public TurmaDTO() {
 
         }
+
+        public TurmaDTO(int serie, String nomenclatura, int ano, String escola, String professor) {
+            this.serie = serie;
+            this.nomenclatura = nomenclatura;
+            this.ano = ano;
+            this.nomeEscola = escola;
+            this.nomeProfessor = professor;
+        }
+
         //gerando getters e setters
         public int getId() {
             return id;
@@ -52,36 +63,30 @@ package Model;
         public String getNomeProfessor() {
             return nomeProfessor;
         }
+        public String getSobrenomeProfessor() {
+            return sobrenomeProfessor;
+        }
         public void setId_professor(int id_professor) {
             this.id_professor = id_professor;
         }
-
         public void setId(int id) {
             this.id = id;
         }
-
         public void setNomenclatura(String nomenclatura) {
             this.nomenclatura = nomenclatura;
         }
-
         public void setSerie(int serie) {
             this.serie = serie;
         }
-
         public void setAno(int ano) {
             this.ano = ano;
         }
-
         public void setId_escola(int id_escola) {
             this.id_escola = id_escola;
         }
-
-        public void setNomeEscola(String nomeEscola) {
-            this.nomeEscola = nomeEscola;
-        }
-        public void setNomeProfessor(String nomeProfessor) {
-            this.nomeProfessor = nomeProfessor;
-        }
+        public void setNomeEscola(String nomeEscola) { this.nomeEscola = nomeEscola; }
+        public void setNomeProfessor(String nomeProfessor) { this.nomeProfessor = nomeProfessor; }
+        public void setSobrenomeProfessor(String sobrenomeProfessor) { this.sobrenomeProfessor = sobrenomeProfessor; }
 
         //Criando toString
         @Override

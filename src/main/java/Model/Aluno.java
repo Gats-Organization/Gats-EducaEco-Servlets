@@ -24,11 +24,6 @@ public class Aluno {
     public Aluno() {
 
     }
-
-
-
-
-
     //gerando getters e setters
     public int getId() {
         return this.id;

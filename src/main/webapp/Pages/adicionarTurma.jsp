@@ -23,8 +23,7 @@
 <form action="salvarTurma" method="post">
 <table>
     <tr>
-        <td>Id:</td>
-        <td><input type="number" name="id" id="inputId"></td>
+        <td><input type="hidden" name="id" id="inputId"></td>
     </tr>
     <tr>
         <td>Serie:</td>

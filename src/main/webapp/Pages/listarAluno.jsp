@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="CSS/modalExcluir.css">
     <link rel="stylesheet" href="CSS/listarAluno.css">
     <link rel="stylesheet" href="CSS/headerEsidebar.css">
     <link rel="stylesheet" href="CSS/style.css">
@@ -16,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="Imagens Login/logo app.png" type="image/x-icon">
+    <link rel="stylesheet" href="CSS/modalExcluirAluno.css">
     <title> Listagem dos Alunos </title>
 </head>
 <body>
@@ -31,7 +31,7 @@
         <img src="Imagens Login/Menu2.png" alt="menu" class="icons" id="sidebar_btn">
     </label>
     <div class="left">
-        <h3>Alunos</h3>
+        <h3>Lista de Alunos</h3>
     </div>
     <div class="right">
         <a href="index.html" class="sair_btn">Sair</a>
@@ -43,11 +43,6 @@
     <img src="Imagens Login/logo app.png" class="image" alt="">
     <hr>
     <a href="painelPrincipal.html"><img src="Imagens Login/Inicio2.png" alt="Início" class="icons"><span>  Início</span></a>
-    <a href="listarAdmin"><img src="Imagens Login/Tabela.png" alt="Admin" class="icons"><span>  Admin</span></a>
-    <a href="listarEscola"><img src="Imagens Login/Tabela.png" alt="Escola" class="icons"><span>  Escola</span></a>
-    <a href="listarProfessor"><img src="Imagens Login/Tabela.png" alt="Professor" class="icons"><span>  Professor</span></a>
-    <a href="listarResponsavel"><img src="Imagens Login/Tabela.png" alt="Responsável" class="icons"><span>  Responsável</span></a>
-    <a href="listarTurma"><img src="Imagens Login/Tabela.png" alt="Turma" class="icons"><span>  Turma</span></a>
 </div>
 <!--sidebar final-->
 <div class="content"></div>
@@ -88,10 +83,10 @@
             </form>
          </td>
          <td id="excluir">
-            <a href="#" onclick="confirmarExclusao(<%= aluno.getId() %>)">
-                <img src="Imagens Login/Lixeira.png" alt="Lixeira">
-                Excluir
-            </a>
+         <a href="#" onclick="confirmarExclusao(<%= aluno.getId() %>)">
+             <img src="Imagens Login/Lixeira.png" alt="Lixeira">
+             Excluir
+         </a>
          </td>
      </tr>
      <%
@@ -107,10 +102,8 @@
      <div id="modalExclusao" class="modal">
          <div class="modal-content">
              <p>Tem certeza que deseja excluir este aluno?</p>
-             <div class="botoes">
-                 <button class="cancelar" onclick="fecharModal()">Cancelar</button>
-                 <button class="confirmar" id="confirmado">Confirmar</button>
-             </div>
+             <button class="cancelar" onclick="fecharModal()"><strong>Cancelar</strong></button>
+             <button class="confirmar" id="confirmado"><strong>Confirmar</strong></button>
          </div>
      </div>
 
@@ -128,6 +121,8 @@
          }
 
      </script>
+
+
 <br>
 <div class="botaoAddAluno">
     <a id="addAluno" href="adicionarAluno"><strong>+ Adicionar Aluno</strong></a>
