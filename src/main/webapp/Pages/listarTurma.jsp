@@ -94,6 +94,7 @@
     %>
 </table>
 <%--     Modal de confirmação de exclusão--%>
+<%--   --%>
 <div id="modalExclusao" class="modal">
     <div class="modal-content">
         <p>Tem certeza que deseja excluir esta turma?</p>
