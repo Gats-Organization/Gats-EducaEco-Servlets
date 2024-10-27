@@ -20,17 +20,16 @@ public class ProfessorDAO {
     }
 
     //Criando método para inserir um professor
-    public int inserirProfessor(int id, String nome, String sobrenome,String email,String senha ){
+    public int inserirProfessor( Professor professor ) {
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("INSERT INTO PROFESSOR(ID,NOME,SOBRENOME,EMAIL,SENHA) VALUES (?,?,?,?,?)")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("INSERT INTO PROFESSOR(NOME,SOBRENOME,EMAIL,SENHA) VALUES (?,?,?,?)")){
             //consulta SQL para inserir aluno
             //setando os valores
-            pstmt.setInt(1, id);
-            pstmt.setString(2, nome);
-            pstmt.setString(3, sobrenome);
-            pstmt.setString(4, email);
-            pstmt.setString(5, senha);
+            pstmt.setString(1, professor.getNome());
+            pstmt.setString(2, professor.getSobrenome());
+            pstmt.setString(3, professor.getEmail());
+            pstmt.setString(4, professor.getSenha());
             //executando a consulta
             return pstmt.executeUpdate();
         } catch (SQLException sqle) {
@@ -45,7 +44,7 @@ public class ProfessorDAO {
     public int atualizarProfessor( Professor professor ){
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE PROFESSOR SET NOME = ?,SOBRENOME = ?, EMAIL = ?, SENHA = ? WHERE ID = ?")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE PROFESSOR SET NOME = ?,SOBRENOME = ?, EMAIL = ?, SENHA = ? WHERE ID = ?")){
             //consulta SQL para alterar o nome do professor
             //setando os valores
             pstmt.setString(1,professor.getNome());
@@ -68,14 +67,12 @@ public class ProfessorDAO {
     public int removerProfessor(int id){
         //Conectando ao banco de dados
         conexao.conectar();
-        try{
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("DELETE FROM PROFESSOR WHERE ID = ?")){
             //consulta SQL para remover o professor
-            String sql = "DELETE FROM PROFESSOR WHERE ID=?";
-            conexao.pstmt = conexao.conn.prepareStatement(sql);
             //setando os valores
-            conexao.pstmt.setInt(1,id);
+            pstmt.setInt(1,id);
             //executando a consulta
-            return conexao.pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         }catch(SQLException sqle){
             //caso ocorra algum erro, retorna -1
             return -1;
@@ -88,7 +85,7 @@ public class ProfessorDAO {
     public Professor buscarProfessorPorId(int id){
         //Conectando ao banco de dados
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM PROFESSOR WHERE ID=?")){
+        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM PROFESSOR WHERE ID=?")){
             //consulta SQL para consultar um professor
             // setando os valores
             pstmt.setInt(1,id);
@@ -117,7 +114,7 @@ public class ProfessorDAO {
         List<Professor> professores = new ArrayList<>();
         //Conectando ao banco de dados
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM PROFESSOR")){
+        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM PROFESSOR")){
             //consulta SQL para consultar todos os professores
             //executando a consulta
             ResultSet rs = pstmt.executeQuery();

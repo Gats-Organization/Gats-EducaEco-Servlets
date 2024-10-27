@@ -2,6 +2,7 @@ package Controller.Responsavel;
 
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.ResponsavelDAO;
+import Model.ResponsavelDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -27,8 +28,9 @@ public class ServletSalvarResponsavel extends HttpServlet {
         // Criando um objeto do tipo ResponsavelDAO
         // O objeto chama o método inserirResponsavel e usa os valores recebidos do formulário como parâmetro
         // Por fim, redireciona para a página de listagem de responsaveis
-        ResponsavelDAO dao = new ResponsavelDAO();
-        dao.inserirResponsavel(id, nome, sobrenome, email, aluno);
+        ResponsavelDTO responsavel = new ResponsavelDTO(nome, sobrenome, email, aluno);
+        ResponsavelDAO responsavelDAO = new ResponsavelDAO();
+        responsavelDAO.inserirResponsavel(responsavel);
         response.sendRedirect("listarResponsavel");
 
     }

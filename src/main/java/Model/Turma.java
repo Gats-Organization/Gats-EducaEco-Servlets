@@ -1,7 +1,6 @@
 package Model;
 
-
-    public class Turma {
+public class Turma {
         //definindo atributos da classe Turma
         private int id;
         private int serie;
@@ -45,26 +44,11 @@ package Model;
         public void setId_professor(int id_professor) {
             this.id_professor = id_professor;
         }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public void setNomenclatura(String nomenclatura) {
-            this.nomenclatura = nomenclatura;
-        }
-
-        public void setSerie(int serie) {
-            this.serie = serie;
-        }
-
-        public void setAno(int ano) {
-            this.ano = ano;
-        }
-
-        public void setId_escola(int id_escola) {
-            this.id_escola = id_escola;
-        }
+        public void setId(int id) { this.id = id; }
+        public void setNomenclatura(String nomenclatura) { this.nomenclatura = nomenclatura; }
+        public void setSerie(int serie) { this.serie = serie; }
+        public void setAno(int ano) { this.ano = ano; }
+        public void setId_escola(int id_escola) { this.id_escola = id_escola; }
 
         //Criando toString
         @Override

@@ -21,22 +21,21 @@ public class TurmaDAO {
     }
 
     TurmaDTO turmaDTO = new TurmaDTO();
-    String professor= turmaDTO.getNomeProfessor();
+    String professor= turmaDTO.getNomeProfessor() + " " + turmaDTO.getSobrenomeProfessor();
     String escola= turmaDTO.getNomeEscola();
 
     //Criando método para inserir turma
-    public int inserirTurma(int id, int serie, String nomenclatura, int ano, String escola, String professor) {
+    public int inserirTurma( TurmaDTO turmaDTO) {
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("CALL INSERIR_TURMA(?,?,?,?,?,?)")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_TURMA(?,?,?,?,?)")) {
             //Consulta sql para inserir turma
             //setando os valores
-            pstmt.setInt(1, id);
-            pstmt.setString(2, nomenclatura);
-            pstmt.setInt(3, serie);
-            pstmt.setInt(4, ano);
-            pstmt.setString(5, escola);
-            pstmt.setString(6, professor);
+            pstmt.setInt(1, turmaDTO.getSerie());
+            pstmt.setString(2, turmaDTO.getNomenclatura());
+            pstmt.setInt(3, turmaDTO.getAno());
+            pstmt.setString(4, turmaDTO.getNomeEscola());
+            pstmt.setString(5, turmaDTO.getNomeProfessor() + turmaDTO.getSobrenomeProfessor());
             //Executando a consulta
             return pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -53,7 +52,7 @@ public class TurmaDAO {
     public int atualizarTurma(Turma turma) {
         //Conectando ao banco de dadoss
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE TURMA SET SERIE=?,NOMENCLATURA=?, ANO=?,ID_PROFESSOR=?,ID_ESCOLA=? WHERE ID=?")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE TURMA SET SERIE=?,NOMENCLATURA=?, ANO=?,ID_PROFESSOR=?,ID_ESCOLA=? WHERE ID=?")) {
             //Consulta sql para alterar id_professor
             //setando os valores
             pstmt.setInt(1, turma.getSerie());
@@ -79,7 +78,7 @@ public class TurmaDAO {
     public int removerTurma(int id) {
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("DELETE FROM TURMA WHERE ID=?")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("DELETE FROM TURMA WHERE ID=?")) {
             //Consulta sql para remover turma
             //setando os valores
             pstmt.setInt(1, id);
@@ -97,7 +96,7 @@ public class TurmaDAO {
 
     public Turma buscarTurmaPorId(int id) {
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT*FROM TURMA WHERE ID=?")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM TURMA WHERE ID=?")) {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -125,7 +124,7 @@ public class TurmaDAO {
         List<Turma> turmas = new ArrayList<>();
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT*FROM TURMA ORDER BY SERIE ASC")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM TURMA ORDER BY SERIE ASC")) {
             //Executando a consulta
             ResultSet rs = pstmt.executeQuery();
             //Enquanto existir registros, adicionar na lista de turmas
@@ -152,7 +151,7 @@ public class TurmaDAO {
         List<TurmaDTO> turmas = new ArrayList<>();
         //Conectando ao banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT TURMA.ID, TURMA.SERIE, TURMA.NOMENCLATURA, TURMA.ANO, TURMA.ID_PROFESSOR, TURMA.ID_ESCOLA, ESCOLA.NOME AS NOME_ESCOLA, PROFESSOR.NOME AS NOME_PROFESSOR FROM TURMA JOIN ESCOLA ON TURMA.ID_ESCOLA= ESCOLA.ID JOIN PROFESSOR ON TURMA.ID_PROFESSOR= PROFESSOR.ID ORDER BY SERIE ASC")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT TURMA.ID, TURMA.SERIE, TURMA.NOMENCLATURA, TURMA.ANO, TURMA.ID_PROFESSOR, TURMA.ID_ESCOLA, ESCOLA.NOME AS NOME_ESCOLA, PROFESSOR.NOME AS NOME_PROFESSOR FROM TURMA JOIN ESCOLA ON TURMA.ID_ESCOLA= ESCOLA.ID JOIN PROFESSOR ON TURMA.ID_PROFESSOR= PROFESSOR.ID ORDER BY SERIE ASC")) {
             //Executando a consulta
             ResultSet rs = pstmt.executeQuery();
             //Enquanto existir registros, adicionar na lista de turmas

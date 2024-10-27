@@ -28,7 +28,7 @@ public class AlunoDAO {
         //estabelecendo conexão com o banco
         conexao.conectar();
         //consulta SQL para inserir aluno
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("CALL INSERIR_ALUNO(?,?,?,?,?,?,?)")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ALUNO(?,?,?,?,?,?,?)")) {
             //setando os valores
             pstmt.setInt(1, id);
             pstmt.setString(2, nome);
@@ -55,7 +55,7 @@ public class AlunoDAO {
 
         // estabelecendo conexão
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("UPDATE ALUNO SET NOME=?, SOBRENOME=?, XP=?, EMAIL=?, SENHA=?, ID_TURMA=? WHERE ID=?")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ALUNO SET NOME=?, SOBRENOME=?, XP=?, EMAIL=?, SENHA=?, ID_TURMA=? WHERE ID=?")){
             pstmt.setString(1, aluno.getNome());
             pstmt.setString(2, aluno.getSobrenome());
             pstmt.setInt(3, aluno.getXp());
@@ -80,14 +80,12 @@ public class AlunoDAO {
     public int removerAluno(int id) {
         //estabelecendo conexão com o banco
         conexao.conectar();
-        try {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL EXCLUIR_ALUNO(?)")){
             //consulta SQL para remover aluno
-            String remover = "DELETE FROM ALUNO WHERE ID=?";
-            conexao.pstmt = conexao.conn.prepareStatement(remover);
             //setando o valor do id
-            conexao.pstmt.setInt(1, id);
+            pstmt.setInt(1, id);
             //executando a consulta
-            return conexao.pstmt.executeUpdate();
+            return pstmt.executeUpdate();
         } catch (SQLException sqle) {
             //retornando -1 em caso de erro
             return -1;
@@ -101,7 +99,7 @@ public class AlunoDAO {
         //estabelecendo conexão com o banco
         List<Aluno> alunos = new ArrayList<>();
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ALUNO")) {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Aluno aluno = new Aluno();
@@ -128,7 +126,7 @@ public class AlunoDAO {
         //estabelecendo conexão com o banco
         List<AlunoDTO> alunos = new ArrayList<>();
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM aluno JOIN turma ON aluno.id_turma = turma.id")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM aluno JOIN turma ON aluno.id_turma = turma.id")) {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 AlunoDTO aluno = new AlunoDTO();
@@ -157,7 +155,7 @@ public class AlunoDAO {
         //estabelecendo conexão com o banco
          conexao.conectar();
         //consulta SQL para buscar aluno
-        try  (PreparedStatement pstmt = conexao.conn.prepareStatement("SELECT * FROM ALUNO WHERE ID= ?")){
+        try  (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ALUNO WHERE ID= ?")){
             //setando o valor do id
             pstmt.setInt(1, id);
             //executando a consulta
@@ -184,12 +182,6 @@ public class AlunoDAO {
 
         return null;
     }
-    public Connection getConexao() {
-        return conexao.conn; // Retorna a conexão atual para ser usada no JSP
-    }
-
-
-
 }
 
 

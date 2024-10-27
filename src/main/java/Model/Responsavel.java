@@ -20,33 +20,16 @@ public class Responsavel {
 
         }
         //Gerando getters e setters
-        public int getId() {
-            return id;
-        }
-        public String getNome() {
-            return nome;
-        }
-        public String getSobrenome() {
-            return sobrenome;
-        }
-        public String getEmail() {
-            return email;
-        }
+        public int getId() { return id; }
+        public String getNome() { return nome; }
+        public String getSobrenome() { return sobrenome; }
+        public String getEmail() { return email; }
         public void setId(int id) {this.id = id;}
         public void setId_aluno(int id_aluno) {this.id_aluno = id_aluno;}
-        public void setNome(String nome) {
-            this.nome = nome;
-        }
-        public void setSobrenome(String sobrenome) {
-            this.sobrenome = sobrenome;
-        }
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public int getId_aluno() {
-            return id_aluno;
-        }
+        public void setNome(String nome) { this.nome = nome; }
+        public void setSobrenome(String sobrenome) { this.sobrenome = sobrenome; }
+        public void setEmail(String email) { this.email = email; }
+        public int getId_aluno() { return id_aluno; }
 
         //Criando método toString
         @Override

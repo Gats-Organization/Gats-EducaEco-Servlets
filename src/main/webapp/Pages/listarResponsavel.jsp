@@ -9,8 +9,6 @@
 <html>
 <head>
   <link rel="stylesheet" href="CSS/listarResponsavel.css">
-  <link rel="stylesheet" href="CSS/modalExcluir.css">
-  <link rel="stylesheet" href="CSS/headerEsidebar.css">
   <link rel="stylesheet" href="CSS/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,33 +26,8 @@
   request.setAttribute("listaResponsavel", listaResponsavel);
   %>
 </head>
-<input type="checkbox" id="check">
-<header>
-  <label for="check">
-    <img src="Imagens Login/Menu2.png" alt="menu" class="icons" id="sidebar_btn">
-  </label>
-  <div class="left">
-    <h3>Responsáveis</h3>
-  </div>
-  <div class="right">
-    <a href="index.html" class="sair_btn">Sair</a>
-  </div>
-</header>
-<!--header final-->
-<!--sidebar começo-->
-<div class="sidebar">
-  <img src="Imagens Login/logo app.png" class="image" alt="">
-  <hr>
-  <a href="painelPrincipal.html"><img src="Imagens Login/Inicio2.png" alt="Início" class="icons"><span>  Início</span></a>
-  <a href="listarAluno"><img src="Imagens Login/Tabela.png" alt="Aluno" class="icons"><span>  Aluno</span></a>
-  <a href="listarAdmin"><img src="Imagens Login/Tabela.png" alt="Admin" class="icons"><span>  Admin</span></a>
-  <a href="listarEscola"><img src="Imagens Login/Tabela.png" alt="Escola" class="icons"><span>  Escola</span></a>
-  <a href="listarProfessor"><img src="Imagens Login/Tabela.png" alt="Professor" class="icons"><span>  Professor</span></a>
-  <a href="listarTurma"><img src="Imagens Login/Tabela.png" alt="Turma" class="icons"><span>  Turma</span></a>
-</div>
-<!--sidebar final-->
-<div class="content"></div>
 <body>
+<h1>Listagem de Responsáveis</h1>
 <table border="1">
   <tr id="colunas">
     <th>Id</th>
@@ -85,7 +58,7 @@
           </form>
         </td>
         <td id="excluir">
-          <a href="#" onclick="confirmarExclusao(<%= responsavel.getId() %>)">
+          <a href="excluirResponsavel?id=<%= responsavel.getId() %>">
             <img src="Imagens Login/Lixeira.png" alt="Lixeira">
             Excluir
           </a>
@@ -99,31 +72,6 @@
         }
 %>
   </table>
-<%--     Modal de confirmação de exclusão--%>
-<div id="modalExclusao" class="modal">
-  <div class="modal-content">
-    <p>Tem certeza que deseja excluir este(a) responsável?</p>
-    <div class="botoes">
-      <button class="cancelar" onclick="fecharModal()">Cancelar</button>
-      <button class="confirmar" id="confirmado">Confirmar</button>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-  function confirmarExclusao(id) {
-    document.getElementById("modalExclusao").style.display = "block";
-    document.getElementById("confirmado").onclick = function() {
-      location.href = "ServletExcluirResponsavel?id=" + id;
-    }
-  }
-
-  function fecharModal() {
-    document.getElementById("modalExclusao").style.display = "none";
-
-  }
-
-</script>
 <br>
 <div class="botaoAddResponsavel">
   <a id="addResponsavel" href="adicionarResponsavel"><strong>+ Adicionar Responsável</strong></a>
