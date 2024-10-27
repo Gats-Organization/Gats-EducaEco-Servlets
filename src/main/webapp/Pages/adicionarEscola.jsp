@@ -18,9 +18,10 @@
 </head>
 <body>
 <h1>Adicionar Escola</h1>
+<strong>Para adicionar uma nova escola, preencha os seguintes campos:</strong>
+<br>
 <form action="salvarEscola" method="post">
     <table>
-        <strong>Para adicionar uma nova escola, preencha os seguintes campos:</strong>
         <tr>
             <td>Id:</td>
             <td><input type="number" name="id" id="inputId"></td>

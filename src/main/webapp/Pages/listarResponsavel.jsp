@@ -9,6 +9,7 @@
 <html>
 <head>
   <link rel="stylesheet" href="CSS/listarResponsavel.css">
+  <link rel="stylesheet" href="CSS/modalExcluir.css">
   <link rel="stylesheet" href="CSS/headerEsidebar.css">
   <link rel="stylesheet" href="CSS/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +34,7 @@
     <img src="Imagens Login/Menu2.png" alt="menu" class="icons" id="sidebar_btn">
   </label>
   <div class="left">
-    <h3>Lista de Responsáveis</h3>
+    <h3>Responsáveis</h3>
   </div>
   <div class="right">
     <a href="index.html" class="sair_btn">Sair</a>
@@ -84,7 +85,7 @@
           </form>
         </td>
         <td id="excluir">
-          <a href="excluirResponsavel?id=<%= responsavel.getId() %>">
+          <a href="#" onclick="confirmarExclusao(<%= responsavel.getId() %>)">
             <img src="Imagens Login/Lixeira.png" alt="Lixeira">
             Excluir
           </a>
@@ -98,6 +99,31 @@
         }
 %>
   </table>
+<%--     Modal de confirmação de exclusão--%>
+<div id="modalExclusao" class="modal">
+  <div class="modal-content">
+    <p>Tem certeza que deseja excluir este(a) responsável?</p>
+    <div class="botoes">
+      <button class="cancelar" onclick="fecharModal()">Cancelar</button>
+      <button class="confirmar" id="confirmado">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function confirmarExclusao(id) {
+    document.getElementById("modalExclusao").style.display = "block";
+    document.getElementById("confirmado").onclick = function() {
+      location.href = "ServletExcluirResponsavel?id=" + id;
+    }
+  }
+
+  function fecharModal() {
+    document.getElementById("modalExclusao").style.display = "none";
+
+  }
+
+</script>
 <br>
 <div class="botaoAddResponsavel">
   <a id="addResponsavel" href="adicionarResponsavel"><strong>+ Adicionar Responsável</strong></a>

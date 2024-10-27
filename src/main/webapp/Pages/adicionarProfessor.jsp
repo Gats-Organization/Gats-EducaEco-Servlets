@@ -18,9 +18,10 @@
 </head>
 <body>
 <h1>Adicionar Professor</h1>
+<strong>Para adicionar um novo professor, preencha os seguintes campos:</strong>
+<br>
 <form action="salvarProfessor" method="post">
     <table>
-        <strong>Para adicionar um novo professor, preencha os seguintes campos:</strong>
         <tr>
             <td>Id</td>
              <td><input type="number" name="id" id="inputId"></td>

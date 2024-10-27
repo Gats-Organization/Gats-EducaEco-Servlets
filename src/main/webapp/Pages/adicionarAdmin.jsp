@@ -18,8 +18,9 @@
 </head>
 <body>
 <h1>Adicionar Admin</h1>
+<strong>Para adicionar um novo administrador, preencha os seguintes campos:</strong>
+<br>
 <form action="salvarAdmin" method="post">
-    <strong>Para adicionar um novo administrador, preencha os seguintes campos:</strong>
     <table>
         <tr>
             <td>Id:</td>

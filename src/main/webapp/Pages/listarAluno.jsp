@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="CSS/modalExcluirAluno.css">
+    <link rel="stylesheet" href="CSS/modalExcluir.css">
     <link rel="stylesheet" href="CSS/listarAluno.css">
     <link rel="stylesheet" href="CSS/headerEsidebar.css">
     <link rel="stylesheet" href="CSS/style.css">
@@ -31,7 +31,7 @@
         <img src="Imagens Login/Menu2.png" alt="menu" class="icons" id="sidebar_btn">
     </label>
     <div class="left">
-        <h3>Lista de Alunos</h3>
+        <h3>Alunos</h3>
     </div>
     <div class="right">
         <a href="index.html" class="sair_btn">Sair</a>
@@ -88,10 +88,10 @@
             </form>
          </td>
          <td id="excluir">
-         <a href="#" onclick="confirmarExclusao(<%= aluno.getId() %>)">
-             <img src="Imagens Login/Lixeira.png" alt="Lixeira">
-             Excluir
-         </a>
+            <a href="#" onclick="confirmarExclusao(<%= aluno.getId() %>)">
+                <img src="Imagens Login/Lixeira.png" alt="Lixeira">
+                Excluir
+            </a>
          </td>
      </tr>
      <%

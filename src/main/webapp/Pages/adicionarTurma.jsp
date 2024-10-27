@@ -17,10 +17,11 @@
     <title>Adicionar Turma</title>
 </head>
 <body>
-<h1>Adicionar uma nova turma</h1>
+<h1>Adicionar Turma</h1>
+<strong>Para adicionar uma nova turma, preencha os seguintes campos:</strong>
+<br>
 <form action="salvarTurma" method="post">
 <table>
-    <strong>Para adicionar uma nova turma, preencha os seguintes campos:</strong>
     <tr>
         <td>Id:</td>
         <td><input type="number" name="id" id="inputId"></td>

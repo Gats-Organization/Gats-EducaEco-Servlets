@@ -1,3 +1,8 @@
+html {
+    background-image: url('../Imagens Login/Fundo EducaEco P&B.png');
+    background-size: cover;
+    background-position: center;
+}
 body{
     display: flex;
     flex-direction: column;
@@ -10,13 +15,13 @@ h1{
     margin-bottom: 40px;
     font-size: 36px;
     font-weight: bold;
-    color: #1A990F;
+    color: #16c0ff;
 }
 
 form{
     width: 500px;
-    height: 400px;
-    background-color: #DEFBC7;
+    height: 350px;
+    background-color: #a0e9ff;
     border-radius: 15px;
     box-shadow: 3px 3px 3px #948282;
     padding: 20px;
@@ -52,7 +57,7 @@ strong{
 }
 
 #salvar {
-    background-color: #A3D977;
+    background-color: #15d5ff;
     color: white;
     margin-top: 25px;
     border: none;

@@ -18,9 +18,10 @@
 </head>
 <body>
 <h1>Adicionar Aluno</h1>
+<strong>Para adicionar um novo aluno, preencha os seguintes campos:</strong>
+<br>
 <form action="salvarAluno" method="post">
     <table>
-        <strong>Para adicionar um novo aluno, preencha os seguintes campos:</strong>
         <tr>
             <td>Id:</td>
             <td><input type="number" name="id" required id="inputId"></td>

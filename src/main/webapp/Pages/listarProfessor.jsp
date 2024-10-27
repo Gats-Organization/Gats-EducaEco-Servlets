@@ -9,6 +9,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="CSS/listarProfessor.css">
+    <link rel="stylesheet" href="CSS/modalExcluir.css">
     <link rel="stylesheet" href="CSS/headerEsidebar.css">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +25,7 @@
         <img src="Imagens Login/Menu2.png" alt="menu" class="icons" id="sidebar_btn">
     </label>
     <div class="left">
-        <h3>Lista de Professores</h3>
+        <h3>Professores</h3>
     </div>
     <div class="right">
         <a href="index.html" class="sair_btn">Sair</a>
@@ -78,7 +79,7 @@
                 </form>
             </td>
             <td id="excluir">
-                <a href="ServletExcluirProfessor?id=<%= professor.getId() %>">
+                <a href="#" onclick="confirmarExclusao(<%= professor.getId() %>)">
                     <img src="Imagens Login/Lixeira.png" alt="Lixeira">
                     Excluir
                 </a>
@@ -89,10 +90,35 @@
             System.out.println("Nenhum professor encontrado");
         }%>
     </table>
-  <br>
-  <div class="botaoAddProfessor">
-      <a id="addProfessor" href="adicionarProfessor"><strong>+ Adicionar Professor</strong></a>
-  </div>
-  <br><br>
+<%--     Modal de confirmação de exclusão--%>
+<div id="modalExclusao" class="modal">
+    <div class="modal-content">
+        <p>Tem certeza que deseja excluir este(a) professor(a)?</p>
+        <div class="botoes">
+            <button class="cancelar" onclick="fecharModal()">Cancelar</button>
+            <button class="confirmar" id="confirmado">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function confirmarExclusao(id) {
+        document.getElementById("modalExclusao").style.display = "block";
+        document.getElementById("confirmado").onclick = function() {
+            location.href = "ServletExcluirProfessor?id=" + id;
+        }
+    }
+
+    function fecharModal() {
+        document.getElementById("modalExclusao").style.display = "none";
+
+    }
+
+</script>
+<br>
+<div class="botaoAddProfessor">
+    <a id="addProfessor" href="adicionarProfessor"><strong>+ Adicionar Professor</strong></a>
+</div>
+<br><br>
 </body>
 </html>
