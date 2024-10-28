@@ -3,6 +3,7 @@ package Controller.Aluno;
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.AlunoDAO;
 import Model.Aluno;
+import Model.AlunoDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ public class ServletEditarAluno extends HttpServlet {
 
         // Criando um objeto do tipo Aluno com o valor do campo do formulário e atribuindo valor ao atributo que será usado como parâmetro na página de edição
         AlunoDAO dao = new AlunoDAO();
-        Aluno aluno = dao.buscarAlunoPorId(Integer.parseInt(id));
+        AlunoDTO aluno = dao.buscarAlunoPorId(Integer.parseInt(id));
         request.setAttribute("aluno", aluno);
 
         // Redirecionando para a página de edição de alunos

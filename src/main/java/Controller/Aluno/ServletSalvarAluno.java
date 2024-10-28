@@ -3,6 +3,7 @@ package Controller.Aluno;
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.AlunoDAO;
 import Model.Aluno;
+import Model.AlunoDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +20,6 @@ public class ServletSalvarAluno extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os parâmetros do formulário
-        int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         int xp = Integer.parseInt(request.getParameter("xp"));
@@ -30,8 +30,9 @@ public class ServletSalvarAluno extends HttpServlet {
         // Criando um objeto do tipo AlunoDAO
         // O objeto chama o método inserirAluno e usa os valores recebidos do formulário como parâmetro
         // Por fim, redireciona para a página de listagem de alunos
+        AlunoDTO alunoDTO = new AlunoDTO(nome, sobrenome, xp, email, senha, turma);
         AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.inserirAluno(id, nome, sobrenome, xp, email, senha, turma);
+        alunoDAO.inserirAluno(alunoDTO);
         response.sendRedirect("listarAlunos");
     }
 }
