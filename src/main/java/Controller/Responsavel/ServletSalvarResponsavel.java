@@ -19,7 +19,6 @@ public class ServletSalvarResponsavel extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os parâmetros do formulário
-        int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         String email = request.getParameter("email");
