@@ -1,7 +1,7 @@
 package Model;
 
 public class EscolaDTO {
-    //definição dos atributos da classe Escola
+    // Definindo os atributos da classe Escola
     private int id;
     private String nome;
     private String email;
@@ -15,7 +15,7 @@ public class EscolaDTO {
     private String cep;
     private String enderecoCompleto = rua + "," + numero + "," + bairro + "," + cidade + "," + estado + "," + cep;
 
-    //construtor da classe Escola
+    // Criando o método construtor
     public EscolaDTO(int id, String nome, String email, int telefone, int id_endereco, int numero, String rua, String bairro, String cidade, String estado, String cep) {
         this.id = id;
         this.nome = nome;
@@ -29,6 +29,8 @@ public class EscolaDTO {
         this.estado = estado;
         this.cep = cep;
     }
+
+    // Método construtor que será executado quando não houver nenhum parâmetro passado
     public EscolaDTO() {
 
     }
@@ -41,7 +43,7 @@ public class EscolaDTO {
 
     }
 
-    //gerando getters e setters
+    // Gerando métodos getters e setters
     public int getId() {
         return id;
     }
@@ -60,6 +62,7 @@ public class EscolaDTO {
     public int getTelefone() { return telefone; }
     public int getId_endereco() { return id_endereco;}
     public String getEnderecoCompleto() { return enderecoCompleto; }
+
     public void setEnderecoCompleto(String enderecoCompleto) { this.enderecoCompleto = enderecoCompleto; }
     public void setId_endereco(int id_endereco) { this.id_endereco = id_endereco; }
     public void setEmail(String email) { this.email = email; }
@@ -73,8 +76,7 @@ public class EscolaDTO {
     public void setCep(String cep) { this.cep = cep; }
     public void setEstado(String estado) { this.estado = estado; }
 
-    //gerando o toString
-    @Override
+    // Criando o método toString, que definirá como será a representação do objeto na tela
     public String toString() {
         return "Escola: "+ this.nome+ "\nid: "+this.id +"\nemail: "+this.email+"\ntelefone: "+this.telefone+"\nid_endereco: "+this.id_endereco;
 
