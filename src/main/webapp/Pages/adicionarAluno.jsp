@@ -23,8 +23,7 @@
 <form action="salvarAluno" method="post">
     <table>
         <tr>
-            <td>Id:</td>
-            <td><input type="number" name="id" required id="inputId"></td>
+            <td><input type="hidden" name="id" required id="inputId"></td>
         </tr>
         </tr>
             <td>Nome:</td>

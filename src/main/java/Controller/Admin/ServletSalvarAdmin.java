@@ -28,7 +28,6 @@ public class ServletSalvarAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os parâmetros do formulário
-        int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
@@ -36,7 +35,7 @@ public class ServletSalvarAdmin extends HttpServlet {
         // Verificando se o e-mail e a senha estão corretos usando os métodos criados abaixo
         // Caso o login esteja correto, o admin será salvo no banco de dados
         if (verificandoEmail(email) && verificandoSenha(senha)) {
-            Admin admin = new Admin(id, nome, email, senha);
+            Admin admin = new Admin(nome, email, senha);
             AdminDAO adminDao = new AdminDAO();
             adminDao.inserirAdmin(admin);
         } else{
