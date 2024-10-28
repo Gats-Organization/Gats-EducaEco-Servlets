@@ -5,8 +5,6 @@ import Daos.JDBC.Conexao;
 import Model.Escola;
 import Model.EscolaDTO;
 
-import java.awt.*;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -165,6 +163,7 @@ public class EscolaDAO {
             }
         }catch (SQLException e) {
             //caso ocorra algum erro, retornar null
+            return null;
         }finally {
             //desconectando do banco de dados
             conexao.desconectar();

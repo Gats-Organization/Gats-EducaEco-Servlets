@@ -19,10 +19,10 @@
 <body>
 <h1>Editar Aluno</h1>
 <%@page import="Daos.AlunoDAO,Model.Aluno"%>
+<%@ page import="Model.AlunoDTO" %>
 
 <%
-    Aluno aluno = (Aluno) request.getAttribute("aluno");
-
+    AlunoDTO aluno = (AlunoDTO) request.getAttribute("aluno");
 %>
 
 <form action="atualizarAluno" method="post">
@@ -50,8 +50,8 @@
             <td><input type="password" name="senha" value="<%=aluno.getSenha()%>" id="inputSenha"></td>
         </tr>
         <tr>
-            <td>Id-Turma:</td>
-            <td><input type="text" name="id_turma" value="<%=aluno.getId_turma()%>" id="inputTurma"></td>
+            <td>Turma:</td>
+            <td><input type="text" name=turma" value="<%=aluno.getTurma()%>" id="inputTurma"></td>
 
         </tr>
         <tr id="botaoSalvar">

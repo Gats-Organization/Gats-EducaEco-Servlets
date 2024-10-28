@@ -12,6 +12,7 @@ import java.util.List;
 import Daos.JDBC.Conexao;
 import Model.Aluno;
 import Model.AlunoDTO;
+import Model.TurmaDTO;
 
 public class AlunoDAO {
     //definindo variaveis para conexão com o banco de dados
@@ -24,19 +25,18 @@ public class AlunoDAO {
     AlunoDTO alunoDTO = new AlunoDTO();
     String turma = alunoDTO.getSerie() + '-' + alunoDTO.getNomeclantura();
     //criando método inserir aluno
-    public int inserirAluno(int id, String nome, String sobrenome, int xp, String email, String senha,String turma ) {
+    public int inserirAluno(AlunoDTO alunoDTO) {
         //estabelecendo conexão com o banco
         conexao.conectar();
         //consulta SQL para inserir aluno
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ALUNO(?,?,?,?,?,?,?)")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ALUNO(?,?,?,?,?,?)")) {
             //setando os valores
-            pstmt.setInt(1, id);
-            pstmt.setString(2, nome);
-            pstmt.setString(3, sobrenome);
-            pstmt.setInt(4, xp);
-            pstmt.setString(5, email);
-            pstmt.setString(6, senha);
-            pstmt.setString(7, turma);
+            pstmt.setString(1, alunoDTO.getNome());
+            pstmt.setString(2, alunoDTO.getSobrenome());
+            pstmt.setInt(3, alunoDTO.getXp());
+            pstmt.setString(4, alunoDTO.getEmail());
+            pstmt.setString(5, alunoDTO.getSenha());
+            pstmt.setString(6, alunoDTO.getTurma());
             //executando a consulta
             return pstmt.executeUpdate();
         } catch (SQLException sqle) {
@@ -51,17 +51,17 @@ public class AlunoDAO {
 
 
     //criando método para alterar o id da turma do aluno, recebe o id_turma e o id
-    public int atualizarAluno( Aluno aluno) {
+    public int atualizarAluno( AlunoDTO aluno) {
 
         // estabelecendo conexão
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ALUNO SET NOME=?, SOBRENOME=?, XP=?, EMAIL=?, SENHA=?, ID_TURMA=? WHERE ID=?")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_ALUNO(?,?,?,?,?,?,?)")){
             pstmt.setString(1, aluno.getNome());
             pstmt.setString(2, aluno.getSobrenome());
             pstmt.setInt(3, aluno.getXp());
             pstmt.setString(4, aluno.getEmail());
             pstmt.setString(5, aluno.getSenha());
-            pstmt.setInt(6, aluno.getId_turma());
+            pstmt.setString(6, aluno.getTurma());
             pstmt.setInt(7, aluno.getId());
             // executando a consulta
              return pstmt.executeUpdate();
@@ -151,7 +151,7 @@ public class AlunoDAO {
     }
 
     //criando método para buscar aluno, que recebe o id do aluno como parâmetro e retorna o resultado da consulta
-    public Aluno buscarAlunoPorId(int id) {
+    public AlunoDTO buscarAlunoPorId(int id) {
         //estabelecendo conexão com o banco
          conexao.conectar();
         //consulta SQL para buscar aluno
@@ -161,14 +161,14 @@ public class AlunoDAO {
             //executando a consulta
             ResultSet rs = pstmt.executeQuery();
              while(rs.next()){
-                Aluno aluno = new Aluno();
+                AlunoDTO aluno = new AlunoDTO();
                 aluno.setId(rs.getInt("id"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setSobrenome(rs.getString("sobrenome"));
                 aluno.setXp(rs.getInt("xp"));
                 aluno.setEmail(rs.getString("email"));
                 aluno.setSenha(rs.getString("senha"));
-                aluno.setId_turma(rs.getInt("id_turma"));
+                aluno.setTurma(rs.getString("turma"));
                 return aluno;
             }
         } catch (SQLException sqle) {

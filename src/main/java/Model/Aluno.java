@@ -36,6 +36,8 @@ public class Aluno {
         this.id_turma = id_turma;
     }
 
+
+
     // Gerando métodos getters e setters
     public int getId() {
         return this.id;

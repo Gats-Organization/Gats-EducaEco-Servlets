@@ -11,6 +11,7 @@ public class AlunoDTO {
     private int id_turma;
     private int serie;
     private String nomeclantura;
+    private String turma;
 
 
     // Criando o método construtor
@@ -29,6 +30,15 @@ public class AlunoDTO {
     // Método construtor que será executado quando não houver nenhum parâmetro passado
     public AlunoDTO() {
 
+    }
+
+    public AlunoDTO(String nome, String sobrenome, int xp, String email, String senha, String turma) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.xp = xp;
+        this.email = email;
+        this.senha = senha;
+        this.turma = turma;
     }
 
     // Gerando métodos getters e setters
@@ -62,7 +72,12 @@ public class AlunoDTO {
     public int getXp() {
         return this.xp;
     }
-
+    public String getTurma() {
+        return this.turma;
+    }
+    public void setTurma(String turma) {
+        this.turma = turma;
+    }
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -87,6 +102,8 @@ public class AlunoDTO {
     public void setIdTurma(int idTurma) {
         this.id_turma = idTurma;
     }
+
+
 
     // Criando o método toString, que definirá como será a representação do objeto na tela
     public String toString() {

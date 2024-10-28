@@ -3,6 +3,7 @@ package Controller.Aluno;
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.AlunoDAO;
 import Model.Aluno;
+import Model.AlunoDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,15 +16,14 @@ import java.io.IOException;
 @WebServlet("/atualizarAluno")
 public class ServletAtualizarAluno extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String nomeAluno = request.getParameter("nome");
-        String sobrenomeAluno = request.getParameter("sobrenome");
-        int xpAluno = Integer.parseInt(request.getParameter("xp"));
-        String emailAluno = request.getParameter("email");
-        String senhaAluno = request.getParameter("senha");
-        int id_aluno = Integer.parseInt(request.getParameter("id_turma"));
+        String nome = request.getParameter("nome");
+        String sobrenome = request.getParameter("sobrenome");
+        int xp = Integer.parseInt(request.getParameter("xp"));
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String turma = request.getParameter("turma");
 
-        Aluno aluno = new Aluno(id,nomeAluno, sobrenomeAluno, xpAluno, emailAluno, senhaAluno, id_aluno);
+        AlunoDTO aluno = new AlunoDTO(nome, sobrenome, xp, email, senha, turma);
         AlunoDAO alunoDao = new AlunoDAO();
         alunoDao.atualizarAluno(aluno);
         response.sendRedirect("listarAlunos");
