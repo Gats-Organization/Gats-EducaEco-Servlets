@@ -35,7 +35,7 @@ public class TurmaDAO {
             pstmt.setString(2, turmaDTO.getNomenclatura());
             pstmt.setInt(3, turmaDTO.getAno());
             pstmt.setString(4, turmaDTO.getNomeEscola());
-            pstmt.setString(5, turmaDTO.getNomeProfessor() + turmaDTO.getSobrenomeProfessor());
+            pstmt.setString(5, turmaDTO.getNomeProfessor() );
             //Executando a consulta
             return pstmt.executeUpdate();
         } catch (SQLException e) {
