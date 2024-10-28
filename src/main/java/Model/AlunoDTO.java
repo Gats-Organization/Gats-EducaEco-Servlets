@@ -1,7 +1,7 @@
 package Model;
 
 public class AlunoDTO {
-    //Definindo os atributos da Classe Controller.Aluno
+    // Definindo os atributos da Classe Controller.Aluno
     private int id;
     private String nome;
     private String sobrenome;
@@ -13,7 +13,7 @@ public class AlunoDTO {
     private String nomeclantura;
 
 
-    //definindo método construtor
+    // Criando o método construtor
     public AlunoDTO(int id, String nome, String sobrenome, int xp, String email, String senha, int id_turma, int serie, String nomeclantura) {
         this.id = id;
         this.nome = nome;
@@ -25,11 +25,13 @@ public class AlunoDTO {
         this.serie = serie;
         this.nomeclantura = nomeclantura;
     }
+
+    // Método construtor que será executado quando não houver nenhum parâmetro passado
     public AlunoDTO() {
 
     }
 
-    //gerando getters e setters
+    // Gerando métodos getters e setters
     public int getSerie() {
         return serie;
     }
@@ -60,6 +62,7 @@ public class AlunoDTO {
     public int getXp() {
         return this.xp;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -85,10 +88,8 @@ public class AlunoDTO {
         this.id_turma = idTurma;
     }
 
-    //gerando toString
-
+    // Criando o método toString, que definirá como será a representação do objeto na tela
     public String toString() {
         return "Aluno: "+ this.nome + " " + this.sobrenome + "\nid: "+ this.id + "\nemail: "+ this.email+ "\nsenha: "+ this.senha + "\nxp: "+this.xp+"\nidTurma: "+this.id_turma;
-
     }
 }

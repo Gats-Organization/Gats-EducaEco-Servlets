@@ -1,14 +1,14 @@
 package Model;
 
 public class Escola {
-    //definição dos atributos da classe Escola
+    // Definindo os atributos da classe Escola
     private int id;
     private String nome;
     private String email;
     private int telefone;
     private int id_endereco;
 
-    //construtor da classe Escola
+    // Criando o método construtor
     public Escola(int id, String nome, String email, int telefone, int id_endereco) {
         this.id = id;
         this.nome = nome;
@@ -16,11 +16,21 @@ public class Escola {
         this.telefone = telefone;
         this.id_endereco = id_endereco;
     }
+
+    // Método construtor que será executado quando não houver nenhum parâmetro passado
     public Escola() {
 
     }
 
-    //gerando getters e setters
+    // Método construtor que será executado no método de inserção, que não pede o id pois este será gerado automaticamente pelo banco
+    public Escola(String nome, String email, int telefone, int id_endereco) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.id_endereco = id_endereco;
+    }
+
+    // Gerando métodos getters e setters
     public int getId() {
         return id;
     }
@@ -36,6 +46,7 @@ public class Escola {
     public int getId_endereco() {
         return id_endereco;
     }
+
     public void setId_endereco(int id_endereco) {
         this.id_endereco = id_endereco;
     }
@@ -52,10 +63,8 @@ public class Escola {
         this.id = id;
     }
 
-    //gerando o toString
-    @Override
+    // Criando o método toString, que definirá como será a representação do objeto na tela
     public String toString() {
         return "Escola: "+ this.nome+ "\nid: "+this.id +"\nemail: "+this.email+"\ntelefone: "+this.telefone+"\nid_endereco: "+this.id_endereco;
-
     }
 }

@@ -109,7 +109,7 @@ public class AlunoDAO {
                 aluno.setXp(rs.getInt("xp"));
                 aluno.setEmail(rs.getString("email"));
                 aluno.setSenha(rs.getString("senha"));
-                aluno.setIdTurma(rs.getInt("id_turma"));
+                aluno.setId_turma(rs.getInt("id_turma"));
                 alunos.add(aluno);
             }
         } catch (SQLException sqle) {
@@ -168,7 +168,7 @@ public class AlunoDAO {
                 aluno.setXp(rs.getInt("xp"));
                 aluno.setEmail(rs.getString("email"));
                 aluno.setSenha(rs.getString("senha"));
-                aluno.setIdTurma(rs.getInt("id_turma"));
+                aluno.setId_turma(rs.getInt("id_turma"));
                 return aluno;
             }
         } catch (SQLException sqle) {
