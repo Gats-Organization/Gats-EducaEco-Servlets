@@ -15,7 +15,7 @@ public class Conexao {
     }
 
     public Conexao() {
-        dotenv = Dotenv.configure().directory("C:\\Users\\claramoreira-ieg\\OneDrive - Instituto Germinare\\Área de Trabalho\\GrupoGats\\Servlets\\.env").load();
+        dotenv = Dotenv.configure().directory("C:\\Users\\claramoreira-ieg\\OneDrive - Instituto Germinare\\Área de Trabalho\\GrupoGats\\Servlets\\.env ").load();
     }
     // Método para conectar ao banco de dados
     public boolean conectar() {

@@ -36,11 +36,11 @@ public class EscolaDTO {
     }
 
     // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
-    public EscolaDTO(String nome, String email, int telefone, String endereco) {
+    public EscolaDTO(String nome, String email, int telefone, String enderecoCompleto) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
-        this.rua = endereco;
+        this.enderecoCompleto = enderecoCompleto;
 
     }
 

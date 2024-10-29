@@ -3,6 +3,7 @@ package Controller.Responsavel;
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.ResponsavelDAO;
 import Model.Responsavel;
+import Model.ResponsavelDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ public class ServletEditarResponsavel extends HttpServlet {
 
         // Criando um objeto do tipo Responsavel com o valor do campo do formulário e atribuindo valor ao atributo que será usado como parâmetro na página de edição
         ResponsavelDAO responsavelDao= new ResponsavelDAO();
-        Responsavel responsavel = responsavelDao.buscarResponsavelPorId(Integer.parseInt(id));
+        ResponsavelDTO responsavel = responsavelDao.buscarResponsavelPorId(Integer.parseInt(id));
         request.setAttribute("responsavel", responsavel);
 
         // Redirecionando para a página de edição de escolas

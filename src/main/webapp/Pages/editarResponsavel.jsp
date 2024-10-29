@@ -1,4 +1,5 @@
-<%@ page import="Model.Responsavel" %><%--
+<%@ page import="Model.Responsavel" %>
+<%@ page import="Model.ResponsavelDTO" %><%--
   Created by IntelliJ IDEA.
   User: claramoreira-ieg
   Date: 21/10/2024
@@ -16,7 +17,7 @@
     <link rel="shortcut icon" href="Imagens Login/logo app.png" type="image/x-icon">
     <title>Editar Responsável</title>
     <%
-        Responsavel responsavel = (Responsavel) request.getAttribute("responsavel");
+        ResponsavelDTO responsavel = (ResponsavelDTO) request.getAttribute("responsavel");
     %>
 </head>
 <body>
@@ -38,8 +39,8 @@
             <td><input type="text" name="email" value="<%= responsavel.getEmail() %>" id="inputEmail"></td>
         </tr>
         <tr>
-            <td>Id_Aluno:</td>
-            <td><input type="text" name="id_aluno" value="<%= responsavel.getId_aluno() %>" id="inputIdAluno"></td>
+            <td>Aluno:</td>
+            <td><input type="text" name="aluno" value="<%= responsavel.getNomeAluno() %>" id="inputIdAluno"></td>
         </tr>
         <tr>
             <td></td>

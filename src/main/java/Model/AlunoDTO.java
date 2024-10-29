@@ -1,6 +1,6 @@
 package Model;
 
-public class AlunoDTO {
+public class    AlunoDTO {
     // Definindo os atributos da Classe Controller.Aluno
     private int id;
     private String nome;

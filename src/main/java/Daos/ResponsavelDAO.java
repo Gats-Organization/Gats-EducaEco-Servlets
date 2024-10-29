@@ -43,16 +43,16 @@ public class ResponsavelDAO {
         }
     }
     //Criando método para alterar um responsável
-    public int atualizarResponsavel(Responsavel responsavel ) {
+    public int atualizarResponsavel(ResponsavelDTO responsavel ) {
         //conectando com banco de dados
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE RESPONSAVEL SET NOME =? ,SOBRENOME=? ,EMAIL =? ,ID_ALUNO=? WHERE ID =? " ) ){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_RESPONSAVEL (?,?,?,?,?)" ) ){
 
             //setando os valores
             pstmt.setString(1,responsavel.getNome());
             pstmt.setString(2,responsavel.getSobrenome());
             pstmt.setString(3,responsavel.getEmail());
-            pstmt.setInt(4,responsavel.getId_aluno());
+            pstmt.setString(4,responsavel.getNomeAluno());
             pstmt.setInt(5,responsavel.getId());
             //executando a consulta
             return pstmt.executeUpdate();
@@ -143,13 +143,13 @@ public class ResponsavelDAO {
     }
 
 
-    public Responsavel buscarResponsavelPorId(int id) {
+    public ResponsavelDTO buscarResponsavelPorId(int id) {
         conexao.conectar();
         try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM RESPONSAVEL WHERE ID = ? ")) {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Responsavel responsavel = new Responsavel();
+                ResponsavelDTO responsavel = new ResponsavelDTO();
                 responsavel.setId(rs.getInt("id"));
                 responsavel.setNome(rs.getString("nome"));
                 responsavel.setSobrenome(rs.getString("sobrenome"));

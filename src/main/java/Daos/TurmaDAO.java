@@ -20,9 +20,7 @@ public class TurmaDAO {
         this.conexao = new Conexao();
     }
 
-    TurmaDTO turmaDTO = new TurmaDTO();
-    String professor= turmaDTO.getNomeProfessor() + " " + turmaDTO.getSobrenomeProfessor();
-    String escola= turmaDTO.getNomeEscola();
+
 
     //Criando método para inserir turma
     public int inserirTurma( TurmaDTO turmaDTO) {
