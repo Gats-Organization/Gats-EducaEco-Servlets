@@ -3,6 +3,7 @@ package Controller.Admin;
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.AdminDAO;
 import Model.Admin;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,10 +21,6 @@ import java.util.regex.Pattern;
 @WebServlet("/salvarAdmin")
 public class ServletSalvarAdmin extends HttpServlet {
 
-    // Criando listas para armazenar os e-mails e senhas
-    private static LinkedList<String> emails = new LinkedList<>();
-    private static LinkedList<String> senhas = new LinkedList<>();
-
     // Criando o método para processar as solicitações do tipo POST
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -38,10 +35,10 @@ public class ServletSalvarAdmin extends HttpServlet {
             Admin admin = new Admin(nome, email, senha);
             AdminDAO adminDao = new AdminDAO();
             adminDao.inserirAdmin(admin);
+            response.sendRedirect("listarAdmin?txt=Adicionado com sucesso!");
         } else{
-            //página de erro
+            response.sendRedirect("listarAdmin?txt=Erro ao adicionar!");
         }
-        response.sendRedirect("listarAdmin");
     }
 
     // A regex do método é usada para verificar se o e-mail está no formato correto
@@ -60,7 +57,6 @@ public class ServletSalvarAdmin extends HttpServlet {
         if (!comparadorEmail.matches()) {
             return false;
         }
-        emails.add(email);
         return true;
     }
 
@@ -79,15 +75,6 @@ public class ServletSalvarAdmin extends HttpServlet {
         if (!comparadorSenha.matches()) {
             return false;
         }
-        senhas.add(senha);
         return true;
-    }
-
-    // Métodos para receber os emails e senhas de administradores
-    public static LinkedList<String> getEmails() {
-        return emails;
-    }
-    public static LinkedList<String> getSenhas() {
-        return senhas;
     }
 }

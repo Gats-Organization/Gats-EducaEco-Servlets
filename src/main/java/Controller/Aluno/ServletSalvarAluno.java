@@ -30,10 +30,14 @@ public class ServletSalvarAluno extends HttpServlet {
         // Criando um objeto do tipo AlunoDAO
         // O objeto chama o método inserirAluno e usa os valores recebidos do formulário como parâmetro
         // Por fim, redireciona para a página de listagem de alunos
-        //
+
         AlunoDTO alunoDTO = new AlunoDTO(nome, sobrenome, xp, email, senha, turma);
         AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.inserirAluno(alunoDTO);
-        response.sendRedirect("listarAlunos");
+
+        if (alunoDAO.inserirAluno(alunoDTO) > 0) {
+            response.sendRedirect("listarAlunos?txt=Erro ao adicionar!");
+        } else {
+            response.sendRedirect("listarAlunos?txt=Adicionado com sucesso!");
+        }
     }
 }

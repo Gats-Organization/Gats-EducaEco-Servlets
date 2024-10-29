@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="CSS/listarAluno.css">
     <link rel="stylesheet" href="CSS/headerEsidebar.css">
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/modalExcluir.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -24,6 +25,7 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="Model.AlunoDTO" %>
+<%@ page import="Controller.Admin.ServletSalvarAdmin" %>
 
 <input type="checkbox" id="check">
 <header>
@@ -31,7 +33,7 @@
         <img src="Imagens Login/Menu2.png" alt="menu" class="icons" id="sidebar_btn">
     </label>
     <div class="left">
-        <h3>Lista de Alunos</h3>
+        <h3>Alunos</h3>
     </div>
     <div class="right">
         <a href="index.html" class="sair_btn">Sair</a>
@@ -43,10 +45,19 @@
     <img src="Imagens Login/logo app.png" class="image" alt="">
     <hr>
     <a href="painelPrincipal.html"><img src="Imagens Login/Inicio2.png" alt="Início" class="icons"><span>  Início</span></a>
+    <a href="listarAdmin"><img src="Imagens Login/Tabela.png" alt="Admin" class="icons"><span>  Admin</span></a>
+    <a href="listarEscola"><img src="Imagens Login/Tabela.png" alt="Escola" class="icons"><span>  Escola</span></a>
+    <a href="listarResponsavel"><img src="Imagens Login/Tabela.png" alt="Responsável" class="icons"><span>  Responsável</span></a>
+    <a href="listarProfessor"><img src="Imagens Login/Tabela.png" alt="Professor" class="icons"><span>  Professor</span></a>
+    <a href="listarTurma"><img src="Imagens Login/Tabela.png" alt="Turma" class="icons"><span>  Turma</span></a>
 </div>
 <!--sidebar final-->
 <div class="content"></div>
 
+<!-- Dialog para exibir a mensagem -->
+<dialog id="retornoDialog">
+    <p id="retornoMensagem">Atualizações</p>
+</dialog>
  <table border="1">
      <tr id="colunas">
          <th>Id</th>
@@ -99,13 +110,15 @@
 <%--     ServletExcluirAluno?id=<%= aluno.getId() %>--%>
 
 <%--     Modal de confirmação de exclusão--%>
-     <div id="modalExclusao" class="modal">
-         <div class="modal-content">
-             <p>Tem certeza que deseja excluir este aluno?</p>
-             <button class="cancelar" onclick="fecharModal()"><strong>Cancelar</strong></button>
-             <button class="confirmar" id="confirmado"><strong>Confirmar</strong></button>
-         </div>
-     </div>
+<div id="modalExclusao" class="modal">
+    <div class="modal-content">
+        <p>Tem certeza que deseja excluir este aluno?</p>
+        <div class="botoes">
+            <button class="cancelar" onclick="fecharModal()">Cancelar</button>
+            <button class="confirmar" id="confirmado">Confirmar</button>
+        </div>
+    </div>
+</div>
 
      <script type="text/javascript">
          function confirmarExclusao(id) {
@@ -121,12 +134,30 @@
          }
 
      </script>
-
-
 <br>
 <div class="botaoAddAluno">
     <a id="addAluno" href="adicionarAluno"><strong>+ Adicionar Aluno</strong></a>
 </div>
 <br><br>
+
+<%-- Dialog para mensagem de erro ou adicionado com sucesso--%>
+<script>
+    const dialog = document.getElementById('retornoDialog');
+    const initialMessage = "Atualizações";
+    const mensagem = "<%= request.getParameter("txt") != null ? request.getParameter("txt") : "" %>";
+
+    // Define a mensagem e abre o diálogo
+    if (mensagem.trim() !== "") {
+        document.getElementById('retornoMensagem').innerText = mensagem;
+    } else {
+        document.getElementById('retornoMensagem').innerText = initialMessage;
+    }
+    dialog.showModal();
+
+    // Fechar o diálogo automaticamente após 3 segundos
+    setTimeout(() => {
+        dialog.close();
+    }, 2000); // Tempo em milissegundos
+</script>
 </body>
 </html>

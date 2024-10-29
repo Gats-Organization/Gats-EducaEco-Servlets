@@ -1,4 +1,3 @@
-
 .modal {
     display: none; /* Escondido por padrão */
     position: fixed; /* Fica fixo na tela */
@@ -29,10 +28,11 @@
     box-shadow: 2px 2px 2px #a9a9a9;
 }
 
-.botoes{
+.botoes {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
+    gap: 10px;
 }
 
 .cancelar, .confirmar{

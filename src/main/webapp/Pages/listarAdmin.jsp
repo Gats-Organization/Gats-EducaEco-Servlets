@@ -36,7 +36,7 @@
     <img src="Imagens Login/logo app.png" class="image" alt="">
     <hr>
     <a href="painelPrincipal.html"><img src="Imagens Login/Inicio2.png" alt="Início" class="icons"><span>  Início</span></a>
-    <a href="listarAluno"><img src="Imagens Login/Tabela.png" alt="Aluno" class="icons"><span>  Aluno</span></a>
+    <a href="listarAlunos"><img src="Imagens Login/Tabela.png" alt="Aluno" class="icons"><span>  Aluno</span></a>
     <a href="listarEscola"><img src="Imagens Login/Tabela.png" alt="Escola" class="icons"><span>  Escola</span></a>
     <a href="listarResponsavel"><img src="Imagens Login/Tabela.png" alt="Responsável" class="icons"><span>  Responsável</span></a>
     <a href="listarProfessor"><img src="Imagens Login/Tabela.png" alt="Professor" class="icons"><span>  Professor</span></a>
@@ -53,7 +53,13 @@
     request.setAttribute("listaAdmin", listaAdmin);
     %>
 
+<!-- Dialog para exibir a mensagem -->
+<dialog id="retornoDialog">
+    <p id="retornoMensagem">Atualizações</p>
+</dialog>
+
 <table border="1">
+    <br><br>
     <tr id="colunas">
         <th>Id</th>
         <th>Nome</th>
@@ -95,7 +101,6 @@
 %>
 </table>
 <%--     Modal de confirmação de exclusão--%>
-<%--   --%>
 <div id="modalExclusao" class="modal">
     <div class="modal-content">
         <p>Tem certeza que deseja excluir este admin?</p>
@@ -125,5 +130,25 @@
     <a id="addAdmin" href="adicionarAdmin"><strong>+ Adicionar Admin</strong></a>
 </div>
 <br><br>
+
+<%-- Dialog para mensagem de erro ou adicionado com sucesso--%>
+<script>
+    const dialog = document.getElementById('retornoDialog');
+    const initialMessage = "Atualizações";
+    const mensagem = "<%= request.getParameter("txt") != null ? request.getParameter("txt") : "" %>";
+
+    // Define a mensagem e abre o diálogo
+    if (mensagem.trim() !== "") {
+        document.getElementById('retornoMensagem').innerText = mensagem;
+    } else {
+        document.getElementById('retornoMensagem').innerText = initialMessage;
+    }
+    dialog.showModal();
+
+    // Fechar o diálogo automaticamente após 3 segundos
+    setTimeout(() => {
+        dialog.close();
+    }, 2000); // Tempo em milissegundos
+</script>
 </body>
 </html>

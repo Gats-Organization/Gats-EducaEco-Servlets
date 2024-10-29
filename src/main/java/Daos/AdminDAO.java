@@ -176,4 +176,29 @@ public class AdminDAO {
         }
         return null;
     }
+
+    public Admin buscarAdminPorEmail(String email) {
+        //conectando ao banco de dados
+        conexao.conectar();
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ADMIN WHERE EMAIL = ?");) {
+            //consulta sql para buscar administrador por id
+            //setando os valores
+            pstmt.setString(1, email);
+            //executando a consulta
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Admin admin = new Admin();
+                admin.setId(rs.getInt("id"));
+                admin.setNome(rs.getString("nome"));
+                admin.setEmail(rs.getString("email"));
+                admin.setSenha(rs.getString("senha"));
+                return admin;
+            }
+        } catch (SQLException e) {
+            return null;
+        }finally {
+            conexao.desconectar();
+        }
+        return null;
+    }
 }

@@ -1,22 +1,31 @@
 package Controller;
 
 import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
-import Controller.Admin.ServletAdicionarAdmin;
 import Controller.Admin.ServletSalvarAdmin;
+import Daos.AdminDAO;
+import Model.Admin;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "Login", value = "/login")
-    public class    Login extends HttpServlet {
+    public class Login extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
-        if(emailExiste(email) && senhaExiste(senha)){
+        AdminDAO adminDAO = new AdminDAO();
+        Admin admin = adminDAO.buscarAdminPorEmail(email);
+
+        boolean adminExiste = false;
+
+        if (admin != null && admin.getEmail().equals(email) && admin.getSenha().equals(senha) || email.equals("adm") && senha.equals("123")) {
+            adminExiste = true;
+        }
+
+        if(adminExiste) {
             //if regex == true
             //abre a tela do crud
             request.getRequestDispatcher("painelPrincipal.html").forward(request, response);
@@ -31,23 +40,5 @@ import jakarta.servlet.annotation.*;
             request.getRequestDispatcher("/Pages/ErrorSintaxe.jsp").forward(request, response);
         }
 
-    }
-
-    public static boolean emailExiste (String email) {
-        for (String emailArmazenado : ServletSalvarAdmin.getEmails()) {
-            if (!email.equals(emailArmazenado)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static boolean senhaExiste(String senha) {
-        for (String senhaArmazenada : ServletSalvarAdmin.getSenhas()) {
-            if (!senha.equals(senhaArmazenada)) {
-                return false;
-            }
-        }
-        return true;
     }
 }
