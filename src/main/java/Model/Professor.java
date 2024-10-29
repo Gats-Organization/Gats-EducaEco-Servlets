@@ -22,7 +22,7 @@ public class Professor {
 
     }
 
-    // Método construtor que será executado no método de inserção, que não pede o id pois este será gerado automaticamente pelo banco
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public Professor(String nome, String sobrenome, String email, String senha) {
         this.nome = nome;
         this.sobrenome = sobrenome;

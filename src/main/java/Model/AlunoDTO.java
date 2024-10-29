@@ -31,7 +31,7 @@ public class AlunoDTO {
     public AlunoDTO() {
 
     }
-
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public AlunoDTO(String nome, String sobrenome, int xp, String email, String senha, String turma) {
         this.nome = nome;
         this.sobrenome = sobrenome;

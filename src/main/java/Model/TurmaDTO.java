@@ -30,6 +30,7 @@ public class TurmaDTO {
 
     }
 
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public TurmaDTO(int serie, String nomenclatura, int ano, String escola, String professor) {
         this.serie = serie;
         this.nomenclatura = nomenclatura;

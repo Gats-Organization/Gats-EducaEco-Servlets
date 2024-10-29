@@ -20,7 +20,7 @@ public class Admin {
 
     }
 
-    // Método construtor que será executado no método de inserção, que não pede o id pois este será gerado automaticamente pelo banco
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public Admin(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;

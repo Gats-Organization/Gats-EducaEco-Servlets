@@ -24,7 +24,7 @@ public class Turma {
 
     }
 
-    // Método construtor que será executado no método de inserção, que não pede o id pois este será gerado automaticamente pelo banco
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public Turma(int serie, String nomenclatura, int ano, int id_professor, int id_escola) {
         this.serie = serie;
         this.nomenclatura = nomenclatura;

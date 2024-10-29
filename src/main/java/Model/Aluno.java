@@ -26,7 +26,7 @@ public class Aluno {
 
     }
 
-    // Método construtor que será executado no método de inserção, que não pede o id pois este será gerado automaticamente pelo banco
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public Aluno(String nome, String sobrenome, int xp, String email, String senha, int id_turma) {
         this.nome = nome;
         this.sobrenome = sobrenome;
