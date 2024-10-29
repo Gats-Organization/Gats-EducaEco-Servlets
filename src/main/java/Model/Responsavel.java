@@ -22,7 +22,7 @@ public class Responsavel {
 
     }
 
-    // Método construtor que será executado no método de inserção, que não pede o id pois este será gerado automaticamente pelo banco
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public Responsavel(String nome, String sobrenome, String email, int id_aluno) {
         this.nome = nome;
         this.sobrenome = sobrenome;

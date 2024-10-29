@@ -1,10 +1,9 @@
 package Daos;
 
-//importando as bibliotecas necessárias
+// Importando classes necessárias para conexão com o banco de dados
 import Daos.JDBC.Conexao;
 import Model.Escola;
 import Model.EscolaDTO;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,85 +11,112 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EscolaDAO {
-    //definindo variaveis para conexão com o banco de dados
-    Conexao conexao;
-    //instanciando a classe de conexão
 
+    // Definindo as variáveis para conexão com o banco de dados
+    Conexao conexao;
+
+    // Método que abrirá a conexão com o banco
     public EscolaDAO() {
         this.conexao = new Conexao();
     }
-    //Criando método para inserir dados na tabela escola
+
+    // Criando método para inserir dados na tabela Escola
     public int inserirEscola(EscolaDTO escolaDTO) {
-        //conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Comando em SQL para inserir escola
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ESCOLA(?,?,?,?)")){
-            //consulta SQL para inserir dados na tabela escola
-            //setando os valores dos parâmetros
+
+            // Definindo os parâmetros usados no comando
             pstmt.setString(1,escolaDTO.getNome());
             pstmt.setString(2, escolaDTO.getEmail());
             pstmt.setInt(3,escolaDTO.getTelefone());
             pstmt.setString(4,escolaDTO.getEnderecoCompleto());
-            //executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
-        }catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
+        } catch (SQLException e) {
+
+            // Retornando -1 em caso de erro
             return -1;
-        }finally {
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
-    //Criando método para alterar o nome da escola
+
+    // Criando método para atualizar escola
+    // O método recebe todos os parâmetros da tabela, porém não necessariamente todos serão alterados
     public int atualizarEscola(Escola escola){
-        //Estabelecendo conexão com o banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Comando em SQL para atualizar aluno
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ESCOLA SET NOME=? , EMAIL=?, TELEFONE=?, ID_ENDERECO=? WHERE ID=?  ")){
-            //Consulta SQL para alterar o nome da escola
+
+            // Definindo os parâmetros usados no comando
             pstmt.setString(1,escola.getNome());
             pstmt.setString(2,escola.getEmail());
             pstmt.setInt(3,escola.getTelefone());
             pstmt.setInt(4,escola.getId_endereco());
             pstmt.setInt(5,escola.getId());
 
+            // Executando o comando
             return pstmt.executeUpdate();
+        } catch (SQLException e) {
 
-            //executando a consulta
-        }catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
+            // Retornando -1 em caso de erro
             return -1;
-        }finally {
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
 
-    //criando método para remover uma escola
+    // Criando método para remover uma escola, que recebe o id da mesma como parâmetro
     public int removerEscola(int id){
-        //Estabelecendo conexão com o banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL EXCLUIR_ESCOLA(?)")){
-            //Consulta SQL para remover uma escola
-//            //setando o valor do parâmetro
+
+        // Comando em SQL para remover uma escola
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL EXCLUIR_ESCOLA(?)")){
+
+            // Definindo os parâmetros usados no comando
             pstmt.setInt(1,id); //arrumar
-            //executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
-        }catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
+        } catch (SQLException e) {
+
+            // Retornando -1 em caso de erro
             return -1;
-        }finally {
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
-    //criando método para listar todas as escolas
+
+    // Criando método para listar todas as escolas
     public List<Escola> listarEscolas(){
-        //Estabelecendo conexão com o banco de dados
+
+        // Estabelecendo conexão com o banco e criando uma lista
         List<Escola> escolas = new ArrayList<>();
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM ESCOLA")){
-            //Consulta SQL para listar todas as escolas
-            //executando a consulta
+
+        // Comando em SQL para listar todos as escolas
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ESCOLA")){
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Escola
             while (rs.next()) {
                 Escola escola = new Escola();
                 escola.setId(rs.getInt("ID"));
@@ -98,25 +124,38 @@ public class EscolaDAO {
                 escola.setEmail(rs.getString("EMAIL"));
                 escola.setTelefone(rs.getInt("TELEFONE"));
                 escola.setId_endereco(rs.getInt("ID_ENDERECO"));
+
+                // Adicionando o objeto Escola à lista de escolas
                 escolas.add(escola);
             }
-        }catch (SQLException e) {
-            //caso ocorra algum erro, retornar null
+        } catch (SQLException e) {
+
+            // Em caso de erro, a consulta retorna null
             return null;
-        }finally {
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando conexão com o banco
             conexao.desconectar();
         }
+
+        // Retornando a lista
         return escolas;
     }
+
+    // Criando método para listar as escolas e seus repectivos endereços
     public List<EscolaDTO> listarEscolasPorEndereco(){
-        //Estabelecendo conexão com o banco de dados
+
+        // Estabelecendo conexão com o banco e criando uma lista
         List<EscolaDTO> escolas = new ArrayList<>();
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM ESCOLA JOIN ENDERECO ON ESCOLA.ID_ENDERECO = ENDERECO.ID")){
-            //Consulta SQL para listar todas as escolas
-            //executando a consulta
+
+        // Comando em SQL para listar todos as escolas e seus respectivos endereços
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ESCOLA JOIN ENDERECO ON ESCOLA.ID_ENDERECO = ENDERECO.ID")){
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto EscolaDTO
             while (rs.next()) {
                 EscolaDTO escola = new EscolaDTO();
                 escola.setId(rs.getInt("ID"));
@@ -130,27 +169,39 @@ public class EscolaDAO {
                 escola.setCidade(rs.getString("CIDADE"));
                 escola.setEstado(rs.getString("ESTADO"));
                 escola.setCep(rs.getString("CEP"));
+
+                // Adicionando o objeto à lista de alunos
                 escolas.add(escola);
             }
-        }catch (SQLException e) {
-            //caso ocorra algum erro, retornar null
+        } catch (SQLException e) {
+
+            // Em caso de erro, a consulta retorna null
             return null;
-        }finally {
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
+        // Retornando a lista
         return escolas;
     }
-    //criando método para buscar uma escola pelo id
+
+    // Criando método para buscar escola, que recebe o id da escola como parâmetro e retorna seus dados correspondentes
     public Escola buscarEscolaPorId(int id){
-        //Estabelecendo conexão com o banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM ESCOLA WHERE ID=?")){
-            //Consulta SQL para buscar uma escola pelo id
-            //setando o valor do parâmetro
+
+        // Consulta em SQL para buscar escola
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ESCOLA WHERE ID=?")){
+
+            // Definindo o valor do id
             pstmt.setInt(1,id);
-            //executando a consulta
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Escola
             while (rs.next()) {
                 Escola escola = new Escola();
                 escola.setId(rs.getInt("ID"));
@@ -158,14 +209,17 @@ public class EscolaDAO {
                 escola.setEmail(rs.getString("EMAIL"));
                 escola.setTelefone(rs.getInt("TELEFONE"));
                 escola.setId_endereco(rs.getInt("ID_ENDERECO"));
-                return escola;
 
+                // Retornando a escola selecionada
+                return escola;
             }
-        }catch (SQLException e) {
-            //caso ocorra algum erro, retornar null
+        } catch (SQLException e) {
+
+            // Em caso de erro, a consulta retorna null
             return null;
-        }finally {
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
         return null;

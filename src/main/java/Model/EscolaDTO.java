@@ -13,7 +13,7 @@ public class EscolaDTO {
     private String cidade;
     private String estado;
     private String cep;
-
+    String enderecoCompleto = rua + "," + numero + "," + bairro + "," + cidade + "," + estado + "," + cep;
 
     // Criando o método construtor
     public EscolaDTO(int id, String nome, String email, int telefone, int id_endereco, int numero, String rua, String bairro, String cidade, String estado, String cep) {
@@ -34,8 +34,8 @@ public class EscolaDTO {
     public EscolaDTO() {
 
     }
-    String enderecoCompleto = rua + "," + numero + "," + bairro + "," + cidade + "," + estado + "," + cep;
 
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public EscolaDTO(String nome, String email, int telefone, String endereco) {
         this.nome = nome;
         this.email = email;

@@ -22,7 +22,7 @@ public class Escola {
 
     }
 
-    // Método construtor que será executado no método de inserção, que não pede o id pois este será gerado automaticamente pelo banco
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public Escola(String nome, String email, int telefone, int id_endereco) {
         this.nome = nome;
         this.email = email;

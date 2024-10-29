@@ -1,137 +1,179 @@
 package Daos;
 
-//importando as classes para conexão com o banco de dados
-import java.sql.Connection;
+// Importando as classes para conexão com o banco de dados
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import Daos.JDBC.Conexao;
 import Model.Admin;
 
 public class AdminDAO {
-    //definindo variáveis para conexão com o banco de dados
+
+    // Definindo as variáveis para conexão com o banco de dados
     Conexao conexao;
 
-    //instanciando a classe de conexão
+    // Método que abrirá a conexão com o banco
     public AdminDAO() {
         this.conexao = new Conexao();
     }
 
-    //criando método para inserir administrador
+    // Criando método para inserir dados na tabela Escola
     public int inserirAdmin(Admin admin) {
-        //conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("INSERT INTO ADMIN (NOME, EMAIL, SENHA) VALUES (?,?,?)");)                {
-            //consulta sql para inserir administrador
-            //setando os valores
+
+        // Comando em SQL para inserir administrador
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("INSERT INTO ADMIN (NOME, EMAIL, SENHA) VALUES (?,?,?)");)                {
+
+            // Definindo os parâmetros usados no comando
             pstmt.setString(1,admin.getNome());
             pstmt.setString(2,admin.getEmail());
             pstmt.setString(3,admin.getSenha());
-            //executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
-        }catch(SQLException e){
-            //caso ocorra algum erro, retornar -1
+        } catch (SQLException e){
+
+            // Retornando -1 em caso de erro
             return -1;
-        }finally{
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
 
-    //Criando método alterar Admin com base no id
+    // Criando método para atualizar admin
+    // O método recebe todos os parâmetros da tabela, porém não necessariamente todos serão alterados
     public int atualizarAdmin(Admin admin) {
-        //conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Comando em SQL para atualizar administrador
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ADMIN SET NOME = ?, EMAIL = ?, SENHA = ? WHERE ID=? ");){
-            //consulta sql para alterar senha do administrador
-            //setando os valores
+
+            // Definindo os parâmetros usados no comando
             pstmt.setString(1, admin.getNome());
             pstmt.setString(2, admin.getEmail());
             pstmt.setString(3, admin.getSenha());
             pstmt.setInt(4, admin.getId());
-            //executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
         } catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
+
+            // Retornando -1 em caso de erro
             return -1;
         } finally {
-            //desconectando do banco de dados
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
 
-    //Criando método para remover administrador, com base no id
+    // Criando método para remover um administrador, que recebe o id do mesmo como parâmetro
     public int removerAdmin(int id){
-        //conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("DELETE FROM ADMIN WHERE ID = ?")){
-            //consulta sql para remover administrador
-            //setando os valores
+
+        // Comando em SQL para remover um administrador
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("DELETE FROM ADMIN WHERE ID = ?")){
+
+            // Definindo os parâmetros usados no comando
             pstmt.setInt(1,id);
-            //executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
-        }catch(SQLException e){
-            //caso ocorra algum erro, retornar -1
+        } catch (SQLException e){
+
+            // Retornando -1 em caso de erro
             return -1;
-        }finally{
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
-    //Criando método para consultar todos os administradores
+
+    // Criando método para listar todos os administradores
     public List<Admin> listarAdmins(){
-        //conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco e criando uma lista
         List<Admin> admins = new ArrayList<>();
         conexao.conectar();
+
+        // Comando em SQL para listar todos os administradores
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ADMIN");){
-            //consulta sql para ver todos os administradores
-            //executando a consulta
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Admin
             while(rs.next()){
                 Admin admin = new Admin();
                 admin.setId(rs.getInt("id"));
                 admin.setNome(rs.getString("nome"));
                 admin.setEmail(rs.getString("email"));
                 admin.setSenha(rs.getString("senha"));
+
+                // Adicionando o objeto Admin à lista de admins
                 admins.add(admin);
             }
         }catch(SQLException e){
-            //caso ocorra algum erro, retornar null
+
+            // Em caso de erro, a consulta retorna null
             return null;
 
         }finally{
-            //desconectando do banco de dados
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
+
+        // Retornando a lista
         return admins;
     }
 
+    // Criando método para buscar administrador, que recebe o id do admin como parâmetro e retorna seus dados correspondentes
     public Admin buscarAdminPorId(int id) {
-        //conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Consulta em SQL para buscar admin
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ADMIN WHERE ID = ?");) {
-            //consulta sql para buscar administrador por id
-            //setando os valores
+
+            // Definindo o valor do id
             pstmt.setInt(1, id);
-            //executando a consulta
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Admin
             while (rs.next()) {
                 Admin admin = new Admin();
                 admin.setId(rs.getInt("id"));
                 admin.setNome(rs.getString("nome"));
                 admin.setEmail(rs.getString("email"));
                 admin.setSenha(rs.getString("senha"));
+
+                // Retornando o admin selecionado
                 return admin;
             }
         } catch (SQLException e) {
+
+            // Em caso de erro, a consulta retorna null
             return null;
         }finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
         return null;
     }
-
 }

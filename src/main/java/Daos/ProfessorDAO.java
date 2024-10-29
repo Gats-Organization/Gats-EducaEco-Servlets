@@ -1,96 +1,123 @@
 package Daos;
 
-//importando classes para conexão com o banco de dados
-import java.sql.Connection;
+// Importando as classes para conexão com o banco de dados
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import Daos.JDBC.Conexao;
 import Model.Professor;
 
 public class ProfessorDAO {
-    //definindo variaveis para conexão com o banco de dados
+
+    // Definindo as variáveis para conexão com o banco de dados
     Conexao conexao;
-    //Instanciando a classe de conexão
+
+    // Método que abrirá a conexão com o banco
     public ProfessorDAO() {
         this.conexao = new Conexao();
     }
 
-    //Criando método para inserir um professor
+    // Criando método para inserir dados na tabela professor
     public int inserirProfessor( Professor professor ) {
-        //Conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Comando em SQL para inserir professor
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("INSERT INTO PROFESSOR(NOME,SOBRENOME,EMAIL,SENHA) VALUES (?,?,?,?)")){
-            //consulta SQL para inserir aluno
-            //setando os valores
+
+            // Definindo os parâmetros usados no comando
             pstmt.setString(1, professor.getNome());
             pstmt.setString(2, professor.getSobrenome());
             pstmt.setString(3, professor.getEmail());
             pstmt.setString(4, professor.getSenha());
-            //executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
         } catch (SQLException sqle) {
-            //caso ocorra algum erro, retorna -1
+
+            // Retornando -1 em caso de erro
             return -1;
         }finally {
-            //desconectando do banco de dados
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
-    //Criando método para alterar o nome de um professor
+
+    // Criando método para atualizar professor
+    // O método recebe todos os parâmetros da tabela, porém não necessariamente todos serão alterados
     public int atualizarProfessor( Professor professor ){
-        //Conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Comando em SQL para atualizar professor
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE PROFESSOR SET NOME = ?,SOBRENOME = ?, EMAIL = ?, SENHA = ? WHERE ID = ?")){
-            //consulta SQL para alterar o nome do professor
-            //setando os valores
+
+            // Definindo os parâmetros usados no comando
             pstmt.setString(1,professor.getNome());
             pstmt.setString(2,professor.getSobrenome());
             pstmt.setString(3,professor.getEmail());
             pstmt.setString(4,professor.getSenha());
             pstmt.setInt(5,professor.getId());
-            //executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
-        }catch(SQLException sqle){
-            //caso ocorra algum erro, retorna -1
+        } catch (SQLException sqle){
+
+            // Retornando -1 em caso de erro
             return -1;
-        }finally {
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
 
-    //Criando método para remover um professor
+    // Criando método para remover um professor, que recebe o id do mesmo como parâmetro
     public int removerProfessor(int id){
-        //Conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Comando em SQL para remover um professor
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("DELETE FROM PROFESSOR WHERE ID = ?")){
-            //consulta SQL para remover o professor
-            //setando os valores
+
+            // Definindo os parâmetros usados no comando
             pstmt.setInt(1,id);
-            //executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
         }catch(SQLException sqle){
-            //caso ocorra algum erro, retorna -1
+
+            // Retornando -1 em caso de erro
             return -1;
         }finally {
-            //desconectando do banco de dados
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
-    //Criando método para consultar um professor com base no id
+
+    // Criando método para buscar professor, que recebe o id do admin como parâmetro e retorna seus dados correspondentes
     public Professor buscarProfessorPorId(int id){
-        //Conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM PROFESSOR WHERE ID=?")){
-            //consulta SQL para consultar um professor
-            // setando os valores
+
+        // Consulta em SQL para buscar professores
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM PROFESSOR WHERE ID=?")){
+
+            // Definindo o valor do id
             pstmt.setInt(1,id);
-            //executando a consulta
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Professor
             while(rs.next()){
                 Professor professor = new Professor();
                 professor.setId(rs.getInt("id"));
@@ -98,26 +125,36 @@ public class ProfessorDAO {
                 professor.setSobrenome(rs.getString("sobrenome"));
                 professor.setEmail(rs.getString("email"));
                 professor.setSenha(rs.getString("senha"));
-                return professor;
 
+                // Retornando o professor selecionado
+                return professor;
             }
-        }catch (SQLException sqle){
-            //caso ocorra algum erro, retorna null
-        }finally {
-            //desconectando do banco de dados
+        } catch (SQLException sqle){
+
+            // Em caso de erro, a consulta retorna null
+            return null;
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
         return null;
     }
-    //Criando método para consultar todos os professores
+
+    // Criando método para listar todos os professores
     public List<Professor> listarProfessores(){
+
+        // Estabelecendo conexão com o banco e criando uma lista
         List<Professor> professores = new ArrayList<>();
-        //Conectando ao banco de dados
         conexao.conectar();
-        try(PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM PROFESSOR")){
-            //consulta SQL para consultar todos os professores
-            //executando a consulta
+
+        // Comando em SQL para listar todos os professores
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM PROFESSOR")){
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Professor
             while(rs.next()){
                 Professor professor = new Professor();
                 professor.setId(rs.getInt("id"));
@@ -125,15 +162,21 @@ public class ProfessorDAO {
                 professor.setSobrenome(rs.getString("sobrenome"));
                 professor.setEmail(rs.getString("email"));
                 professor.setSenha(rs.getString("senha"));
+
+                // Adicionando o objeto Professor à lista de professores
                 professores.add(professor);
             }
-        }catch (SQLException sqle){
+        } catch (SQLException sqle){
+
+            // Em caso de erro, a consulta retorna null
             return null;
-            //caso ocorra algum erro, retorna null
-        }finally {
-            //desconectando do banco de dados
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
+
+        // Retornando a lista
         return professores;
     }
 }

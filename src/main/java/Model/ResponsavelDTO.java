@@ -27,6 +27,7 @@ public class ResponsavelDTO {
 
     }
 
+    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public ResponsavelDTO(String nome, String sobrenome, String email, String nomeCompleto) {
         this.nome = nome;
         this.sobrenome = sobrenome;
