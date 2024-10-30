@@ -11,6 +11,7 @@ import Model.Aluno;
 import Model.AlunoDTO;
 
 public class AlunoDAO {
+
     // Definindo as variáveis para conexão com o banco de dados
     Conexao conexao;
 

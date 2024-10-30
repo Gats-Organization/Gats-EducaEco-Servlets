@@ -102,7 +102,45 @@ public class ProfessorDAO {
         }
     }
 
-    // Criando método para buscar professor, que recebe o id do admin como parâmetro e retorna seus dados correspondentes
+    // Criando método para listar todos os professores
+    public List<Professor> listarProfessores(){
+
+        // Estabelecendo conexão com o banco
+        List<Professor> professores = new ArrayList<>();
+        conexao.conectar();
+
+        // Comando em SQL para listar todos os professores
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM PROFESSOR")) {
+
+            // Definindo o ResultSet para receber os resultados da consulta
+            ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Professor
+            while(rs.next()) {
+                Professor professor = new Professor();
+                professor.setNome(rs.getString("nome"));
+                professor.setSobrenome(rs.getString("sobrenome"));
+                professor.setEmail(rs.getString("email"));
+                professor.setSenha(rs.getString("senha"));
+
+                // Adicionando o objeto Professor à lista de professores
+                professores.add(professor);
+            }
+        } catch (SQLException sqle) {
+
+            // Em caso de erro, a consulta retorna null
+            return null;
+        } finally {
+
+            // Por fim, fechando conexão com o banco
+            conexao.desconectar();
+        }
+
+        // Retornando a lista
+        return professores;
+    }
+
+    // Criando método para buscar professor, que recebe o id do mesmo como parâmetro e retorna seus dados correspondentes
     public Professor buscarProfessorPorId(int id){
 
         // Estabelecendo conexão com o banco
@@ -139,45 +177,6 @@ public class ProfessorDAO {
             conexao.desconectar();
         }
         return null;
-    }
-
-    // Criando método para listar todos os professores
-    public List<Professor> listarProfessores(){
-
-        // Estabelecendo conexão com o banco e criando uma lista
-        List<Professor> professores = new ArrayList<>();
-        conexao.conectar();
-
-        // Comando em SQL para listar todos os professores
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM PROFESSOR")){
-
-            // Definindo o ResultSet para receber os resultados da consulta
-            ResultSet rs = pstmt.executeQuery();
-
-            // Percorrendo o ResultSet e atribuindo os valores a um objeto Professor
-            while(rs.next()){
-                Professor professor = new Professor();
-                professor.setId(rs.getInt("id"));
-                professor.setNome(rs.getString("nome"));
-                professor.setSobrenome(rs.getString("sobrenome"));
-                professor.setEmail(rs.getString("email"));
-                professor.setSenha(rs.getString("senha"));
-
-                // Adicionando o objeto Professor à lista de professores
-                professores.add(professor);
-            }
-        } catch (SQLException sqle){
-
-            // Em caso de erro, a consulta retorna null
-            return null;
-        } finally {
-
-            // Por fim, fechando a conexão com o banco
-            conexao.desconectar();
-        }
-
-        // Retornando a lista
-        return professores;
     }
 }
 

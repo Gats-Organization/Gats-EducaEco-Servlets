@@ -13,7 +13,7 @@ public class EscolaDTO {
     private String cidade;
     private String estado;
     private String cep;
-    String enderecoCompleto = rua + "," + numero + "," + bairro + "," + cidade + "," + estado + "," + cep;
+    private String enderecoCompleto = rua + "," + numero + "," + bairro + "," + cidade + "," + estado + "," + cep;
 
     // Criando o método construtor
     public EscolaDTO(int id, String nome, String email, int telefone, int id_endereco, int numero, String rua, String bairro, String cidade, String estado, String cep) {

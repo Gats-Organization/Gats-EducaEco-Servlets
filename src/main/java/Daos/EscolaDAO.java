@@ -27,7 +27,7 @@ public class EscolaDAO {
         conexao.conectar();
 
         // Comando em SQL para inserir escola
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ESCOLA(?,?,?,?)")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ESCOLA_COM_ENDERECO(?,?,?,?)")){
 
             // Definindo os parâmetros usados no comando
             pstmt.setString(1,escolaDTO.getNome());
@@ -55,7 +55,7 @@ public class EscolaDAO {
         // Estabelecendo conexão com o banco
         conexao.conectar();
 
-        // Comando em SQL para atualizar aluno
+        // Comando em SQL para atualizar escola
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ESCOLA SET NOME=? , EMAIL=?, TELEFONE=?, ID_ENDERECO=? WHERE ID=?  ")){
 
             // Definindo os parâmetros usados no comando
@@ -103,45 +103,6 @@ public class EscolaDAO {
         }
     }
 
-    // Criando método para listar todas as escolas
-    public List<Escola> listarEscolas(){
-
-        // Estabelecendo conexão com o banco e criando uma lista
-        List<Escola> escolas = new ArrayList<>();
-        conexao.conectar();
-
-        // Comando em SQL para listar todos as escolas
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ESCOLA")){
-
-            // Definindo o ResultSet para receber os resultados da consulta
-            ResultSet rs = pstmt.executeQuery();
-
-            // Percorrendo o ResultSet e atribuindo os valores a um objeto Escola
-            while (rs.next()) {
-                Escola escola = new Escola();
-                escola.setId(rs.getInt("ID"));
-                escola.setNome(rs.getString("NOME"));
-                escola.setEmail(rs.getString("EMAIL"));
-                escola.setTelefone(rs.getInt("TELEFONE"));
-                escola.setId_endereco(rs.getInt("ID_ENDERECO"));
-
-                // Adicionando o objeto Escola à lista de escolas
-                escolas.add(escola);
-            }
-        } catch (SQLException e) {
-
-            // Em caso de erro, a consulta retorna null
-            return null;
-        } finally {
-
-            // Por fim, fechando conexão com o banco
-            conexao.desconectar();
-        }
-
-        // Retornando a lista
-        return escolas;
-    }
-
     // Criando método para listar as escolas e seus repectivos endereços
     public List<EscolaDTO> listarEscolasPorEndereco(){
 
@@ -149,7 +110,7 @@ public class EscolaDAO {
         List<EscolaDTO> escolas = new ArrayList<>();
         conexao.conectar();
 
-        // Comando em SQL para listar todos as escolas e seus respectivos endereços
+        // Comando em SQL para listar todas as escolas e seus respectivos endereços
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ESCOLA JOIN ENDERECO ON ESCOLA.ID_ENDERECO = ENDERECO.ID")){
 
             // Definindo o ResultSet para receber os resultados da consulta
@@ -182,6 +143,7 @@ public class EscolaDAO {
             // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
+
         // Retornando a lista
         return escolas;
     }
