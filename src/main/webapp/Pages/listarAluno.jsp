@@ -54,10 +54,6 @@
 <!--sidebar final-->
 <div class="content"></div>
 
-<!-- Dialog para exibir a mensagem -->
-<dialog id="retornoDialog">
-    <p id="retornoMensagem">Atualizações</p>
-</dialog>
  <table border="1">
      <tr id="colunas">
          <th>Id</th>
@@ -72,7 +68,6 @@
      </tr>
      <%
          List<AlunoDTO> listaAlunos = (List<AlunoDTO>)request.getAttribute("listaAlunos");
-
          if (listaAlunos != null && !listaAlunos.isEmpty()) {
              for (AlunoDTO aluno : listaAlunos) {
      %>
@@ -139,25 +134,5 @@
     <a id="addAluno" href="adicionarAluno"><strong>+ Adicionar Aluno</strong></a>
 </div>
 <br><br>
-
-<%-- Dialog para mensagem de erro ou adicionado com sucesso--%>
-<script>
-    const dialog = document.getElementById('retornoDialog');
-    const initialMessage = "Atualizações";
-    const mensagem = "<%= request.getParameter("txt") != null ? request.getParameter("txt") : "" %>";
-
-    // Define a mensagem e abre o diálogo
-    if (mensagem.trim() !== "") {
-        document.getElementById('retornoMensagem').innerText = mensagem;
-    } else {
-        document.getElementById('retornoMensagem').innerText = initialMessage;
-    }
-    dialog.showModal();
-
-    // Fechar o diálogo automaticamente após 3 segundos
-    setTimeout(() => {
-        dialog.close();
-    }, 2000); // Tempo em milissegundos
-</script>
 </body>
 </html>

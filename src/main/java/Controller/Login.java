@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
         boolean adminExiste = false;
 
         // Condição para verificar se os campos foram preenchidos, e se foram preenchidos corretamente
-        if (admin != null && admin.getEmail().equals(email) && admin.getSenha().equals(senha) || email.equals("adm") && senha.equals("123")) {
+        if (admin != null && admin.getEmail().equals(email) && admin.getSenha().equals(senha)) {
             adminExiste = true;
         }
 
