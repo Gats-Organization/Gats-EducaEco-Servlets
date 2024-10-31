@@ -3,6 +3,7 @@ package Controller.Escola;
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.EscolaDAO;
 import Model.Escola;
+import Model.EscolaDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,8 +23,8 @@ public class ServletEditarEscola extends HttpServlet {
         String id = request.getParameter("id");
 
         // Criando um objeto do tipo Escola com o valor do campo do formulário e atribuindo valor ao atributo que será usado como parâmetro na página de edição
-        EscolaDAO dao = new EscolaDAO();
-        Escola escola = dao.buscarEscolaPorId(Integer.parseInt(id));
+        EscolaDAO escolaDAO = new EscolaDAO();
+        EscolaDTO escola = escolaDAO.buscarEscolaPorId(Integer.parseInt(id));
         request.setAttribute("escola", escola);
 
         // Redirecionando para a página de edição de escolas

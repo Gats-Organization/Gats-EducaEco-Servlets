@@ -75,6 +75,7 @@ public class    AlunoDTO {
     public String getTurma() {
         return this.turma;
     }
+
     public void setTurma(String turma) {
         this.turma = turma;
     }

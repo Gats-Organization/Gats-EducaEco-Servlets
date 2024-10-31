@@ -190,7 +190,7 @@ public class TurmaDAO {
     }
 
     // Criando método para buscar aluno, que recebe o id da turma como parâmetro e retorna seus dados correspondentes
-    public Turma buscarTurmaPorId(int id) {
+    public TurmaDTO buscarTurmaPorId(int id) {
 
         // Estabelecendo conexão com o banco
         conexao.conectar();
@@ -206,7 +206,7 @@ public class TurmaDAO {
 
             // Percorrendo o ResultSet e atribuindo os valores a um objeto TurmaDTO
             while (rs.next()) {
-                Turma turma = new Turma();
+                TurmaDTO turma = new TurmaDTO();
                 turma.setId(rs.getInt("ID"));
                 turma.setSerie(rs.getInt("SERIE"));
                 turma.setNomenclatura(rs.getString("NOMENCLATURA"));

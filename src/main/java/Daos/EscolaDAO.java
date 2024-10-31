@@ -59,7 +59,7 @@ public class EscolaDAO {
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_ESCOLA (?,?,?,?,?) ")){
 
                 // Definindo os parâmetros usados no comando
-            pstmt.setInt(1,escola.getId());
+                pstmt.setInt(1,escola.getId());
                 pstmt.setString(2,escola.getNome());
                 pstmt.setString(3,escola.getEmail());
                 pstmt.setString(4,escola.getTelefone());
@@ -149,7 +149,7 @@ public class EscolaDAO {
     }
 
     // Criando método para buscar escola, que recebe o id da escola como parâmetro e retorna seus dados correspondentes
-    public Escola buscarEscolaPorId(int id){
+    public EscolaDTO buscarEscolaPorId(int id){
 
         // Estabelecendo conexão com o banco
         conexao.conectar();
@@ -165,11 +165,11 @@ public class EscolaDAO {
 
             // Percorrendo o ResultSet e atribuindo os valores a um objeto Escola
             while (rs.next()) {
-                Escola escola = new Escola();
+                EscolaDTO escola = new EscolaDTO();
                 escola.setId(rs.getInt("ID"));
                 escola.setNome(rs.getString("NOME"));
                 escola.setEmail(rs.getString("EMAIL"));
-                escola.setTelefone(rs.getInt("TELEFONE"));
+                escola.setTelefone(rs.getString("TELEFONE"));
                 escola.setId_endereco(rs.getInt("ID_ENDERECO"));
 
                 // Retornando a escola selecionada

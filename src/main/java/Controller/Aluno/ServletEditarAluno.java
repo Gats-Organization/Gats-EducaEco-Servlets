@@ -23,8 +23,8 @@ public class ServletEditarAluno extends HttpServlet {
         String id = request.getParameter("id");
 
         // Criando um objeto do tipo Aluno com o valor do campo do formulário e atribuindo valor ao atributo que será usado como parâmetro na página de edição
-        AlunoDAO dao = new AlunoDAO();
-        AlunoDTO aluno = dao.buscarAlunoPorId(Integer.parseInt(id));
+        AlunoDAO alunoDAO = new AlunoDAO();
+        AlunoDTO aluno = alunoDAO.buscarAlunoPorId(Integer.parseInt(id));
         request.setAttribute("aluno", aluno);
 
         // Redirecionando para a página de edição de alunos

@@ -31,6 +31,10 @@
             <table>
                 <strong>Edite uma informação do(a) aluno(a) <%=aluno.getNome()%>:</strong>
                 <tr>
+                    <td>Id:</td>
+                    <td><input type="number" name="id" value="<%=aluno.getId()%>" id="inputId"></td>
+                </tr>
+                <tr>
                     <td>Nome:</td>
                     <td><input type="text" name="nome" value="<%=aluno.getNome()%>" id="inputNome"></td>
                 </tr>

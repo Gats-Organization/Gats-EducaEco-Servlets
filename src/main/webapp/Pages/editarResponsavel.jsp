@@ -31,6 +31,10 @@
                 <table>
                     <strong>Edite uma informação do(a) responsável <%= responsavel.getNome() %>:</strong>
                     <tr>
+                        <td>Id:</td>
+                        <td><input type="number" name="id" value="<%= responsavel.getId() %>" id="inputId"></td>
+                    </tr>
+                    <tr>
                         <td>Nome:</td>
                         <td><input type="text" name="nome" value="<%= responsavel.getNome() %>" id="inputNome"></td>
                     </tr>

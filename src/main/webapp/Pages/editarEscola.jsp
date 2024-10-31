@@ -1,4 +1,5 @@
 <%@ page import="Model.Escola" %>
+<%@ page import="Model.EscolaDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -14,7 +15,7 @@
 
         <%-- Criando um objeto do tipo Escola para receber os valores de cada campo da tabela--%>
         <%
-            Escola escola = (Escola) request.getAttribute("escola");
+            EscolaDTO escola = (EscolaDTO) request.getAttribute("escola");
         %>
     </head>
     <body>
@@ -30,6 +31,10 @@
                 <table>
                     <strong>Edite uma informação da escola <%=escola.getNome()%>:</strong>
                     <tr>
+                        <td>Id:</td>
+                        <td><input type="number" name="id" value="<%=escola.getId()%>" id="inputId"></td>
+                    </tr>
+                    <tr>
                         <td>Nome:</td>
                         <td><input type="text" name="nome" value="<%=escola.getNome()%>" id="inputNome"></td>
                     </tr>
@@ -43,7 +48,7 @@
                     </tr>
                     <tr>
                         <td>Id_endereco:</td>
-                        <td><input type="text" name="id_endereco" value="<%=escola.getId_endereco()%>" id="inputEndereco"></td>
+                        <td><input type="text" name="id_endereco" value="<%=escola.getEnderecoCompleto()%>" id="inputEndereco"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Salvar" id="salvar"></td>

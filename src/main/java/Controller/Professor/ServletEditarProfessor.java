@@ -22,8 +22,8 @@ public class ServletEditarProfessor extends HttpServlet {
         String id = request.getParameter("id");
 
         // Criando um objeto do tipo Professor com o valor do campo do formulário e atribuindo valor ao atributo que será usado como parâmetro na página de edição
-        ProfessorDAO dao= new ProfessorDAO();
-        Professor professor= dao.buscarProfessorPorId(Integer.parseInt(id));
+        ProfessorDAO professorDAO= new ProfessorDAO();
+        Professor professor= professorDAO.buscarProfessorPorId(Integer.parseInt(id));
         request.setAttribute("professor", professor);
 
         // Redirecionando para a página de edição de escolas

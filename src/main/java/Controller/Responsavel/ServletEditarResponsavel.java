@@ -23,8 +23,8 @@ public class ServletEditarResponsavel extends HttpServlet {
         String id = request.getParameter("id");
 
         // Criando um objeto do tipo Responsavel com o valor do campo do formulário e atribuindo valor ao atributo que será usado como parâmetro na página de edição
-        ResponsavelDAO responsavelDao= new ResponsavelDAO();
-        ResponsavelDTO responsavel = responsavelDao.buscarResponsavelPorId(Integer.parseInt(id));
+        ResponsavelDAO responsavelDAO= new ResponsavelDAO();
+        ResponsavelDTO responsavel = responsavelDAO.buscarResponsavelPorId(Integer.parseInt(id));
         request.setAttribute("responsavel", responsavel);
 
         // Redirecionando para a página de edição de escolas
