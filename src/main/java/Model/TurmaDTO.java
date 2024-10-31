@@ -11,6 +11,7 @@ public class TurmaDTO {
     private String nomeEscola;
     private String nomeProfessor;
     private String sobrenomeProfessor;
+    private String nomeCompleto = getNomeProfessor() + getSobrenomeProfessor();
 
     // Criando o método construtor
     public TurmaDTO(int id, int serie, String nomenclatura, int ano, int id_professor, int id_escola, String nomeEscola, String nomeProfessor, String sobrenomeProfessor) {
@@ -30,13 +31,23 @@ public class TurmaDTO {
 
     }
 
-    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
+    // Método construtor que será executado nos métodos de inserção, que não pede o id pois este será gerado automaticamente pelo banco
     public TurmaDTO(int serie, String nomenclatura, int ano, String escola, String professor) {
         this.serie = serie;
         this.nomenclatura = nomenclatura;
         this.ano = ano;
         this.nomeEscola = escola;
-        this.nomeProfessor = professor;
+        this.nomeCompleto = professor;
+    }
+
+    // Método construtor que será executado nos métodos de atualização, que pede o id
+    public TurmaDTO(int id, int serie, String nomenclatura, int ano, String escola, String professor) {
+        this.id = id;
+        this.serie = serie;
+        this.nomenclatura = nomenclatura;
+        this.ano = ano;
+        this.nomeEscola = escola;
+        this.nomeCompleto = professor;
     }
 
     // Gerando métodos getters e setters
@@ -66,6 +77,9 @@ public class TurmaDTO {
     }
     public String getSobrenomeProfessor() {
         return sobrenomeProfessor;
+    }
+    public String getNomeCompleto() {
+        return nomeCompleto;
     }
 
     public void setId_professor(int id_professor) {

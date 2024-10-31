@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: claramoreira-ieg
-  Date: 20/10/2024
-  Time: 12:51
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,6 +18,8 @@
 
         <%-- Interface onde o usuário pode preencher os campos da tabela e inserir um novo administrador --%>
         <form action="salvarAdmin" method="post">
+
+            <%-- A tabela que mostrará os dados, permitindo a inserção de valores--%>
             <table>
                 <tr>
                     <td><input type="hidden" name="id" id="inputId"></td>

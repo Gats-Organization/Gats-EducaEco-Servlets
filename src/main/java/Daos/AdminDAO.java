@@ -1,6 +1,6 @@
 package Daos;
 
-// Importando as classes para conexão com o banco de dados
+// Importando as classes necessárias para conexão com o banco de dados
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -177,26 +177,39 @@ public class AdminDAO {
         return null;
     }
 
+    // Criando método para buscar administrador, que recebe o id do admin e o email como parâmetros e retorna seus dados correspondentes
     public Admin buscarAdminPorEmail(String email) {
-        //conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Consulta em SQL para buscar admin
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ADMIN WHERE EMAIL = ?");) {
-            //consulta sql para buscar administrador por id
-            //setando os valores
+
+            // Definindo o valor do email
             pstmt.setString(1, email);
-            //executando a consulta
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Admin
             while (rs.next()) {
                 Admin admin = new Admin();
                 admin.setId(rs.getInt("id"));
                 admin.setNome(rs.getString("nome"));
                 admin.setEmail(rs.getString("email"));
                 admin.setSenha(rs.getString("senha"));
+
+                // Retornando o aluno selecionado
                 return admin;
             }
         } catch (SQLException e) {
+
+            // Em caso de erro, a consulta retorna null
             return null;
-        }finally {
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
         return null;

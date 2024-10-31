@@ -1,131 +1,126 @@
 package Daos;
-//importando bibliotecas necessárias
+
+// Importando classes necessárias para conexão com o banco de dados
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import Daos.JDBC.Conexao;
 import Model.Turma;
 import Model.TurmaDTO;
 
 public class TurmaDAO {
-    //definindo variáveis para conexão com o banco
+
+    // Definindo as variáveis para conexão com o banco de dados
     Conexao conexao;
 
-    //Instanciando a classe Conexao
+    // Método que abrirá a conexão com o banco
     public TurmaDAO() {
         this.conexao = new Conexao();
     }
 
-
-
-    //Criando método para inserir turma
+    // Criando método para inserir dados na tabela turma
     public int inserirTurma( TurmaDTO turmaDTO) {
-        //Conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
+
+        // Comando em SQL para inserir turma
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_TURMA(?,?,?,?,?)")) {
-            //Consulta sql para inserir turma
-            //setando os valores
+
+            // Definindo os parâmetros usados no comando
             pstmt.setInt(1, turmaDTO.getSerie());
             pstmt.setString(2, turmaDTO.getNomenclatura());
             pstmt.setInt(3, turmaDTO.getAno());
             pstmt.setString(4, turmaDTO.getNomeEscola());
             pstmt.setString(5, turmaDTO.getNomeProfessor() );
-            //Executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
         } catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
+
+            // Retornando -1 em caso de erro
             return -1;
         } finally {
-            //Desconectando do banco de dados
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
 
-    //Criando método para alterar id_professor
-    //Para caso mude o professor da turma
-    public int atualizarTurma(Turma turma) {
-        //Conectando ao banco de dadoss
+    // Criando método para atualizar turma
+    // O método recebe todos os parâmetros da tabela, porém não necessariamente todos serão alterados
+    public int atualizarTurma(TurmaDTO turma) {
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE TURMA SET SERIE=?,NOMENCLATURA=?, ANO=?,ID_PROFESSOR=?,ID_ESCOLA=? WHERE ID=?")) {
-            //Consulta sql para alterar id_professor
-            //setando os valores
-            pstmt.setInt(1, turma.getSerie());
-            pstmt.setString(2, turma.getNomenclatura());
-            pstmt.setInt(3, turma.getAno());
-            pstmt.setInt(4, turma.getId_professor());
-            pstmt.setInt(5, turma.getId_escola());
-            pstmt.setInt(6, turma.getId());
 
-            //Executando a consulta
+        // Comando em SQL para atualizar turma
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_TURMA(?,?,?,?,?,?)")) {
+
+            // Definindo os parâmetros usados no comando
+            pstmt.setInt(1, turma.getId());
+            pstmt.setInt(2, turma.getSerie());
+            pstmt.setString(3, turma.getNomenclatura());
+            pstmt.setInt(4, turma.getAno());
+            pstmt.setString(5, turma.getNomeCompleto());
+            pstmt.setString(6, turma.getNomeEscola());
+
+            // Executando o comando
             return pstmt.executeUpdate();
         } catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
+
+            // Retornando -1 em caso de erro
             return -1;
         } finally {
-            //Desconectando do banco de dados
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
 
-    //Criando método para remover turma
+    // Criando método para remover uma turma, que recebe o id da mesma como parâmetro
     //arrumar com procudere
     public int removerTurma(int id) {
-        //Conectando ao banco de dados
+
+        // Estabelecendo conexão com o banco
         conexao.conectar();
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("DELETE FROM TURMA WHERE ID=?")) {
-            //Consulta sql para remover turma
-            //setando os valores
+
+        // Comando em SQL para remover uma turma
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL EXCLUIR_TURMA(?)")) {
+
+            // Definindo os parâmetros usados no comando
             pstmt.setInt(1, id);
-            //Executando a consulta
+
+            // Executando o comando
             return pstmt.executeUpdate();
         } catch (SQLException e) {
-            //caso ocorra algum erro, retornar -1
 
+            // Retornando -1 em caso de erro
             return -1;
         } finally {
-            //Desconectando do banco de dados
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
     }
 
-    public Turma buscarTurmaPorId(int id) {
-        conexao.conectar();
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM TURMA WHERE ID=?")) {
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                Turma turma = new Turma();
-                turma.setId(rs.getInt("ID"));
-                turma.setSerie(rs.getInt("SERIE"));
-                turma.setNomenclatura(rs.getString("NOMENCLATURA"));
-                turma.setAno(rs.getInt("ANO"));
-                turma.setId_professor(rs.getInt("ID_PROFESSOR"));
-                turma.setId_escola(rs.getInt("ID_ESCOLA"));
-                return turma;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            conexao.desconectar();
-        }
-        return null;
-    }
-    //Criando método para buscar turma por escola
-
-    //Criando método para buscar
-
+    // Criando método para listar as turmas
     public List<Turma> listarTurmas() {
+
+        // Estabelecendo conexão com o banco e criando uma lista
         List<Turma> turmas = new ArrayList<>();
-        //Conectando ao banco de dados
         conexao.conectar();
+
+        // Comando em SQL para listar todas as turmas
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM TURMA ORDER BY SERIE ASC")) {
-            //Executando a consulta
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
-            //Enquanto existir registros, adicionar na lista de turmas
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto Turma
             while (rs.next()) {
                 Turma turma = new Turma();
                 turma.setId(rs.getInt("ID"));
@@ -134,25 +129,38 @@ public class TurmaDAO {
                 turma.setAno(rs.getInt("ANO"));
                 turma.setId_professor(rs.getInt("ID_PROFESSOR"));
                 turma.setId_escola(rs.getInt("ID_ESCOLA"));
+
+                // Adicionando o objeto Turma à lista de turmas
                 turmas.add(turma);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            // Em caso de erro, a consulta retorna null
+            return null;
         } finally {
+
+            // Por fim, fechando conexão com o banco
             conexao.desconectar();
         }
+
+        // Retornando a lista
         return turmas;
     }
 
-
+    // Criando método para listar as turmas e suas repectivas escolas
     public List<TurmaDTO> listarTurmasPorEscola() {
+
+        // Estabelecendo conexão com o banco e criando uma lista
         List<TurmaDTO> turmas = new ArrayList<>();
-        //Conectando ao banco de dados
         conexao.conectar();
+
+        // Comando em SQL para listar todas as turmas e suas respectivas escolas
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT TURMA.ID, TURMA.SERIE, TURMA.NOMENCLATURA, TURMA.ANO, TURMA.ID_PROFESSOR, TURMA.ID_ESCOLA, ESCOLA.NOME AS NOME_ESCOLA, PROFESSOR.NOME AS NOME_PROFESSOR FROM TURMA JOIN ESCOLA ON TURMA.ID_ESCOLA= ESCOLA.ID JOIN PROFESSOR ON TURMA.ID_PROFESSOR= PROFESSOR.ID ORDER BY SERIE ASC")) {
-            //Executando a consulta
+
+            // Definindo o ResultSet para receber os resultados da consulta
             ResultSet rs = pstmt.executeQuery();
-            //Enquanto existir registros, adicionar na lista de turmas
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto TurmaDTO
             while (rs.next()) {
                 TurmaDTO turma = new TurmaDTO();
                 turma.setId(rs.getInt("ID"));
@@ -163,15 +171,64 @@ public class TurmaDAO {
                 turma.setId_escola(rs.getInt("ID_ESCOLA"));
                 turma.setNomeEscola(rs.getString("NOME_ESCOLA"));
                 turma.setNomeProfessor(rs.getString("NOME_PROFESSOR"));
+
+                // Adicionando o objeto à lista de turmas
                 turmas.add(turma);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            // Em caso de erro, a consulta retorna null
+            return null;
         } finally {
+
+            // Por fim, fechando a conexão com o banco
             conexao.desconectar();
         }
+
+        // Retornando a lista
         return turmas;
     }
+
+    // Criando método para buscar aluno, que recebe o id da turma como parâmetro e retorna seus dados correspondentes
+    public Turma buscarTurmaPorId(int id) {
+
+        // Estabelecendo conexão com o banco
+        conexao.conectar();
+
+        // Consulta em SQL para buscar turma
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT*FROM TURMA WHERE ID=?")) {
+
+            // Definindo o valor do id
+            pstmt.setInt(1, id);
+
+            // Definindo o ResultSet para receber os resultados da consulta
+            ResultSet rs = pstmt.executeQuery();
+
+            // Percorrendo o ResultSet e atribuindo os valores a um objeto TurmaDTO
+            while (rs.next()) {
+                Turma turma = new Turma();
+                turma.setId(rs.getInt("ID"));
+                turma.setSerie(rs.getInt("SERIE"));
+                turma.setNomenclatura(rs.getString("NOMENCLATURA"));
+                turma.setAno(rs.getInt("ANO"));
+                turma.setId_professor(rs.getInt("ID_PROFESSOR"));
+                turma.setId_escola(rs.getInt("ID_ESCOLA"));
+
+                // Retornando a turma selecionado
+                return turma;
+            }
+        } catch (SQLException e) {
+
+            // Em caso de erro, a consulta retorna null
+            return null;
+        } finally {
+
+            // Por fim, fechando a conexão com o banco
+            conexao.desconectar();
+        }
+        return null;
+    }
+
 }
 
 

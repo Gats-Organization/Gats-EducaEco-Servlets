@@ -3,6 +3,7 @@ package Controller.Turma;
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.TurmaDAO;
 import Model.Turma;
+import Model.TurmaDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,22 +17,22 @@ import java.io.IOException;
 public class ServletAtualizarTurma extends HttpServlet {
 
     // Criando o método para processar as solicitações do tipo POST
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os valores dos campos do formulário
-        int id = Integer.parseInt(req.getParameter("id"));
-        int serie  = Integer.parseInt(req.getParameter("serie"));
-        String nomenclatura = req.getParameter("nomenclatura");
-        int ano = Integer.parseInt(req.getParameter("ano"));
-        int id_professor = Integer.parseInt(req.getParameter("id_professor"));
-        int id_escola = Integer.parseInt(req.getParameter("id_escola"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        int serie  = Integer.parseInt(request.getParameter("serie"));
+        String nomenclatura = request.getParameter("nomenclatura");
+        int ano = Integer.parseInt(request.getParameter("ano"));
+        String professor = request.getParameter("id_professor");
+        String escola = request.getParameter("id_escola");
 
         // Criando um objeto Turma com os valores dos campos do formulário e chamando o método de atualização de turmas
-        Turma turma = new Turma(id, serie, nomenclatura, ano, id_professor, id_escola);
+        TurmaDTO turma = new TurmaDTO(id, serie, nomenclatura, ano, professor, escola);
         TurmaDAO turmaDAO = new TurmaDAO();
         turmaDAO.atualizarTurma(turma);
 
         // Redirecionando para a página de listagem de turmas
-        resp.sendRedirect("listarTurma");
+        response.sendRedirect("listarTurma");
     }
 }

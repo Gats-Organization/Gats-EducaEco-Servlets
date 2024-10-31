@@ -22,7 +22,7 @@ public class ServletSalvarEscola extends HttpServlet {
         // Recebendo os parâmetros do formulário
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
-        int telefone = Integer.parseInt(request.getParameter("telefone"));
+        String telefone = request.getParameter("telefone");
         String endereco = request.getParameter("endereco");
 
         // Criando um objeto do tipo EscolaDAO

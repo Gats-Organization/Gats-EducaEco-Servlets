@@ -5,7 +5,7 @@ public class EscolaDTO {
     private int id;
     private String nome;
     private String email;
-    private int telefone;
+    private String telefone;
     private int id_endereco;
     private int numero;
     private String rua;
@@ -16,7 +16,7 @@ public class EscolaDTO {
     private String enderecoCompleto = rua + "," + numero + "," + bairro + "," + cidade + "," + estado + "," + cep;
 
     // Criando o método construtor
-    public EscolaDTO(int id, String nome, String email, int telefone, int id_endereco, int numero, String rua, String bairro, String cidade, String estado, String cep) {
+    public EscolaDTO(int id, String nome, String email, String telefone, int id_endereco, int numero, String rua, String bairro, String cidade, String estado, String cep) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -35,8 +35,18 @@ public class EscolaDTO {
 
     }
 
-    // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
-    public EscolaDTO(String nome, String email, int telefone, String enderecoCompleto) {
+    // Método construtor que será executado nos métodos de inserção, que não pede o id pois este será gerado automaticamente pelo banco
+    public EscolaDTO(String nome, String email, String telefone, String enderecoCompleto) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.enderecoCompleto = enderecoCompleto;
+
+    }
+
+    // Método construtor que será executado nos métodos de atualização, que pede o id
+    public EscolaDTO(int id, String nome, String email, String telefone, String enderecoCompleto) {
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
@@ -60,14 +70,14 @@ public class EscolaDTO {
     public String getCidade() { return cidade; }
     public String getEstado() { return estado; }
     public String getCep() { return cep; }
-    public int getTelefone() { return telefone; }
+    public String getTelefone() { return telefone; }
     public int getId_endereco() { return id_endereco;}
     public String getEnderecoCompleto() { return enderecoCompleto; }
 
     public void setEnderecoCompleto(String enderecoCompleto) { this.enderecoCompleto = enderecoCompleto; }
     public void setId_endereco(int id_endereco) { this.id_endereco = id_endereco; }
     public void setEmail(String email) { this.email = email; }
-    public void setTelefone(int telefone) { this.telefone = telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
     public void setNome(String nome) { this.nome = nome; }
     public void setId(int id) { this.id = id; }
     public void setNumero(int numero) { this.numero = numero; }

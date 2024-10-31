@@ -65,13 +65,13 @@ public class AlunoDAO {
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_ALUNO(?,?,?,?,?,?,?)")){
 
             // Definindo os parâmetros usados no comando
-            pstmt.setString(1, aluno.getNome());
-            pstmt.setString(2, aluno.getSobrenome());
-            pstmt.setInt(3, aluno.getXp());
-            pstmt.setString(4, aluno.getEmail());
-            pstmt.setString(5, aluno.getSenha());
-            pstmt.setString(6, aluno.getTurma());
-            pstmt.setInt(7, aluno.getId());
+            pstmt.setInt(1, aluno.getId());
+            pstmt.setString(2, aluno.getNome());
+            pstmt.setString(3, aluno.getSobrenome());
+            pstmt.setInt(4, aluno.getXp());
+            pstmt.setString(5, aluno.getEmail());
+            pstmt.setString(6, aluno.getSenha());
+            pstmt.setString(7, aluno.getTurma());
 
             // Executando o comando
             return pstmt.executeUpdate();

@@ -27,12 +27,12 @@ public class EscolaDAO {
         conexao.conectar();
 
         // Comando em SQL para inserir escola
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ESCOLA_COM_ENDERECO(?,?,?,?)")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL INSERIR_ESCOLA(?,?,?,?)")){
 
             // Definindo os parâmetros usados no comando
             pstmt.setString(1,escolaDTO.getNome());
             pstmt.setString(2, escolaDTO.getEmail());
-            pstmt.setInt(3,escolaDTO.getTelefone());
+            pstmt.setString(3,escolaDTO.getTelefone());
             pstmt.setString(4,escolaDTO.getEnderecoCompleto());
 
             // Executando o comando
@@ -50,32 +50,32 @@ public class EscolaDAO {
 
     // Criando método para atualizar escola
     // O método recebe todos os parâmetros da tabela, porém não necessariamente todos serão alterados
-    public int atualizarEscola(Escola escola){
+    public int atualizarEscola(EscolaDTO  escola){
 
         // Estabelecendo conexão com o banco
         conexao.conectar();
 
         // Comando em SQL para atualizar escola
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ESCOLA SET NOME=? , EMAIL=?, TELEFONE=?, ID_ENDERECO=? WHERE ID=?  ")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_ESCOLA (?,?,?,?,?) ")){
 
-            // Definindo os parâmetros usados no comando
-            pstmt.setString(1,escola.getNome());
-            pstmt.setString(2,escola.getEmail());
-            pstmt.setInt(3,escola.getTelefone());
-            pstmt.setInt(4,escola.getId_endereco());
-            pstmt.setInt(5,escola.getId());
+                // Definindo os parâmetros usados no comando
+            pstmt.setInt(1,escola.getId());
+                pstmt.setString(2,escola.getNome());
+                pstmt.setString(3,escola.getEmail());
+                pstmt.setString(4,escola.getTelefone());
+                pstmt.setString(5,escola.getEnderecoCompleto());
 
-            // Executando o comando
-            return pstmt.executeUpdate();
-        } catch (SQLException e) {
+                // Executando o comando
+                return pstmt.executeUpdate();
+            } catch (SQLException e) {
 
-            // Retornando -1 em caso de erro
-            return -1;
-        } finally {
+                // Retornando -1 em caso de erro
+                return -1;
+            } finally {
 
-            // Por fim, fechando a conexão com o banco
-            conexao.desconectar();
-        }
+                // Por fim, fechando a conexão com o banco
+                conexao.desconectar();
+            }
     }
 
     // Criando método para remover uma escola, que recebe o id da mesma como parâmetro
@@ -122,7 +122,7 @@ public class EscolaDAO {
                 escola.setId(rs.getInt("ID"));
                 escola.setNome(rs.getString("NOME"));
                 escola.setEmail(rs.getString("EMAIL"));
-                escola.setTelefone(rs.getInt("TELEFONE"));
+                escola.setTelefone(rs.getString("TELEFONE"));
                 escola.setId_endereco(rs.getInt("ID_ENDERECO"));
                 escola.setNumero(rs.getInt("NUMERO"));
                 escola.setRua(rs.getString("RUA"));

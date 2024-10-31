@@ -1,6 +1,6 @@
 package Daos;
 
-// Importando as classes para conexão com o banco de dados
+// Importando as classes necessárias para conexão com o banco de dados
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
