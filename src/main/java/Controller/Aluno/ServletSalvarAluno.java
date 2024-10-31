@@ -33,11 +33,7 @@ public class ServletSalvarAluno extends HttpServlet {
 
         AlunoDTO alunoDTO = new AlunoDTO(nome, sobrenome, xp, email, senha, turma);
         AlunoDAO alunoDAO = new AlunoDAO();
-
-        if (alunoDAO.inserirAluno(alunoDTO) > 0) {
-            response.sendRedirect("listarAlunos?txt=Erro ao adicionar!");
-        } else {
-            response.sendRedirect("listarAlunos?txt=Adicionado com sucesso!");
-        }
+        alunoDAO.inserirAluno(alunoDTO);
+        response.sendRedirect("listarAlunos");
     }
 }
