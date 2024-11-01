@@ -11,7 +11,7 @@ public class    AlunoDTO {
     private int id_turma;
     private int serie;
     private String nomeclantura;
-    private String turma;
+    private String turma = getSerie() + getNomeclantura();
 
 
     // Criando o método construtor
@@ -31,8 +31,19 @@ public class    AlunoDTO {
     public AlunoDTO() {
 
     }
+
     // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
     public AlunoDTO(String nome, String sobrenome, int xp, String email, String senha, String turma) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.xp = xp;
+        this.email = email;
+        this.senha = senha;
+        this.turma = turma;
+    }
+
+    public AlunoDTO(int id, String nome, String sobrenome, int xp, String email, String senha, String turma) {
+        this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.xp = xp;

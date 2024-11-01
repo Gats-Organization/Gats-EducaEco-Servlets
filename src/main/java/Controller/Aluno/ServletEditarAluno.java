@@ -29,10 +29,6 @@ public class ServletEditarAluno extends HttpServlet {
 
         // Redirecionando para a página de edição de alunos
         request.getRequestDispatcher("/Pages/editarAluno.jsp").forward(request, response);
-
-
-
-
     }
 }
 

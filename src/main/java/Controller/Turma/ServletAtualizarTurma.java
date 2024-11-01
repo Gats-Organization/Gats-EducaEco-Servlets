@@ -24,11 +24,11 @@ public class ServletAtualizarTurma extends HttpServlet {
         int serie  = Integer.parseInt(request.getParameter("serie"));
         String nomenclatura = request.getParameter("nomenclatura");
         int ano = Integer.parseInt(request.getParameter("ano"));
-        String professor = request.getParameter("id_professor");
-        String escola = request.getParameter("id_escola");
+        int id_professor = Integer.parseInt(request.getParameter("id_professor"));
+        int id_escola = Integer.parseInt(request.getParameter("id_escola"));
 
         // Criando um objeto Turma com os valores dos campos do formulário e chamando o método de atualização de turmas
-        TurmaDTO turma = new TurmaDTO(id, serie, nomenclatura, ano, professor, escola);
+        Turma turma = new Turma(id, serie, nomenclatura, ano, id_professor, id_escola);
         TurmaDAO turmaDAO = new TurmaDAO();
         turmaDAO.atualizarTurma(turma);
 

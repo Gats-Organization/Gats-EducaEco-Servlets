@@ -56,22 +56,22 @@ public class AlunoDAO {
 
     // Criando método para atualizar aluno
     // O método recebe todos os parâmetros da tabela, porém não necessariamente todos serão alterados
-    public int atualizarAluno( AlunoDTO aluno) {
+    public int atualizarAluno( Aluno aluno) {
 
         // Estabelecendo conexão com o banco
         conexao.conectar();
 
         // Comando em SQL para atualizar aluno
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_ALUNO(?,?,?,?,?,?,?)")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ALUNO SET NOME=?, SOBRENOME=?, XP=?, EMAIL=?, SENHA=?, ID_TURMA=? WHERE ID=")){
 
             // Definindo os parâmetros usados no comando
-            pstmt.setInt(1, aluno.getId());
-            pstmt.setString(2, aluno.getNome());
-            pstmt.setString(3, aluno.getSobrenome());
-            pstmt.setInt(4, aluno.getXp());
-            pstmt.setString(5, aluno.getEmail());
-            pstmt.setString(6, aluno.getSenha());
-            pstmt.setString(7, aluno.getTurma());
+            pstmt.setString(1, aluno.getNome());
+            pstmt.setString(2, aluno.getSobrenome());
+            pstmt.setInt(3, aluno.getXp());
+            pstmt.setString(4, aluno.getEmail());
+            pstmt.setString(5, aluno.getSenha());
+            pstmt.setInt(6, aluno.getId_turma());
+            pstmt.setInt(7, aluno.getId());
 
             // Executando o comando
             return pstmt.executeUpdate();

@@ -2,6 +2,7 @@ package Controller.Responsavel;
 
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.ResponsavelDAO;
+import Model.Responsavel;
 import Model.ResponsavelDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,13 +20,14 @@ public class ServletAtualizarResponsavel extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os valores dos campos do formulário
+        //int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         String email = request.getParameter("email");
-        String aluno = request.getParameter("aluno");
+        int id_aluno = Integer.parseInt(request.getParameter("id_aluno"));
 
         // Criando um objeto Responsavel com os valores dos campos do formulário e chamando o método de atualização de responsaveis
-        ResponsavelDTO responsavel = new ResponsavelDTO(nome, sobrenome, email, aluno);
+        Responsavel responsavel = new Responsavel(nome, sobrenome, email, id_aluno);
         ResponsavelDAO responsavelDao = new ResponsavelDAO();
         responsavelDao.atualizarResponsavel(responsavel);
 

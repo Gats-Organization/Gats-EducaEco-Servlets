@@ -2,7 +2,6 @@ package Controller.Escola;
 
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.EscolaDAO;
-import Model.Escola;
 import Model.EscolaDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

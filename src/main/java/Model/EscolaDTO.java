@@ -72,7 +72,7 @@ public class EscolaDTO {
     public String getCep() { return cep; }
     public String getTelefone() { return telefone; }
     public int getId_endereco() { return id_endereco;}
-    public String getEnderecoCompleto() { return enderecoCompleto; }
+    public String getEnderecoCompleto() { return rua + "," + numero + "," + bairro + "," + cidade + "," + estado + "," + cep; }
 
     public void setEnderecoCompleto(String enderecoCompleto) { this.enderecoCompleto = enderecoCompleto; }
     public void setId_endereco(int id_endereco) { this.id_endereco = id_endereco; }

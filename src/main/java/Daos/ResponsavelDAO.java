@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Daos.JDBC.Conexao;
+import Model.Responsavel;
 import Model.ResponsavelDTO;
 
 public class ResponsavelDAO {
@@ -49,20 +50,20 @@ public class ResponsavelDAO {
 
     // Criando método para atualizar responsável
     // O método recebe todos os parâmetros da tabela, porém não necessariamente todos serão alterados
-    public int atualizarResponsavel(ResponsavelDTO responsavel ) {
+    public int atualizarResponsavel(Responsavel responsavel ) {
 
         // Estabelecendo conexão com o banco
         conexao.conectar();
 
         // Comando em SQL para atualizar responsável
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_RESPONSAVEL (?,?,?,?,?)" ) ){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE RESPONSAVEL SET NOME = ?, SOBRENOME = ?, EMAIL = ?, ID_ALUNO = ? WHERE ID = ? " ) ){
 
             // Definindo os parâmetros usados no comando
-            pstmt.setInt(1,responsavel.getId());
-            pstmt.setString(2,responsavel.getNome());
-            pstmt.setString(3,responsavel.getSobrenome());
-            pstmt.setString(4,responsavel.getEmail());
-            pstmt.setString(5,responsavel.getNomeCompleto());
+            pstmt.setString(1,responsavel.getNome());
+            pstmt.setString(2,responsavel.getSobrenome());
+            pstmt.setString(3,responsavel.getEmail());
+            pstmt.setInt(4,responsavel.getId_aluno());
+            pstmt.setInt(5,responsavel.getId());
 
             // Executando o comando
             return pstmt.executeUpdate();

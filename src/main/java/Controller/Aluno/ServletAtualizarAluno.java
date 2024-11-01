@@ -2,6 +2,7 @@ package Controller.Aluno;
 
 // Importando as classes necessárias para o funcionamento do Servlet
 import Daos.AlunoDAO;
+import Model.Aluno;
 import Model.AlunoDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,15 +20,16 @@ public class ServletAtualizarAluno extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os valores dos campos do formulário
+        int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         int xp = Integer.parseInt(request.getParameter("xp"));
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
-        String turma = request.getParameter("turma");
+        int id_turma = Integer.parseInt(request.getParameter("id_turma"));
 
         // Criando um objeto Aluno com os valores dos campos do formulário e chamando o método de atualização de alunos
-        AlunoDTO aluno = new AlunoDTO(nome, sobrenome, xp, email, senha, turma);
+        Aluno aluno = new Aluno(id, nome, sobrenome, xp, email, senha, id_turma);
         AlunoDAO alunoDao = new AlunoDAO();
         alunoDao.atualizarAluno(aluno);
 

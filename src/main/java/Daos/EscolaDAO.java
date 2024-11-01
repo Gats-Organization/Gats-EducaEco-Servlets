@@ -58,15 +58,15 @@ public class EscolaDAO {
         // Comando em SQL para atualizar escola
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_ESCOLA (?,?,?,?,?) ")){
 
-                // Definindo os parâmetros usados no comando
-                pstmt.setInt(1,escola.getId());
-                pstmt.setString(2,escola.getNome());
-                pstmt.setString(3,escola.getEmail());
-                pstmt.setString(4,escola.getTelefone());
-                pstmt.setString(5,escola.getEnderecoCompleto());
+            // Definindo os parâmetros usados no comando
+            pstmt.setInt(1,escola.getId());
+            pstmt.setString(2,escola.getNome());
+            pstmt.setString(3,escola.getEmail());
+            pstmt.setString(4,escola.getTelefone());
+            pstmt.setString(5,escola.getEnderecoCompleto());
 
-                // Executando o comando
-                return pstmt.executeUpdate();
+            // Executando o comando
+            return pstmt.executeUpdate();
             } catch (SQLException e) {
 
                 // Retornando -1 em caso de erro
@@ -75,7 +75,8 @@ public class EscolaDAO {
 
                 // Por fim, fechando a conexão com o banco
                 conexao.desconectar();
-            }
+
+        }
     }
 
     // Criando método para remover uma escola, que recebe o id da mesma como parâmetro

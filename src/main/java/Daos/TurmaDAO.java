@@ -52,21 +52,21 @@ public class TurmaDAO {
 
     // Criando método para atualizar turma
     // O método recebe todos os parâmetros da tabela, porém não necessariamente todos serão alterados
-    public int atualizarTurma(TurmaDTO turma) {
+    public int atualizarTurma(Turma turma) {
 
         // Estabelecendo conexão com o banco
         conexao.conectar();
 
         // Comando em SQL para atualizar turma
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_TURMA(?,?,?,?,?,?)")) {
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE TURMA SET SERIE=?, NOMENCLATURA=?, ANO=?, ID_PROFESSOR=?, ID_ESCOLA=? WHERE ID=?")) {
 
             // Definindo os parâmetros usados no comando
             pstmt.setInt(1, turma.getId());
             pstmt.setInt(2, turma.getSerie());
             pstmt.setString(3, turma.getNomenclatura());
             pstmt.setInt(4, turma.getAno());
-            pstmt.setString(5, turma.getNomeCompleto());
-            pstmt.setString(6, turma.getNomeEscola());
+            pstmt.setInt(5, turma.getId_professor());
+            pstmt.setInt(6, turma.getId_escola());
 
             // Executando o comando
             return pstmt.executeUpdate();
