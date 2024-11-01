@@ -5,6 +5,7 @@
     <head>
         <link rel="stylesheet" href="CSS/editarTurma.css">
         <link rel="stylesheet" href="CSS/style.css">
+        <link rel="stylesheet" href="CSS/voltarEditar.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -27,37 +28,35 @@
             <input type="hidden" name="id" value="<%= turma.getId() %>">
 
             <%-- A tabela que mostrará os dados, permitindo a edição --%>
-            <table>
-                <strong>Edite uma informação da turma <%= turma.getSerie() %>º <%= turma.getNomenclatura() %>:</strong>
-                <tr>
-                    <td>Id:</td>
-                    <td><input type="number" name="inputId" value="<%= turma.getId() %>" id="inputId"></td>
-                </tr>
-                <tr>
-                    <td>Serie:</td>
-                    <td><input type="number" name="InputSerie" value="<%= turma.getSerie() %>" id="inputSerie"></td>
-                </tr>
-                <tr>
-                    <td>Nomenclatura:</td>
-                    <td><input type="text" name="inputNomenclatura" value="<%= turma.getNomenclatura() %>" id="inputNomenclatura"></td>
-                </tr>
-                <tr>
-                    <td>Ano:</td>
-                    <td><input type="number" name="inputAno" value="<%= turma.getAno() %>" id="inputAno"></td>
-                </tr>
-                <tr>
-                    <td>Professor:</td>
-                    <td><input type="text" name="inputIdProfessor" value="<%= turma.getNomeCompleto() %>" id="inputIdProfessor"></td>
-                </tr>
-                <tr>
-                    <td>Escola:</td>
-                    <td><input type="text" name="inputIdEscola" value="<%= turma.getNomeEscola() %>" id="inputIdEscola"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Salvar" id="salvar"></td>
-                </tr>
-            </table>
-        </form>
+                <table>
+                    <strong>Edite uma informação da turma <%= turma.getSerie() %>º <%= turma.getNomenclatura() %>:</strong>
+                    <tr>
+                        <td>Serie:</td>
+                        <td><input type="number" name="InputSerie" value="<%= turma.getSerie() %>" id="inputSerie"></td>
+                    </tr>
+                    <tr>
+                        <td>Nomenclatura:</td>
+                        <td><input type="text" name="inputNomenclatura" value="<%= turma.getNomenclatura() %>" id="inputNomenclatura"></td>
+                    </tr>
+                    <tr>
+                        <td>Ano:</td>
+                        <td><input type="number" name="inputAno" value="<%= turma.getAno() %>" id="inputAno"></td>
+                    </tr>
+                    <tr>
+                        <td>Professor:</td>
+                        <td><input type="text" name="inputIdProfessor" value="<%= turma.getNomeCompleto() %>" id="inputIdProfessor"></td>
+                    </tr>
+                    <tr>
+                        <td>Escola:</td>
+                        <td><input type="text" name="inputIdEscola" value="<%= turma.getNomeEscola() %>" id="inputIdEscola"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Salvar" id="salvar"></td>
+                    </tr>
+                </table>
+            </form>
+        <div id="voltar">
+            <a href="listarTurma" style="text-decoration: none; color: #000000">Voltar a listagem</a>
+        </div>
     </body>
 </html>

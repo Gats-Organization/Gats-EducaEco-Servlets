@@ -45,6 +45,7 @@ strong{
     text-align: center;
     font-size: 25px;
 }
+
 #inputNome, #inputSobrenome, #inputEmail, #inputSenha{
     border-radius: 8px;
     height: 35px;

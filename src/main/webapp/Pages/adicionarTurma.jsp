@@ -29,7 +29,7 @@
                 </tr>
                 <tr>
                     <td>Nomenclatura:</td>
-                    <td><input type="text" name="nomenclatura" id="inputNomeclarura"></td>
+                    <td><input type="text" name="nomenclatura" id="inputNomeclatura"></td>
                 </tr>
                 <tr>
                     <td>Ano:</td>

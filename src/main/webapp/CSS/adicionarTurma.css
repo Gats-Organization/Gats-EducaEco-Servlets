@@ -44,7 +44,7 @@ strong{
     font-size: 20px;
 }
 
-#inputId, #inputSerie, #inputNomeclarura, #inputAno, #inputProfessor, #inputEscola{
+#inputSerie, #inputNomeclatura, #inputAno, #inputProfessor, #inputEscola{
     border-radius: 8px;
     height: 35px;
     width: 220px;
