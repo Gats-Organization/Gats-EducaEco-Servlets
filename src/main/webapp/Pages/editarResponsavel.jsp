@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>Aluno:</td>
-                        <td><input type="text" name="aluno" value="<%= responsavel.getNomeAluno() %>" id="inputIdAluno"></td>
+                        <td><input type="text" name="id_aluno" value="<%= responsavel.getId_aluno() %>" id="inputIdAluno"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Salvar" id="salvar"></td>
