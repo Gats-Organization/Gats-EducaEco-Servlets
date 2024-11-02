@@ -57,11 +57,10 @@ strong{
     box-shadow: 2px 3px #948282;
 }
 
-#salvar {
+#salvar{
     background-color: #15d5ff;
     color: white;
     margin-top: 25px;
-    margin-left: -100px;
     border: none;
     border-radius: 8px;
     cursor: pointer;

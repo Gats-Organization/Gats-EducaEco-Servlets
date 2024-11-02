@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <td>Nomenclatura:</td>
-                        <td><input type="text" name="inputNomenclatura" value="<%= turma.getNomenclatura() %>" id="inputNomenclatura"></td>
+                        <td><input type="text" name="inputNomenclatura" value="<%= turma.getNomenclatura() %>" id="inputNomeclatura"></td>
                     </tr>
                     <tr>
                         <td>Ano:</td>
@@ -51,11 +51,10 @@
                         <td><input type="text" name="inputIdEscola" value="<%= turma.getNomeEscola() %>" id="inputIdEscola"></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Salvar" id="salvar"></td>
+                        <td><input type="submit" value="Salvar" id="salvar" style="margin-left: 0"></td>
                     </tr>
                 </table>
             </form>
-        <%--kwhdkqw--%>
         <div id="voltar">
             <a href="listarTurma" style="text-decoration: none; color: #000000">Voltar a listagem</a>
         </div>

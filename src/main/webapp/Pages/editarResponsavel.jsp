@@ -48,11 +48,10 @@
                         <td><input type="text" name="aluno" value="<%= responsavel.getNomeAluno() %>" id="inputIdAluno"></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Salvar" id="salvar"></td>
+                        <td><input type="submit" value="Salvar" id="salvar" style="margin-left: 0"></td>
                     </tr>
                 </table>
             </form>
-        <%--kwhdkqw--%>
         <div id="voltar">
             <a href="listarResponsavel" style="text-decoration: none; color: #000000">Voltar a listagem</a>
         </div>

@@ -40,9 +40,8 @@
                 <tr>
                     <td><input type="submit" value="Salvar" id="salvar"></td>
                 </tr>
-                </table>
-           </form>
-        <%--kwhdkqw--%>
+            </table>
+        </form>
         <div id="voltar">
             <a href="listarAdmin" style="text-decoration: none; color: #000000">Voltar a listagem</a>
         </div>
