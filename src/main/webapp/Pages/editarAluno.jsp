@@ -52,8 +52,8 @@
                         <td><input type="password" name="senha" value="<%=aluno.getSenha()%>" id="inputSenha"></td>
                     </tr>
                     <tr>
-                        <td>Turma:</td>
-                        <td><input type="text" name=id_turma" value="<%=aluno.getId_turma()%>" id="inputTurma"></td>
+                        <td>Id Turma:</td>
+                        <td><input type="text" name="idturma" value="<%=aluno.getId_turma()%>" id="inputTurma"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Salvar" id="salvar"></td>

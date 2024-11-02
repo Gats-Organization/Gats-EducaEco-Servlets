@@ -20,16 +20,18 @@ public class ServletAtualizarAluno extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os valores dos campos do formulário
-
+        int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         int xp = Integer.parseInt(request.getParameter("xp"));
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
-        int id_turma = Integer.parseInt(request.getParameter("id_turma"));
+
+        System.err.println(request.getParameter("idturma"));
+        int id_turma = Integer.parseInt(request.getParameter("idturma"));
 
         // Criando um objeto Aluno com os valores dos campos do formulário e chamando o método de atualização de alunos
-        Aluno aluno = new Aluno(nome, sobrenome, xp, email, senha, id_turma);
+        Aluno aluno = new Aluno(id, nome, sobrenome, xp, email, senha, id_turma);
         AlunoDAO alunoDao = new AlunoDAO();
         alunoDao.atualizarAluno(aluno);
 

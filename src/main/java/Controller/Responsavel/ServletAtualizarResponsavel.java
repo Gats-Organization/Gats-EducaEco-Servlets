@@ -20,14 +20,15 @@ public class ServletAtualizarResponsavel extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Recebendo os valores dos campos do formulário
-        //int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         String email = request.getParameter("email");
         int id_aluno = Integer.parseInt(request.getParameter("id_aluno"));
 
+        System.err.println(request.getParameter("id_aluno"));
         // Criando um objeto Responsavel com os valores dos campos do formulário e chamando o método de atualização de responsaveis
-        Responsavel responsavel = new Responsavel(nome, sobrenome, email, id_aluno);
+        Responsavel responsavel = new Responsavel(id, nome, sobrenome, email, id_aluno);
         ResponsavelDAO responsavelDao = new ResponsavelDAO();
         responsavelDao.atualizarResponsavel(responsavel);
 

@@ -16,7 +16,7 @@
 
         <%-- Criando um objeto do tipo Responsavel para receber os valores de cada campo da tabela--%>
         <%
-            ResponsavelDTO responsavel = (ResponsavelDTO) request.getAttribute("responsavel");
+            Responsavel responsavel = (Responsavel) request.getAttribute("responsavel");
         %>
     </head>
     <body>
@@ -44,7 +44,7 @@
                         <td><input type="text" name="email" value="<%= responsavel.getEmail() %>" id="inputEmail"></td>
                     </tr>
                     <tr>
-                        <td>Aluno:</td>
+                        <td>Id Aluno:</td>
                         <td><input type="text" name="id_aluno" value="<%= responsavel.getId_aluno() %>" id="inputIdAluno"></td>
                     </tr>
                     <tr>

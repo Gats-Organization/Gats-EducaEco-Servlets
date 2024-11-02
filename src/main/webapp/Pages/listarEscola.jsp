@@ -71,7 +71,7 @@
                 <td><%=escola.getNome()%></td>
                 <td><%=escola.getEmail()%></td>
                 <td><%=escola.getTelefone()%></td>
-                <td><%=escola.getNumero()%>, <%=escola.getRua()%>, <%=escola.getBairro()%>, <%=escola.getCidade()%>, <%=escola.getEstado()%>, <%=escola.getCep()%></td>
+                <td><%=escola.getRua()%>, <%=escola.getNumero()%>, <%=escola.getBairro()%>, <%=escola.getCidade()%>, <%=escola.getEstado()%>, <%=escola.getCep()%></td>
 
                 <!-- Formulário que dá ao usuário a opção de editar a escola que desejar -->
                 <td>

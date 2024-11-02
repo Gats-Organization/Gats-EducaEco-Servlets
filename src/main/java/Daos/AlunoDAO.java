@@ -62,7 +62,7 @@ public class AlunoDAO {
         conexao.conectar();
 
         // Comando em SQL para atualizar aluno
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ALUNO SET NOME=?, SOBRENOME=?, XP=?, EMAIL=?, SENHA=?, ID_TURMA=? WHERE ID=")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE ALUNO SET NOME=?, SOBRENOME=?, XP=?, EMAIL=?, SENHA=?, ID_TURMA=? WHERE ID= ?")){
 
             // Definindo os parâmetros usados no comando
             pstmt.setString(1, aluno.getNome());
@@ -197,7 +197,7 @@ public class AlunoDAO {
     }
 
     // Criando método para buscar aluno, que recebe o id do aluno como parâmetro e retorna seus dados correspondentes
-    public AlunoDTO buscarAlunoPorId(int id) {
+    public Aluno buscarAlunoPorId(int id) {
 
         // Estabelecendo conexão com o banco
          conexao.conectar();
@@ -213,14 +213,14 @@ public class AlunoDAO {
 
             // Percorrendo o ResultSet e atribuindo os valores a um objeto AlunoDTO
             while(rs.next()){
-                AlunoDTO aluno = new AlunoDTO();
+                Aluno aluno = new Aluno();
                 aluno.setId(rs.getInt("id"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setSobrenome(rs.getString("sobrenome"));
                 aluno.setXp(rs.getInt("xp"));
                 aluno.setEmail(rs.getString("email"));
                 aluno.setSenha(rs.getString("senha"));
-                aluno.setTurma(rs.getString("turma"));
+                aluno.setId_turma(rs.getInt("id_turma"));
 
                 // Retornando o aluno selecionado
                 return aluno;

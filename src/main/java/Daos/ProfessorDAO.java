@@ -118,6 +118,7 @@ public class ProfessorDAO {
             // Percorrendo o ResultSet e atribuindo os valores a um objeto Professor
             while(rs.next()) {
                 Professor professor = new Professor();
+                professor.setId(rs.getInt("id"));
                 professor.setNome(rs.getString("nome"));
                 professor.setSobrenome(rs.getString("sobrenome"));
                 professor.setEmail(rs.getString("email"));
@@ -163,6 +164,8 @@ public class ProfessorDAO {
                 professor.setSobrenome(rs.getString("sobrenome"));
                 professor.setEmail(rs.getString("email"));
                 professor.setSenha(rs.getString("senha"));
+
+                System.err.println("Professor: " + professor.toString());
 
                 // Retornando o professor selecionado
                 return professor;

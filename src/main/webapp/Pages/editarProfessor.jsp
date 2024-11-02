@@ -17,7 +17,7 @@
 
         <%-- Criando um objeto do tipo Professor para receber os valores de cada campo da tabela--%>
         <%
-                Professor professor = (Professor) request.getAttribute("professor");
+            Professor professor = (Professor) request.getAttribute("professor");
         %>
         <h1>Editar Professor</h1>
 

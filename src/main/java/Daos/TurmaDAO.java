@@ -61,12 +61,12 @@ public class TurmaDAO {
         try (PreparedStatement pstmt = conexao.getConn().prepareStatement("UPDATE TURMA SET SERIE=?, NOMENCLATURA=?, ANO=?, ID_PROFESSOR=?, ID_ESCOLA=? WHERE ID=?")) {
 
             // Definindo os parâmetros usados no comando
-            pstmt.setInt(1, turma.getId());
-            pstmt.setInt(2, turma.getSerie());
-            pstmt.setString(3, turma.getNomenclatura());
-            pstmt.setInt(4, turma.getAno());
-            pstmt.setInt(5, turma.getId_professor());
-            pstmt.setInt(6, turma.getId_escola());
+            pstmt.setInt(1, turma.getSerie());
+            pstmt.setString(2, turma.getNomenclatura());
+            pstmt.setInt(3, turma.getAno());
+            pstmt.setInt(4, turma.getId_professor());
+            pstmt.setInt(5, turma.getId_escola());
+            pstmt.setInt(6, turma.getId());
 
             // Executando o comando
             return pstmt.executeUpdate();
@@ -190,7 +190,7 @@ public class TurmaDAO {
     }
 
     // Criando método para buscar aluno, que recebe o id da turma como parâmetro e retorna seus dados correspondentes
-    public TurmaDTO buscarTurmaPorId(int id) {
+    public Turma buscarTurmaPorId(int id) {
 
         // Estabelecendo conexão com o banco
         conexao.conectar();
@@ -206,7 +206,7 @@ public class TurmaDAO {
 
             // Percorrendo o ResultSet e atribuindo os valores a um objeto TurmaDTO
             while (rs.next()) {
-                TurmaDTO turma = new TurmaDTO();
+                Turma turma = new Turma();
                 turma.setId(rs.getInt("ID"));
                 turma.setSerie(rs.getInt("SERIE"));
                 turma.setNomenclatura(rs.getString("NOMENCLATURA"));

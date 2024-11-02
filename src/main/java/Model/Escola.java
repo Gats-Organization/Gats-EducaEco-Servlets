@@ -5,11 +5,11 @@ public class Escola {
     private int id;
     private String nome;
     private String email;
-    private int telefone;
+    private String telefone;
     private int id_endereco;
 
     // Criando o método construtor
-    public Escola(int id, String nome, String email, int telefone, int id_endereco) {
+    public Escola(int id, String nome, String email, String telefone, int id_endereco) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -23,7 +23,7 @@ public class Escola {
     }
 
     // Método construtor que será executado nos métodos, que não pede o id pois este será gerado automaticamente pelo banco
-    public Escola(String nome, String email, int telefone, int id_endereco) {
+    public Escola(String nome, String email, String telefone, int id_endereco) {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
@@ -40,7 +40,7 @@ public class Escola {
     public String getEmail() {
         return email;
     }
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
     public int getId_endereco() {
@@ -53,7 +53,7 @@ public class Escola {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     public void setNome(String nome) {
