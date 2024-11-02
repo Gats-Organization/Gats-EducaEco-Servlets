@@ -18,7 +18,7 @@
 
         <%-- Criando um objeto do tipo Turma para receber os valores de cada campo da tabela--%>
         <%
-            TurmaDTO turma = (TurmaDTO) request.getAttribute("turma");
+            Turma turma = (Turma) request.getAttribute("turma");
         %>
 
         <%-- Interface onde o usuário pode preencher os campos da tabela e editar uma turma --%>
@@ -32,23 +32,23 @@
                     <strong>Edite uma informação da turma <%= turma.getSerie() %>º <%= turma.getNomenclatura() %>:</strong>
                     <tr>
                         <td>Serie:</td>
-                        <td><input type="number" name="InputSerie" value="<%= turma.getSerie() %>" id="inputSerie"></td>
+                        <td><input type="number" name="serie" value="<%= turma.getSerie() %>" id="inputSerie"></td>
                     </tr>
                     <tr>
                         <td>Nomenclatura:</td>
-                        <td><input type="text" name="inputNomenclatura" value="<%= turma.getNomenclatura() %>" id="inputNomeclatura"></td>
+                        <td><input type="text" name="nomenclatura" value="<%= turma.getNomenclatura() %>" id="inputNomeclatura"></td>
                     </tr>
                     <tr>
                         <td>Ano:</td>
-                        <td><input type="number" name="inputAno" value="<%= turma.getAno() %>" id="inputAno"></td>
+                        <td><input type="number" name="ano" value="<%= turma.getAno() %>" id="inputAno"></td>
                     </tr>
                     <tr>
-                        <td>Professor:</td>
-                        <td><input type="text" name="inputIdProfessor" value="<%= turma.getNomeCompleto() %>" id="inputIdProfessor"></td>
+                        <td>Id Professor:</td>
+                        <td><input type="text" name="id_professor" value="<%= turma.getId_professor() %>" id="inputIdProfessor"></td>
                     </tr>
                     <tr>
-                        <td>Escola:</td>
-                        <td><input type="text" name="inputIdEscola" value="<%= turma.getNomeEscola() %>" id="inputIdEscola"></td>
+                        <td>Id Escola:</td>
+                        <td><input type="text" name="id_escola" value="<%= turma.getId_escola() %>" id="inputIdEscola"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Salvar" id="salvar" style="margin-left: 0"></td>
