@@ -24,7 +24,7 @@ public class ServletEditarTurma extends HttpServlet {
 
         // Criando um objeto do tipo Turma com o valor do campo do formulário e atribuindo valor ao atributo que será usado como parâmetro na página de edição
         TurmaDAO turmaDAO = new TurmaDAO();
-        TurmaDTO turma = turmaDAO.buscarTurmaPorId(Integer.parseInt(id));
+        Turma turma = turmaDAO.buscarTurmaPorId(Integer.parseInt(id));
         request.setAttribute("turma", turma);
 
         // Redirecionando para a página de edição de escolas

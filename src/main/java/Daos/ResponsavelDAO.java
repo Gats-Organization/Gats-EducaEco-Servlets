@@ -145,7 +145,7 @@ public class ResponsavelDAO {
     }
 
     // Criando método para buscar responsavel, que recebe o id do mesmo como parâmetro e retorna seus dados correspondentes
-    public ResponsavelDTO buscarResponsavelPorId(int id) {
+    public Responsavel buscarResponsavelPorId(int id) {
 
         // Estabelecendo conexão com o banco
         conexao.conectar();
@@ -161,7 +161,7 @@ public class ResponsavelDAO {
 
             // Percorrendo o ResultSet e atribuindo os valores a um objeto Responsavel
             while (rs.next()) {
-                ResponsavelDTO responsavel = new ResponsavelDTO();
+                Responsavel responsavel = new Responsavel();
                 responsavel.setId(rs.getInt("id"));
                 responsavel.setNome(rs.getString("nome"));
                 responsavel.setSobrenome(rs.getString("sobrenome"));

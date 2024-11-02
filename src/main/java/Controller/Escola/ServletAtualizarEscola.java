@@ -23,10 +23,11 @@ public class ServletAtualizarEscola extends HttpServlet {
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
-        String endereco = request.getParameter("enderecoCompleto");
+        String enderecoCompleto = request.getParameter("enderecoCompleto");
+
 
         // Criando um objeto Escola com os valores dos campos do formulário e chamando o método de atualização de escolas
-        EscolaDTO escola = new EscolaDTO(id, nome, email, telefone, endereco);
+        EscolaDTO escola = new EscolaDTO(id, nome, email, telefone, enderecoCompleto);
         EscolaDAO escolaDAO = new EscolaDAO ();
         escolaDAO.atualizarEscola(escola);
 

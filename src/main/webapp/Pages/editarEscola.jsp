@@ -44,8 +44,8 @@
                         <td><input type="number" name="telefone" value="<%=escola.getTelefone()%>" id="inputTelefone"></td>
                     </tr>
                     <tr>
-                        <td>Id_endereco:</td>
-                        <td><input type="text" name="id_endereco" value="<%=escola.getEnderecoCompleto()%>" id="inputEndereco"></td>
+                        <td>Endereco:</td>
+                        <td><input type="text" name="enderecoCompleto" value="<%=escola.getEnderecoCompleto()%>" id="inputEndereco"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Salvar" id="salvar"></td>

@@ -56,19 +56,36 @@ public class EscolaDAO {
         conexao.conectar();
 
         // Comando em SQL para atualizar escola
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_ESCOLA (?,?,?,?,?) ")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("CALL ATUALIZAR_ESCOLA (?,?,?,?,?,?,?,?,?,?) ")){
 
             // Definindo os parâmetros usados no comando
+            String enderecoCompleto = escola.getEnderecoCompleto();
+            escola.setRua(enderecoCompleto.split(",")[0]);
+            escola.setNumero(Integer.parseInt(enderecoCompleto.split(",")[1]));
+            escola.setBairro(enderecoCompleto.split(",")[2]);
+            escola.setCidade(enderecoCompleto.split(",")[3]);
+            escola.setEstado(enderecoCompleto.split(",")[4]);
+            escola.setCep(enderecoCompleto.split(",")[5]);
+
+            System.err.println(escola.getRua() + " " + escola.getNumero() + " " + escola.getBairro() + " " + escola.getCidade() + " " + escola.getEstado() + " " + escola.getCep());
+            System.err.println(escola.getId() + " " + escola.getNome() + " " + escola.getEmail() + " " + escola.getTelefone());
+
             pstmt.setInt(1,escola.getId());
             pstmt.setString(2,escola.getNome());
             pstmt.setString(3,escola.getEmail());
             pstmt.setString(4,escola.getTelefone());
-            pstmt.setString(5,escola.getEnderecoCompleto());
+            pstmt.setString(5,escola.getRua());
+            pstmt.setInt(6, escola.getNumero());
+            pstmt.setString(7, escola.getBairro());
+            pstmt.setString(8, escola.getCidade());
+            pstmt.setString(9, escola.getEstado());
+            pstmt.setString(10, escola.getCep());
 
             // Executando o comando
             return pstmt.executeUpdate();
             } catch (SQLException e) {
 
+                System.err.println(e.getMessage());
                 // Retornando -1 em caso de erro
                 return -1;
             } finally {
@@ -125,8 +142,8 @@ public class EscolaDAO {
                 escola.setEmail(rs.getString("EMAIL"));
                 escola.setTelefone(rs.getString("TELEFONE"));
                 escola.setId_endereco(rs.getInt("ID_ENDERECO"));
-                escola.setNumero(rs.getInt("NUMERO"));
                 escola.setRua(rs.getString("RUA"));
+                escola.setNumero(rs.getInt("NUMERO"));
                 escola.setBairro(rs.getString("BAIRRO"));
                 escola.setCidade(rs.getString("CIDADE"));
                 escola.setEstado(rs.getString("ESTADO"));
@@ -156,7 +173,7 @@ public class EscolaDAO {
         conexao.conectar();
 
         // Consulta em SQL para buscar escola
-        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT * FROM ESCOLA WHERE ID=?")){
+        try (PreparedStatement pstmt = conexao.getConn().prepareStatement("SELECT *, CONCAT(RUA, ',', NUMERO, ',', BAIRRO, ',', CIDADE, ',', ESTADO, ',', CEP) as ENDERECOCOMPLETO FROM ESCOLA JOIN ENDERECO ON ESCOLA.ID_ENDERECO = ENDERECO.ID WHERE ESCOLA.ID = ?")){
 
             // Definindo o valor do id
             pstmt.setInt(1,id);
@@ -166,15 +183,20 @@ public class EscolaDAO {
 
             // Percorrendo o ResultSet e atribuindo os valores a um objeto Escola
             while (rs.next()) {
-                EscolaDTO escola = new EscolaDTO();
-                escola.setId(rs.getInt("ID"));
-                escola.setNome(rs.getString("NOME"));
-                escola.setEmail(rs.getString("EMAIL"));
-                escola.setTelefone(rs.getString("TELEFONE"));
-                escola.setId_endereco(rs.getInt("ID_ENDERECO"));
+                EscolaDTO escolan = new EscolaDTO();
+                escolan.setId(rs.getInt("ID"));
+                escolan.setNome(rs.getString("NOME"));
+                escolan.setEmail(rs.getString("EMAIL"));
+                escolan.setTelefone(rs.getString("TELEFONE"));
+                String enderecoCompleto = rs.getString("ENDERECOCOMPLETO");
+                escolan.setEnderecoCompleto(enderecoCompleto);
+
+                // Retornando o endereco selecionada
+                //String enderecoCompleto = rs.getString("ENDERECOCOMPLETO");
+                System.err.println(escolan.getEmail() + escolan.getEnderecoCompleto());
 
                 // Retornando a escola selecionada
-                return escola;
+                return escolan;
             }
         } catch (SQLException e) {
 

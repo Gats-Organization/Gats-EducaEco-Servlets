@@ -19,7 +19,7 @@
 
         <%-- Criando um objeto do tipo Aluno para receber os valores de cada campo da tabela--%>
         <%
-            AlunoDTO aluno = (AlunoDTO) request.getAttribute("aluno");
+            Aluno aluno = (Aluno) request.getAttribute("aluno");
         %>
 
         <%-- Interface onde o usuário pode preencher os campos da tabela e editar um aluno --%>
@@ -52,8 +52,8 @@
                         <td><input type="password" name="senha" value="<%=aluno.getSenha()%>" id="inputSenha"></td>
                     </tr>
                     <tr>
-                        <td>Turma:</td>
-                        <td><input type="text" name=turma" value="<%=aluno.getTurma()%>" id="inputTurma"></td>
+                        <td>Id Turma:</td>
+                        <td><input type="text" name="idturma" value="<%=aluno.getId_turma()%>" id="inputTurma"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Salvar" id="salvar"></td>
