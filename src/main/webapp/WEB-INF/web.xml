@@ -4,11 +4,6 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
-    <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.example.LoginServlet</servlet-class>
-    </servlet>
-
     <!-- Mapeamento do Servlet -->
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
