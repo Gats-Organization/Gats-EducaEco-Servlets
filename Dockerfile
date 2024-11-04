@@ -1,16 +1,18 @@
-# Etapa de construção: criar o arquivo .war
-FROM maven:latest AS build
-WORKDIR /educaeco
+# Fase 1: Build do projeto
+FROM maven:3.8.3-openjdk-17 AS build
+
+WORKDIR /app
+
 COPY pom.xml .
-RUN mvn dependency:resolve
-COPY . .
-RUN mvn clean package
+COPY src ./src
 
-# Etapa de execução: Tomcat para rodar o .war
-FROM tomcat:10.0-jdk11
-WORKDIR /usr/local/tomcat/webapps/
-COPY --from=build /educaeco/target/Servlets-1.0-SNAPSHOT.war EducaEco.war
+RUN mvn clean package -DskipTests
 
-# Exponha as portas e inicie o Tomcat
+# Fase 2: Execução com Tomcat
+FROM tomcat:10.1.19-jdk11
+
+COPY --from=build /app/target/teste-1.0-SNAPSHOT/ /usr/local/tomcat/webapps/app/
+
 EXPOSE 8080
+
 CMD ["catalina.sh", "run"]
