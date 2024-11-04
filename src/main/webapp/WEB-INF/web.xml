@@ -4,9 +4,33 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
-    <!-- Mapeamento do Servlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.mobile.educaeco.servlets.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AlunoServlet</servlet-name>
+        <servlet-class>com.mobile.educaeco.servlets.AlunoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AlunoServlet</servlet-name>
+        <url-pattern>/aluno</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TurmaServlet</servlet-name>
+        <servlet-class>com.mobile.educaeco.servlets.TurmaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TurmaServlet</servlet-name>
+        <url-pattern>/turma</url-pattern>
+    </servlet-mapping>
+
+    <!-- Adicione mais servlets e rotas conforme necessário -->
+
 </web-app>
