@@ -11,7 +11,7 @@ RUN mvn clean package -DskipTests
 # Fase 2: Execução com Tomcat
 FROM tomcat:10.1.19-jdk11
 
-COPY --from=build /app/target/teste-1.0-SNAPSHOT/ /usr/local/tomcat/webapps/app/
+COPY --from=build /app/target/Servlets-1.0-SNAPSHOT/ /usr/local/tomcat/webapps/app/
 
 EXPOSE 8080
 
