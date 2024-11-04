@@ -1,5 +1,5 @@
 # Fase 1: Build do projeto
-FROM maven:3.8.3-openjdk-17 AS build
+FROM maven:3.9.0-openjdk-21 AS build
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Fase 2: Execução com Tomcat
-FROM tomcat:10.1.19-jdk11
+FROM tomcat:10.1.19-openjdk21
 
 COPY --from=build /app/target/Servlets-1.0-SNAPSHOT/ /usr/local/tomcat/webapps/app/
 
