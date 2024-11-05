@@ -15,7 +15,7 @@ public class Conexao {
     }
 
     public Conexao() {
-        dotenv = Dotenv.configure().directory("C:\\Users\\raissacasale-ieg\\OneDrive - Instituto Germinare\\Área de Trabalho\\Trabalho Interdisciplinar\\Servlets\\.env").load();
+        //dotenv = Dotenv.configure().directory("C:\\Users\\raissacasale-ieg\\OneDrive - Instituto Germinare\\Área de Trabalho\\Trabalho Interdisciplinar\\Servlets\\.env").load();
     }
     // Método para conectar ao banco de dados
     public boolean conectar() {
@@ -23,9 +23,9 @@ public class Conexao {
 
             // Carregando o driver do banco de dados
             Class.forName("org.postgresql.Driver");
-            String url = dotenv.get("DATABASEURL");
-            String user = dotenv.get("USER");
-            String password = dotenv.get("PASSWORD");
+            String url = System.getenv("DATABASEURL");
+            String user = System.getenv("USER");
+            String password = System.getenv("PASSWORD");
 
             // Configurando a conexão com o banco de dados
             conn = DriverManager.getConnection(
