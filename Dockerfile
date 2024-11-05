@@ -6,10 +6,6 @@ RUN mvn -B -f pom.xml -s /usr/share/maven/ref/settings-docker.xml dependency:res
 COPY . .
 RUN mvn -B -s /usr/share/maven/ref/settings-docker.xml package
 
-COPY . .
-
-RUN mvn clean package -DskipTests
-
 FROM tomcat:10.1.19-jdk11
 WORKDIR /usr/local/tomcat/bin
 COPY run.sh run.sh
