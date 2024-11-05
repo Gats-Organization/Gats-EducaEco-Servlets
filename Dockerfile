@@ -6,7 +6,7 @@ RUN mvn -B -f pom.xml -s /usr/share/maven/ref/settings-docker.xml dependency:res
 COPY . .
 RUN mvn -B -s /usr/share/maven/ref/settings-docker.xml package
 
-FROM tomcat:10.1.19-jdk11
+FROM tomcat:jre21
 WORKDIR /usr/local/tomcat/bin
 COPY run.sh run.sh
 RUN chmod +x run.sh
