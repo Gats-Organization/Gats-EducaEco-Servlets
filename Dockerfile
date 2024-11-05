@@ -1,6 +1,10 @@
 # Fase 1: Build do projeto
 FROM maven:3.9.7-eclipse-temurin-21-alpine AS build
 WORKDIR /app
+COPY pom.xml .
+RUN mvn -B -f pom.xml -s /usr/share/maven/ref/settings-docker.xml dependency:resolve
+COPY . .
+RUN mvn -B -s /usr/share/maven/ref/settings-docker.xml package
 
 COPY . .
 
