@@ -6,10 +6,17 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
-# Fase 2: Execução com Tomcat
 FROM tomcat:10.1.19-jdk11
-COPY --from=build /app/target/Servlets-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/educaeco.war
+WORKDIR /usr/local/tomcat/bin
+COPY run.sh run.sh
+RUN chmod +x run.sh
+#Copy war file
+WORKDIR /usr/local/tomcat/webapps
+COPY --from=build /app/target/Servlets-1.0-SNAPSHOT.war educaeco.war
 
+# Expose ports
+ENV JPDA_ADDRESS="8000"
+ENV JPDA_TRANSPORT="dt_socket"
 EXPOSE 8080
-
-CMD ["catalina.sh", "run"]
+WORKDIR /usr/local/tomcat/bin
+CMD ["run.sh"]
