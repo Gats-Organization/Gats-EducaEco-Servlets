@@ -35,7 +35,7 @@ public class TurmaDAO {
             pstmt.setString(2, turmaDTO.getNomenclatura());
             pstmt.setInt(3, turmaDTO.getAno());
             pstmt.setString(4, turmaDTO.getNomeEscola());
-            pstmt.setString(5, turmaDTO.getNomeProfessor() );
+            pstmt.setString(5, turmaDTO.getNomeCompleto());
 
             // Executando o comando
             return pstmt.executeUpdate();
