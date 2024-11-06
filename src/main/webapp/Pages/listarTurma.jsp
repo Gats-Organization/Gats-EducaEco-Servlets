@@ -120,7 +120,7 @@
             function confirmarExclusao(id) {
                 document.getElementById("modalExclusao").style.display = "block";
                 document.getElementById("confirmado").onclick = function() {
-                    location.href = "ServletExcluirTurma?id=" + id;
+                    location.href = "excluirTurma?id=" + id;
                 }
             }
 
