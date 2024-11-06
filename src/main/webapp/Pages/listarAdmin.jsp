@@ -122,7 +122,7 @@
             function confirmarExclusao(id) {
                 document.getElementById("modalExclusao").style.display = "block";
                 document.getElementById("confirmado").onclick = function() {
-                    location.href = "ServletExcluirAdmin?id=" + id;
+                    location.href = "excluirAdmin?id=" + id;
                 }
             }
 
