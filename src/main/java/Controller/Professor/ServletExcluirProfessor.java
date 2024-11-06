@@ -11,7 +11,7 @@ import java.io.IOException;
 
 // Criando a classe ServletExcluirProfessor
 // A anotação @WebServlet é usada para mapear o Servlet para uma URL
-@WebServlet("/ServletExcluirProfessor")
+@WebServlet("/excluirProfessor")
 public class ServletExcluirProfessor extends HttpServlet {
 
     // Criando o método para processar as solicitações do tipo GET
