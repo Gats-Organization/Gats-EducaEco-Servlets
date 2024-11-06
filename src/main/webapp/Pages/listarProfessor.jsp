@@ -117,7 +117,7 @@
             function confirmarExclusao(id) {
                 document.getElementById("modalExclusao").style.display = "block";
                 document.getElementById("confirmado").onclick = function() {
-                    location.href = "ServletExcluirProfessor?id=" + id;
+                    location.href = "excluirProfessor?id=" + id;
                 }
             }
 
